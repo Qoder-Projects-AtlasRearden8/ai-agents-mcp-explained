@@ -231,6 +231,10 @@ async function main() {
     assert(emptyState.status.includes("No matches"), "Empty-search status is unclear.");
     await page.keyboard.press("Escape");
     await page.waitForFunction(() => !document.querySelector("#search-dialog")?.open);
+    await page.waitForFunction(
+      () => document.activeElement?.classList.contains("search-button"),
+      { timeout: 2000 },
+    );
     const shortcutFocus = await page.evaluate(() => document.activeElement?.classList.contains("search-button"));
     assert(shortcutFocus, "Closing search did not restore focus to the search button.");
     check("Ctrl+K, empty search, and Escape behave correctly");
