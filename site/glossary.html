@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>Glossary — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="Plain-English definitions for the agents, MCP, security, and data terms you will meet in product docs and meetings." />
+  <meta property="og:title" content="Glossary — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="Plain-English definitions for the agents, MCP, security, and data terms you will meet in product docs and meetings." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter is-glossary" data-page-slug="glossary">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html" aria-current="page">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link is-active" href="glossary.html" aria-current="page"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-reference">Reference</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 12</p>
+          <h1>Glossary</h1>
+          <p class="chapter-dek">Plain-English definitions for the agents, MCP, security, and data terms you will meet in product docs and meetings.</p>
+          <div class="chapter-meta"><span>3,399 words</span><span aria-hidden="true">·</span><span>16 min read</span><span aria-hidden="true">·</span><span>Part IV</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>Terms are defined as they are used in this book. Products use words inconsistently, and the MCP ecosystem is still evolving. When a word matters to a decision, ask the vendor what it means in their implementation.</p>
+<h2 id="a">A<a class="heading-anchor" href="#a" aria-label="Link to section: A">#</a></h2>
+<h3 id="access-token">Access token<a class="heading-anchor" href="#access-token" aria-label="Link to section: Access token">#</a></h3>
+<p>A credential that lets a client call a service on a user&#39;s behalf. Access tokens are usually short-lived and limited by scopes. They should be kept out of prompts, logs, and repositories. See <a href="#oauth">OAuth</a>.</p>
+<h3 id="agent-identity">Agent identity<a class="heading-anchor" href="#agent-identity" aria-label="Link to section: Agent identity">#</a></h3>
+<p>The account, token, or service identity an agent acts as. A dedicated, least-privilege identity makes actions attributable and revocable. Using a personal admin account makes every mistake more dangerous. See <a href="safety.html">Chapter 7</a>.</p>
+<h3 id="agent-harness">Agent harness<a class="heading-anchor" href="#agent-harness" aria-label="Link to section: Agent harness">#</a></h3>
+<p>The software around the model that builds context, runs the <a href="#agent-loop">agent loop</a>, enforces permissions, handles retries, presents approvals, and records traces. The model chooses; the harness enforces.</p>
+<h3 id="agent-loop">Agent loop<a class="heading-anchor" href="#agent-loop" aria-label="Link to section: Agent loop">#</a></h3>
+<p>The repeated cycle of model decision, tool call, observation, and revised decision, ending in a final answer or a stopping condition. See <a href="agent-loop.html">Chapter 2</a>.</p>
+<h3 id="agentic">Agentic<a class="heading-anchor" href="#agentic" aria-label="Link to section: Agentic">#</a></h3>
+<p>A loose adjective for software that uses model-driven decisions and actions rather than only fixed rules. &quot;Agentic&quot; is not a measure of quality, safety, or usefulness. Ask what the system actually decides and what it can do.</p>
+<h3 id="ai-agent">AI agent<a class="heading-anchor" href="#ai-agent" aria-label="Link to section: AI agent">#</a></h3>
+<p>Software that uses a language model to pursue a goal over multiple steps, including tool calls, with some autonomy and guardrails. See <a href="what-is-an-agent.html">Chapter 1</a>.</p>
+<h3 id="allowlist">Allowlist<a class="heading-anchor" href="#allowlist" aria-label="Link to section: Allowlist">#</a></h3>
+<p>An explicit list of permitted values: recipients, domains, file paths, tools, hosts, or commands. Allowlists are stronger than blocklists because they fail closed when they encounter something new. Enforce them in code, not only in a prompt.</p>
+<h3 id="annotation">Annotation<a class="heading-anchor" href="#annotation" aria-label="Link to section: Annotation">#</a></h3>
+<p>Metadata supplied by an MCP server describing a tool, such as whether it is expected to be read-only or destructive. Annotations are hints, not proof, and should not be the only security boundary.</p>
+<h3 id="api">API<a class="heading-anchor" href="#api" aria-label="Link to section: API">#</a></h3>
+<p>Application Programming Interface, a defined way for software to talk to other software. An MCP server often wraps one or more APIs.</p>
+<h3 id="approval-fatigue">Approval fatigue<a class="heading-anchor" href="#approval-fatigue" aria-label="Link to section: Approval fatigue">#</a></h3>
+<p>The tendency to click &quot;allow&quot; without reading when a system asks too often or presents vague prompts. Good approval design is selective, specific, and rare enough to remain meaningful.</p>
+<h3 id="approval-gate">Approval gate<a class="heading-anchor" href="#approval-gate" aria-label="Link to section: Approval gate">#</a></h3>
+<p>A checkpoint where a human must approve a specific action before it executes. A strong gate shows the exact consequence: recipient, amount, file, query, diff, or account.</p>
+<h3 id="audit-log">Audit log<a class="heading-anchor" href="#audit-log" aria-label="Link to section: Audit log">#</a></h3>
+<p>A record of who did what, when, and with what outcome. For agents, useful logs cover tool calls, arguments, approvals, errors, and side effects. Logs can contain sensitive data and need their own protection.</p>
+<h3 id="autonomy">Autonomy<a class="heading-anchor" href="#autonomy" aria-label="Link to section: Autonomy">#</a></h3>
+<p>The degree to which an agent can act without human intervention. It is a spectrum, not a switch: suggest, draft, ask before acting, act within rules, operate unattended. See <a href="what-is-an-agent.html">the autonomy ladder</a>.</p>
+<h2 id="b">B<a class="heading-anchor" href="#b" aria-label="Link to section: B">#</a></h2>
+<h3 id="bearer-token">Bearer token<a class="heading-anchor" href="#bearer-token" aria-label="Link to section: Bearer token">#</a></h3>
+<p>A token that grants access to whoever presents it. If it leaks, it can be used like a password. Store it securely, limit its scope, use short expiration, and rotate after exposure.</p>
+<h3 id="budget-limit">Budget limit<a class="heading-anchor" href="#budget-limit" aria-label="Link to section: Budget limit">#</a></h3>
+<p>A cap on model usage, tool calls, or money for a task or period. A budget limit keeps a confused or looping agent from becoming an expensive one.</p>
+<h2 id="c">C<a class="heading-anchor" href="#c" aria-label="Link to section: C">#</a></h2>
+<h3 id="capability-negotiation">Capability negotiation<a class="heading-anchor" href="#capability-negotiation" aria-label="Link to section: Capability negotiation">#</a></h3>
+<p>The MCP initialization step where client and server exchange protocol versions and supported features. It helps each side know what it can rely on, such as whether tools, resources, or prompts are available.</p>
+<h3 id="client-mcp-client">Client (MCP client)<a class="heading-anchor" href="#client-mcp-client" aria-label="Link to section: Client (MCP client)">#</a></h3>
+<p>The part of an MCP host that connects to a server and exchanges MCP messages. A host may run one client per server connection. The client is plumbing, not the model.</p>
+<h3 id="computer-use">Computer use<a class="heading-anchor" href="#computer-use" aria-label="Link to section: Computer use">#</a></h3>
+<p>An agent capability that operates a graphical desktop or browser by viewing screens and clicking or typing. It is powerful where no API exists, and risky because it can use logged-in sessions and reach anything visible. Prefer a dedicated profile or environment.</p>
+<h3 id="confused-deputy">Confused deputy<a class="heading-anchor" href="#confused-deputy" aria-label="Link to section: Confused deputy">#</a></h3>
+<p>A security problem where a trusted program with legitimate access is tricked into using that access for someone else&#39;s goal. An overpermissioned tool server acting on injected content is a common agent example.</p>
+<h3 id="connector">Connector<a class="heading-anchor" href="#connector" aria-label="Link to section: Connector">#</a></h3>
+<p>A product-level integration shown in an AI application, often bundling an MCP server, authorization, a curated tool set, and support. &quot;Connector&quot; is packaging, not a guarantee that MCP is used or that the integration is safe. See <a href="connectors.html">Chapter 6</a>.</p>
+<h3 id="context">Context<a class="heading-anchor" href="#context" aria-label="Link to section: Context">#</a></h3>
+<p>The information the model can see at a given moment: instructions, conversation, tools, retrieved documents, and tool results. Context is constructed by the harness, not magically known by the model.</p>
+<h3 id="context-window">Context window<a class="heading-anchor" href="#context-window" aria-label="Link to section: Context window">#</a></h3>
+<p>The maximum amount of text a model can consider at once. When it fills, older or lower-priority material may be truncated or compressed, which can cause an agent to &quot;forget&quot; constraints. Large context is not the same as good context.</p>
+<h3 id="credential">Credential<a class="heading-anchor" href="#credential" aria-label="Link to section: Credential">#</a></h3>
+<p>A secret used to prove identity or authorization: password, API key, access token, private key, session cookie. Give an agent as few and as narrowly scoped credentials as possible, and keep them outside model context.</p>
+<h2 id="d">D<a class="heading-anchor" href="#d" aria-label="Link to section: D">#</a></h2>
+<h3 id="destructive-action">Destructive action<a class="heading-anchor" href="#destructive-action" aria-label="Link to section: Destructive action">#</a></h3>
+<p>An action that deletes, overwrites, or irreversibly changes data or configurations. Destructive tools need strong safeguards: narrow scope, previews, approvals, backups, or all three.</p>
+<h3 id="dry-run">Dry run<a class="heading-anchor" href="#dry-run" aria-label="Link to section: Dry run">#</a></h3>
+<p>A preview mode that shows what an action would do without performing it. Dry runs are especially useful for bulk edits, deletes, migrations, and publishing.</p>
+<h2 id="e">E<a class="heading-anchor" href="#e" aria-label="Link to section: E">#</a></h2>
+<h3 id="egress">Egress<a class="heading-anchor" href="#egress" aria-label="Link to section: Egress">#</a></h3>
+<p>Outbound network access from a sandbox or server. Restricting egress can prevent exfiltration and limit what a compromised tool can reach. If an agent can reach any address, its communication boundary is wide open.</p>
+<h3 id="elicitation">Elicitation<a class="heading-anchor" href="#elicitation" aria-label="Link to section: Elicitation">#</a></h3>
+<p>An MCP client feature that lets a server ask the user for additional information. It can improve a workflow, but it can also be abused for social engineering. The host must show the source and purpose clearly.</p>
+<h3 id="endpoint">Endpoint<a class="heading-anchor" href="#endpoint" aria-label="Link to section: Endpoint">#</a></h3>
+<p>A network address and path where a service accepts requests, such as an HTTP API or a remote MCP server. An endpoint is not the same as a tool; a server may expose several tools through one endpoint.</p>
+<h3 id="evaluation">Evaluation<a class="heading-anchor" href="#evaluation" aria-label="Link to section: Evaluation">#</a></h3>
+<p>A repeatable set of test cases used to judge an agent or workflow: accuracy, completeness, safety behavior, cost, and latency. Evaluations are more useful than a collection of impressive anecdotes.</p>
+<h3 id="exfiltration">Exfiltration<a class="heading-anchor" href="#exfiltration" aria-label="Link to section: Exfiltration">#</a></h3>
+<p>Unauthorized movement of data to a destination the user did not intend. For agents, the dangerous combination is access to private data, exposure to untrusted content, and an external communication channel. See <a href="#lethal-trifecta">lethal trifecta</a>.</p>
+<h2 id="f">F<a class="heading-anchor" href="#f" aria-label="Link to section: F">#</a></h2>
+<h3 id="function-calling">Function calling<a class="heading-anchor" href="#function-calling" aria-label="Link to section: Function calling">#</a></h3>
+<p>A model API feature where the model emits a structured request to call a developer-defined function. The host or application executes it. MCP is a separate protocol for exposing capabilities to an AI application; the two are often used together.</p>
+<h2 id="g">G<a class="heading-anchor" href="#g" aria-label="Link to section: G">#</a></h2>
+<h3 id="grounding">Grounding<a class="heading-anchor" href="#grounding" aria-label="Link to section: Grounding">#</a></h3>
+<p>Tying a model&#39;s answer to specific evidence, such as retrieved documents, tool results, or database records. Grounding reduces but does not eliminate hallucination. A citation should be verifiable, not decorative.</p>
+<h3 id="guardrail">Guardrail<a class="heading-anchor" href="#guardrail" aria-label="Link to section: Guardrail">#</a></h3>
+<p>A control that constrains what an agent can do or when it must stop: permissions, approval gates, input limits, budgets, sandboxes, and filters. Guardrails are strongest when enforced in software rather than only requested in a prompt.</p>
+<h2 id="h">H<a class="heading-anchor" href="#h" aria-label="Link to section: H">#</a></h2>
+<h3 id="hallucination">Hallucination<a class="heading-anchor" href="#hallucination" aria-label="Link to section: Hallucination">#</a></h3>
+<p>A confident output that is not supported by facts or available evidence. In agents, the problem is compounded because a hallucinated plan or tool argument can produce a real-world action. Grounding, verification, and narrow scope help.</p>
+<h3 id="host">Host<a class="heading-anchor" href="#host" aria-label="Link to section: Host">#</a></h3>
+<p>The AI application that contains the user experience and MCP clients. The host calls the model, selects conversation context, presents approvals, and decides which servers and tools are available. See <a href="mcp.html">MCP architecture</a>.</p>
+<h3 id="human-in-the-loop">Human-in-the-loop<a class="heading-anchor" href="#human-in-the-loop" aria-label="Link to section: Human-in-the-loop">#</a></h3>
+<p>A design where a person reviews, approves, or decides at meaningful points. It is not a failure of automation; it is a way to place accountability where consequences are high or uncertain.</p>
+<h2 id="i">I<a class="heading-anchor" href="#i" aria-label="Link to section: I">#</a></h2>
+<h3 id="idempotency">Idempotency<a class="heading-anchor" href="#idempotency" aria-label="Link to section: Idempotency">#</a></h3>
+<p>The property that repeating the same operation has the same effect as performing it once. Search is naturally idempotent; creating an invoice or sending an email usually is not unless the tool implements a key or de-duplication.</p>
+<h3 id="indirect-prompt-injection">Indirect prompt injection<a class="heading-anchor" href="#indirect-prompt-injection" aria-label="Link to section: Indirect prompt injection">#</a></h3>
+<p>An attack where instructions reach the model through content it reads, rather than through the user&#39;s direct message. Documents, emails, web pages, tickets, calendar invites, images, and tool results are common carriers. See <a href="safety.html">Chapter 7</a>.</p>
+<h3 id="input-schema">Input schema<a class="heading-anchor" href="#input-schema" aria-label="Link to section: Input schema">#</a></h3>
+<p>A structured description of a tool&#39;s accepted arguments, usually JSON Schema. It helps the model form valid calls and lets the host or server reject malformed input. It does not establish that the caller is authorized.</p>
+<h2 id="j">J<a class="heading-anchor" href="#j" aria-label="Link to section: J">#</a></h2>
+<h3 id="json-rpc">JSON-RPC<a class="heading-anchor" href="#json-rpc" aria-label="Link to section: JSON-RPC">#</a></h3>
+<p>A lightweight remote procedure call protocol encoded in JSON. MCP uses JSON-RPC 2.0 for requests, responses, notifications, and errors.</p>
+<h3 id="json-schema">JSON Schema<a class="heading-anchor" href="#json-schema" aria-label="Link to section: JSON Schema">#</a></h3>
+<p>A standard vocabulary for describing JSON data shapes and constraints. MCP tool input schemas commonly use it. Schema validation is a useful layer, not a complete security policy.</p>
+<h2 id="k">K<a class="heading-anchor" href="#k" aria-label="Link to section: K">#</a></h2>
+<h3 id="kill-switch">Kill switch<a class="heading-anchor" href="#kill-switch" aria-label="Link to section: Kill switch">#</a></h3>
+<p>A way to stop an agent quickly and prevent further actions, such as disabling a connector, pausing a workflow, or terminating a sandbox. The kill switch should be discoverable before an incident, not during one.</p>
+<h2 id="l">L<a class="heading-anchor" href="#l" aria-label="Link to section: L">#</a></h2>
+<h3 id="least-privilege">Least privilege<a class="heading-anchor" href="#least-privilege" aria-label="Link to section: Least privilege">#</a></h3>
+<p>The principle of granting the minimum access needed for a task, for the minimum time, on the smallest scope. For agents: read-only by default, narrow folders, dedicated accounts, limited tools, and expiring credentials.</p>
+<h3 id="lethal-trifecta">Lethal trifecta<a class="heading-anchor" href="#lethal-trifecta" aria-label="Link to section: Lethal trifecta">#</a></h3>
+<p>The combination of (1) access to private data, (2) exposure to untrusted content, and (3) the ability to communicate externally. Together they create a path for prompt injection to leak data. Break at least one link: restrict data, reduce untrusted exposure, or remove unapproved external actions.</p>
+<h3 id="local-server">Local server<a class="heading-anchor" href="#local-server" aria-label="Link to section: Local server">#</a></h3>
+<p>An MCP server running on the user&#39;s machine, commonly over stdio. It may be safe when scoped and sandboxed, and dangerous when it has broad filesystem, shell, or credential access. &quot;Local&quot; is not a synonym for &quot;trusted.&quot;</p>
+<h2 id="m">M<a class="heading-anchor" href="#m" aria-label="Link to section: M">#</a></h2>
+<h3 id="mcp">MCP<a class="heading-anchor" href="#mcp" aria-label="Link to section: MCP">#</a></h3>
+<p>The Model Context Protocol, an open standard for connecting AI applications to external tools, data, and prompt templates. It uses a host-client-server architecture and JSON-RPC messages, with stdio and HTTP-based transports. It makes integrations more portable, but it does not make them intelligent or safe. See <a href="mcp.html">Chapter 4</a>.</p>
+<h3 id="mcp-server">MCP server<a class="heading-anchor" href="#mcp-server" aria-label="Link to section: MCP server">#</a></h3>
+<p>A program that exposes MCP capabilities such as tools, resources, and prompts. It translates protocol requests into operations against files, APIs, databases, or other systems. A server is software with credentials, logs, bugs, and an owner.</p>
+<h3 id="memory">Memory<a class="heading-anchor" href="#memory" aria-label="Link to section: Memory">#</a></h3>
+<p>Persistent information an agent or host retains across sessions, such as preferences, project facts, or prior decisions. Memory can improve continuity and can preserve stale or poisoned beliefs. Keep it scoped, reviewable, and deletable, and never use it for secrets.</p>
+<h3 id="model">Model<a class="heading-anchor" href="#model" aria-label="Link to section: Model">#</a></h3>
+<p>The language model that generates text and tool-call suggestions. It does not itself execute tools, hold credentials, or enforce permissions; the harness around it does.</p>
+<h2 id="o">O<a class="heading-anchor" href="#o" aria-label="Link to section: O">#</a></h2>
+<h3 id="oauth">OAuth<a class="heading-anchor" href="#oauth" aria-label="Link to section: OAuth">#</a></h3>
+<p>An open authorization framework that lets an application obtain limited access to a service without receiving the user&#39;s password. MCP&#39;s HTTP-based authorization uses OAuth-family standards. For users, the key ideas are consent, scopes, tokens, expiration, and revocation.</p>
+<h3 id="observation">Observation<a class="heading-anchor" href="#observation" aria-label="Link to section: Observation">#</a></h3>
+<p>The result of a tool call that returns to the model: text, structured data, an error, an image, or a resource reference. Observations are evidence, but they can be incomplete or hostile. The loop depends on them.</p>
+<h3 id="openapi">OpenAPI<a class="heading-anchor" href="#openapi" aria-label="Link to section: OpenAPI">#</a></h3>
+<p>A standard way to describe HTTP APIs. Some AI platforms turn OpenAPI operations into tools, and MCP servers may wrap OpenAPI-backed services. A machine-readable API description improves consistency but does not inherently make the API safe for model use.</p>
+<h3 id="overpermission">Overpermission<a class="heading-anchor" href="#overpermission" aria-label="Link to section: Overpermission">#</a></h3>
+<p>Access beyond what a task needs. Common examples are admin accounts for convenience, whole-drive access for one folder, and send-and-delete tools enabled during a drafting workflow. Overpermission expands the impact of every model mistake and injection.</p>
+<h2 id="p">P<a class="heading-anchor" href="#p" aria-label="Link to section: P">#</a></h2>
+<h3 id="permission">Permission<a class="heading-anchor" href="#permission" aria-label="Link to section: Permission">#</a></h3>
+<p>The authority to perform an action or access a resource. In agent systems, permissions should be enforced by identity, tool, server, and data boundaries, not merely described in prompts. Review them as part of the product, not a settings footnote.</p>
+<h3 id="pilot">Pilot<a class="heading-anchor" href="#pilot" aria-label="Link to section: Pilot">#</a></h3>
+<p>A time-boxed, limited-scope trial with explicit success measures, safety bounds, and a decision at the end. A pilot is not an indefinite production deployment with the word &quot;pilot&quot; attached.</p>
+<h3 id="prompt">Prompt<a class="heading-anchor" href="#prompt" aria-label="Link to section: Prompt">#</a></h3>
+<p>The instructions and context given to a model. A prompt can include system rules, user requests, examples, and retrieved content. Prompts shape behavior but do not enforce permissions.</p>
+<h3 id="prompt-injection">Prompt injection<a class="heading-anchor" href="#prompt-injection" aria-label="Link to section: Prompt injection">#</a></h3>
+<p>Content that tries to make the model follow instructions other than the user&#39;s or system&#39;s intent. Direct injection comes from user input; indirect injection arrives through documents, tools, or web content. There is no complete general solution; design the consequences to be limited.</p>
+<h3 id="prompt-template">Prompt template<a class="heading-anchor" href="#prompt-template" aria-label="Link to section: Prompt template">#</a></h3>
+<p>A reusable prompt exposed by an MCP server and invoked by a user, often through a slash command or menu. It can encode expertise and standard workflow steps. It is not an action and it does not make the workflow safe on its own.</p>
+<h2 id="r">R<a class="heading-anchor" href="#r" aria-label="Link to section: R">#</a></h2>
+<h3 id="rate-limit">Rate limit<a class="heading-anchor" href="#rate-limit" aria-label="Link to section: Rate limit">#</a></h3>
+<p>A cap on how often a client or user may call a service. Agents can hit limits through retries, loops, or broad retrieval. Rate limits protect the upstream system and can also reveal runaway behavior.</p>
+<h3 id="read-only-tool">Read-only tool<a class="heading-anchor" href="#read-only-tool" aria-label="Link to section: Read-only tool">#</a></h3>
+<p>A tool intended not to modify state. Read-only reduces risk but does not remove it: reading private data, ingesting injections, and exposing logs can still cause harm. Verify the claim in code where it matters.</p>
+<h3 id="redaction">Redaction<a class="heading-anchor" href="#redaction" aria-label="Link to section: Redaction">#</a></h3>
+<p>Removing or masking sensitive data in logs, traces, errors, or shared reproductions. Redaction should cover tokens, passwords, personal data, and confidential content, and should happen before storage whenever possible.</p>
+<h3 id="remote-server">Remote server<a class="heading-anchor" href="#remote-server" aria-label="Link to section: Remote server">#</a></h3>
+<p>An MCP server reached over a network, typically with Streamable HTTP and delegated authorization. It moves data and trust outside the local machine. Evaluate the operator, scopes, retention, and availability like any third-party service.</p>
+<h3 id="resource">Resource<a class="heading-anchor" href="#resource" aria-label="Link to section: Resource">#</a></h3>
+<p>An MCP primitive for readable data identified by a URI, such as a document, record, or log. Resources are generally application-controlled, making them useful for user-selected context. The server must enforce access boundaries.</p>
+<h3 id="resource-template">Resource template<a class="heading-anchor" href="#resource-template" aria-label="Link to section: Resource template">#</a></h3>
+<p>A parameterized pattern for a family of MCP resources, for example <code>customers://{id}/summary</code>. Templates need input validation to prevent path traversal, injection, and access to unintended records.</p>
+<h3 id="retrieval">Retrieval<a class="heading-anchor" href="#retrieval" aria-label="Link to section: Retrieval">#</a></h3>
+<p>Finding and supplying relevant information to a model, often through search or a database query. Retrieval improves grounding but can return stale, biased, or incomplete material. The quality of the sources matters more than the cleverness of the query.</p>
+<h3 id="retrieval-augmented-generation-rag">Retrieval-augmented generation (RAG)<a class="heading-anchor" href="#retrieval-augmented-generation-rag" aria-label="Link to section: Retrieval-augmented generation (RAG)">#</a></h3>
+<p>A pattern that retrieves relevant content and gives it to the model to generate an answer. In agent systems, retrieval may be a tool call, a resource, or built into the host. RAG is not a cure for hallucination if the retrieved content is wrong or ignored.</p>
+<h3 id="retry">Retry<a class="heading-anchor" href="#retry" aria-label="Link to section: Retry">#</a></h3>
+<p>Repeating an operation after a failure. Retry reads and safe idempotent writes when appropriate. Do not blindly retry consequential actions, because the first attempt may have succeeded even if the response was lost.</p>
+<h3 id="root">Root<a class="heading-anchor" href="#root" aria-label="Link to section: Root">#</a></h3>
+<p>In MCP, a filesystem location a client tells a server is relevant to a session. Roots are a boundary signal, not an airtight sandbox. Path enforcement must happen in the server and the operating system.</p>
+<h2 id="s">S<a class="heading-anchor" href="#s" aria-label="Link to section: S">#</a></h2>
+<h3 id="sampling">Sampling<a class="heading-anchor" href="#sampling" aria-label="Link to section: Sampling">#</a></h3>
+<p>An MCP feature where a server requests a model completion through the client. It lets a server use the host&#39;s model without its own API key, but it also creates a path for an untrusted server to request model work. Hosts should keep consent and limits.</p>
+<h3 id="sandbox">Sandbox<a class="heading-anchor" href="#sandbox" aria-label="Link to section: Sandbox">#</a></h3>
+<p>An isolated environment for agent actions, such as a container, virtual machine, or dedicated user account. A useful sandbox limits filesystem access, network egress, privileges, time, and resources, and can be destroyed safely.</p>
+<h3 id="scope">Scope<a class="heading-anchor" href="#scope" aria-label="Link to section: Scope">#</a></h3>
+<p>In OAuth, a named permission granted to an application, such as reading files or sending messages. In a broader sense, the boundary of an agent&#39;s data and actions. Both meanings point to the same habit: ask what is allowed.</p>
+<h3 id="secret">Secret<a class="heading-anchor" href="#secret" aria-label="Link to section: Secret">#</a></h3>
+<p>A credential or sensitive value that must not be exposed, such as an API key, password, token, or private key. Keep secrets out of prompts, repos, URLs, and logs; store them in a secret manager or environment with restricted access; rotate after exposure.</p>
+<h3 id="side-effect">Side effect<a class="heading-anchor" href="#side-effect" aria-label="Link to section: Side effect">#</a></h3>
+<p>A change caused by an action, such as sending a message, creating a record, or deleting a file. Read-only tools should have none. For writes, know whether the side effect is reversible, repeatable, and visible in logs.</p>
+<h3 id="state">State<a class="heading-anchor" href="#state" aria-label="Link to section: State">#</a></h3>
+<p>Information a workflow or server retains between calls or sessions. State is useful for multi-step tasks and creates risks such as stale data, session hijacking, concurrency conflicts, and data retention obligations. Keep it intentional.</p>
+<h3 id="stdio">Stdio<a class="heading-anchor" href="#stdio" aria-label="Link to section: Stdio">#</a></h3>
+<p>Standard input/output, a local transport for MCP servers in which the host launches the server and exchanges JSON-RPC over its input and output streams. Logs must go to stderr because stdout carries protocol messages.</p>
+<h3 id="streamable-http">Streamable HTTP<a class="heading-anchor" href="#streamable-http" aria-label="Link to section: Streamable HTTP">#</a></h3>
+<p>The HTTP-based transport for remote MCP, capable of streaming responses. Earlier MCP versions used a separate HTTP plus server-sent events transport; the specification has moved to Streamable HTTP. Remote connections need authentication and network security.</p>
+<h3 id="structured-content">Structured content<a class="heading-anchor" href="#structured-content" aria-label="Link to section: Structured content">#</a></h3>
+<p>Tool results expressed as fields with types rather than only prose, such as a status code, an ID, or an amount. Structured output reduces ambiguity for the model and enables verification. It still needs validation.</p>
+<h3 id="supply-chain">Supply chain<a class="heading-anchor" href="#supply-chain" aria-label="Link to section: Supply chain">#</a></h3>
+<p>The software and services that go into a tool, including dependencies, package registries, maintainers, updates, and hosting. Installing a local MCP server or using a hosted connector is a supply-chain decision. Pin versions, review sources, and keep an exit path.</p>
+<h2 id="t">T<a class="heading-anchor" href="#t" aria-label="Link to section: T">#</a></h2>
+<h3 id="threat-model">Threat model<a class="heading-anchor" href="#threat-model" aria-label="Link to section: Threat model">#</a></h3>
+<p>A structured description of what you are protecting, who or what could cause harm, and how. For agents, common threats include mistakes, prompt injection, overpermission, data leaks, malicious servers, and runaway loops.</p>
+<h3 id="tool">Tool<a class="heading-anchor" href="#tool" aria-label="Link to section: Tool">#</a></h3>
+<p>A capability an agent can request, defined by a name, description, input, output, and often a permission boundary. Tools are how a model acts beyond text. The tool catalog is the practical map of an agent&#39;s power. See <a href="tools.html">Chapter 3</a>.</p>
+<h3 id="tool-annotation">Tool annotation<a class="heading-anchor" href="#tool-annotation" aria-label="Link to section: Tool annotation">#</a></h3>
+<p>Metadata about a tool&#39;s expected behavior, such as read-only or destructive hints. Because annotations come from the server, they should be treated as claims. Combine them with enforcement and trust decisions about the server.</p>
+<h3 id="tool-call">Tool call<a class="heading-anchor" href="#tool-call" aria-label="Link to section: Tool call">#</a></h3>
+<p>The structured request from a model to invoke a tool, including a tool name and arguments. The harness validates and executes it; the model does not call external systems directly.</p>
+<h3 id="tool-poisoning">Tool poisoning<a class="heading-anchor" href="#tool-poisoning" aria-label="Link to section: Tool poisoning">#</a></h3>
+<p>An attack or failure in which a tool&#39;s description, schema, or results contain misleading or malicious content intended to influence the model. Hosts and users must treat server-provided metadata and tool results as untrusted input.</p>
+<h3 id="transport">Transport<a class="heading-anchor" href="#transport" aria-label="Link to section: Transport">#</a></h3>
+<p>The mechanism carrying MCP messages between client and server, commonly stdio for local servers and Streamable HTTP for remote servers. Transport problems look different from model problems and should be tested separately.</p>
+<h3 id="trust-boundary">Trust boundary<a class="heading-anchor" href="#trust-boundary" aria-label="Link to section: Trust boundary">#</a></h3>
+<p>A point where data or control passes between parties with different levels of trust, such as between a model and a server, a local machine and a hosted service, or a company and a third-party connector. Good architecture makes these boundaries explicit.</p>
+<h2 id="u">U<a class="heading-anchor" href="#u" aria-label="Link to section: U">#</a></h2>
+<h3 id="untrusted-content">Untrusted content<a class="heading-anchor" href="#untrusted-content" aria-label="Link to section: Untrusted content">#</a></h3>
+<p>Any content whose instructions you did not create or approve: web pages, incoming emails, shared documents, ticket text, tool descriptions, and outputs. It can inform an agent but must not silently control sensitive actions.</p>
+<h3 id="uri">URI<a class="heading-anchor" href="#uri" aria-label="Link to section: URI">#</a></h3>
+<p>A uniform resource identifier, used by MCP resources to name data. A URI is an address, not an authorization. The server must check whether the caller may access what the address refers to.</p>
+<h2 id="v">V<a class="heading-anchor" href="#v" aria-label="Link to section: V">#</a></h2>
+<h3 id="validation">Validation<a class="heading-anchor" href="#validation" aria-label="Link to section: Validation">#</a></h3>
+<p>Checking that input or output conforms to expected structure and constraints. Schemas, path checks, allowlists, and output checks are validation layers. Validation improves reliability; it does not replace authentication or authorization.</p>
+<h2 id="w">W<a class="heading-anchor" href="#w" aria-label="Link to section: W">#</a></h2>
+<h3 id="write-tool">Write tool<a class="heading-anchor" href="#write-tool" aria-label="Link to section: Write tool">#</a></h3>
+<p>A tool that creates, changes, or deletes state. Split writes from reads, prefer drafts and previews, use idempotency where retries are possible, and require approval for consequential or irreversible changes.</p>
+<h3 id="workflow-spec">Workflow spec<a class="heading-anchor" href="#workflow-spec" aria-label="Link to section: Workflow spec">#</a></h3>
+<p>A short written description of an agent workflow: owner, job, trigger, scope, sources, tools, approvals, limits, success measures, and rollback. It is a design and review artifact, not bureaucracy. See <a href="real-workflows.html">Chapter 8</a>.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="troubleshooting.html"><span class="pager-kicker">Previous</span><span class="pager-title">When agents go wrong</span></a><a class="pager-card pager-next" href="checklists.html"><span class="pager-kicker">Next</span><span class="pager-title">Checklists, worksheets, and further reading</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#a">A</a></li><li class="toc-item toc-level-2"><a href="#b">B</a></li><li class="toc-item toc-level-2"><a href="#c">C</a></li><li class="toc-item toc-level-2"><a href="#d">D</a></li><li class="toc-item toc-level-2"><a href="#e">E</a></li><li class="toc-item toc-level-2"><a href="#f">F</a></li><li class="toc-item toc-level-2"><a href="#g">G</a></li><li class="toc-item toc-level-2"><a href="#h">H</a></li><li class="toc-item toc-level-2"><a href="#i">I</a></li><li class="toc-item toc-level-2"><a href="#j">J</a></li><li class="toc-item toc-level-2"><a href="#k">K</a></li><li class="toc-item toc-level-2"><a href="#l">L</a></li><li class="toc-item toc-level-2"><a href="#m">M</a></li><li class="toc-item toc-level-2"><a href="#o">O</a></li><li class="toc-item toc-level-2"><a href="#p">P</a></li><li class="toc-item toc-level-2"><a href="#r">R</a></li><li class="toc-item toc-level-2"><a href="#s">S</a></li><li class="toc-item toc-level-2"><a href="#t">T</a></li><li class="toc-item toc-level-2"><a href="#u">U</a></li><li class="toc-item toc-level-2"><a href="#v">V</a></li><li class="toc-item toc-level-2"><a href="#w">W</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

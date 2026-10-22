@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" role="img" aria-labelledby="title desc">
+  <title id="title">The layers behind a connector button</title>
+  <desc id="desc">A connector button leads to an AI host and MCP client, which connects to a local or hosted MCP server, which reaches the actual service. The button hides decisions about the publisher, permissions, data retention, logs, support, and revoking access.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C24E2C"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#3A2D20" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .bg { fill: #FBF7EF; }
+      .frame { fill: none; stroke: #DED2C0; stroke-width: 1.5; }
+      .kicker { font: 700 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 2px; fill: #7A6A59; }
+      .h { font: 700 22px Georgia, "Times New Roman", serif; fill: #203039; }
+      .card { fill: #FFFDF8; stroke: #D8CCBA; stroke-width: 1.2; }
+      .stepnum { font: 700 11px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 1.4px; fill: #9A4A2B; }
+      .title { font: 700 15px Georgia, "Times New Roman", serif; fill: #203039; }
+      .body { font: 400 11.8px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #51626B; }
+      .button { fill: #C24E2C; }
+      .buttontext { fill: #FFFDF8; font: 700 13px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .dot { fill: #9AC7BC; }
+      .line { stroke: #C24E2C; stroke-width: 1.8; fill: none; }
+      .label { font: 600 10.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #9A4A2B; }
+      .hiddenband { fill: #F1E7D6; stroke: #DCCCB4; }
+      .hiddentitle { font: 700 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 1px; fill: #7A6A59; }
+      .hiddenbody { font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #51626B; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1080" height="440" rx="18"/>
+  <rect class="frame" x="0.75" y="0.75" width="1078.5" height="438.5" rx="17.25"/>
+  <text x="40" y="44" class="kicker">CONNECTOR LAYERS</text>
+  <text x="40" y="74" class="h">The button is the smallest part of the system.</text>
+
+  <!-- UI -->
+  <rect x="40" y="116" width="220" height="164" rx="12" class="card" filter="url(#shadow)"/>
+  <text x="60" y="143" class="stepnum">01 · WHAT YOU SEE</text>
+  <text x="60" y="170" class="title">Connect a service</text>
+  <text x="60" y="190" class="body">A listing, a logo, a short</text>
+  <text x="60" y="206" class="body">description, and a button.</text>
+  <rect x="60" y="224" width="180" height="34" rx="17" class="button"/>
+  <text x="150" y="246" text-anchor="middle" class="buttontext">Connect account</text>
+
+  <!-- Host -->
+  <rect x="310" y="116" width="220" height="164" rx="12" class="card" filter="url(#shadow)"/>
+  <text x="330" y="143" class="stepnum">02 · WHO CONNECTS</text>
+  <text x="330" y="170" class="title">AI host + client</text>
+  <text x="330" y="190" class="body">The app that holds the chat</text>
+  <text x="330" y="206" class="body">and the MCP connection.</text>
+  <text x="330" y="230" class="body">Consent, scopes, and tool</text>
+  <text x="330" y="246" class="body">enablement live here.</text>
+  <circle cx="499" cy="255" r="6" class="dot"/>
+
+  <!-- Server -->
+  <rect x="580" y="116" width="220" height="164" rx="12" class="card" filter="url(#shadow)"/>
+  <text x="600" y="143" class="stepnum">03 · WHO ADAPTS</text>
+  <text x="600" y="170" class="title">MCP server</text>
+  <text x="600" y="190" class="body">Local or hosted software that</text>
+  <text x="600" y="206" class="body">exposes tools and resources.</text>
+  <text x="600" y="230" class="body">This is the trust boundary</text>
+  <text x="600" y="246" class="body">most buttons fail to explain.</text>
+  <circle cx="769" cy="255" r="6" class="dot"/>
+
+  <!-- Service -->
+  <rect x="850" y="116" width="190" height="164" rx="12" fill="#203039" filter="url(#shadow)"/>
+  <text x="870" y="143" class="stepnum" style="fill:#D9A441">04 · WHAT ACTS</text>
+  <text x="870" y="170" class="title" style="fill:#FBF7EF">The real service</text>
+  <text x="870" y="192" class="body" style="fill:#C9D2CF">Email, files, calendar,</text>
+  <text x="870" y="208" class="body" style="fill:#C9D2CF">database, CRM, code host.</text>
+  <text x="870" y="232" class="body" style="fill:#C9D2CF">Your data and your</text>
+  <text x="870" y="248" class="body" style="fill:#C9D2CF">permissions are here.</text>
+
+  <!-- arrows -->
+  <path class="line" d="M 260 198 H 302" marker-end="url(#arrow)"/>
+  <path class="line" d="M 530 198 H 572" marker-end="url(#arrow)"/>
+  <text x="551" y="189" text-anchor="middle" class="label">MCP</text>
+  <path class="line" d="M 800 198 H 842" marker-end="url(#arrow)"/>
+  <text x="821" y="189" text-anchor="middle" class="label">API</text>
+
+  <!-- hidden band -->
+  <rect x="40" y="308" width="1000" height="102" rx="12" class="hiddenband"/>
+  <text x="62" y="335" class="hiddentitle">WHAT THE BUTTON OFTEN HIDES</text>
+  <text x="62" y="361" class="hiddenbody">Publisher and operator  ·  exact permissions and scopes  ·  data retention and subprocessors</text>
+  <text x="62" y="383" class="hiddenbody">logs and activity history  ·  support and update lifetime  ·  how to revoke access and delete data</text>
+  <text x="62" y="401" class="hiddenbody" style="fill:#9A4A2B;font-weight:600">A connector is discovery, not a safety certification.</text>
+</svg>

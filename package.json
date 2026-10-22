@@ -1,0 +1,28 @@
+{
+  "name": "ai-agents-mcp-explained",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI Agents and MCP, Explained for Normal People: a beginner manual and static book site.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "clean": "node scripts/clean.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node scripts/check.mjs",
+    "test:browser": "node scripts/browser-check.mjs",
+    "test:mcp": "npm --workspace word-counter-mcp run test",
+    "test:all": "npm run build && npm test && npm run test:mcp && npm run test:browser"
+  },
+  "dependencies": {
+    "marked": "^18.1.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.43.1"
+  },
+  "workspaces": [
+    "examples/word-counter-server"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

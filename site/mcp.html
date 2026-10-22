@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>MCP: one plug for many tools — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="The integration problem, the host-client-server model, JSON-RPC, transports, and an honest account of what MCP does not solve." />
+  <meta property="og:title" content="MCP: one plug for many tools — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="The integration problem, the host-client-server model, JSON-RPC, transports, and an honest account of what MCP does not solve." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="mcp">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html" aria-current="page">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link is-active" href="mcp.html" aria-current="page"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-plumbing">The plumbing</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 4</p>
+          <h1>MCP: one plug for many tools</h1>
+          <p class="chapter-dek">The integration problem, the host-client-server model, JSON-RPC, transports, and an honest account of what MCP does not solve.</p>
+          <div class="chapter-meta"><span>2,441 words</span><span aria-hidden="true">·</span><span>11 min read</span><span aria-hidden="true">·</span><span>Part II</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>For years, connecting an AI assistant to your files meant a custom integration: one plugin for one product, with its own authentication, its own permission model, and its own quirks. Add a second AI app and you built the integration again. Add a second data source and you built another. A team could spend more time wiring tools than using them.</p>
+<p>Then came a deceptively simple idea: what if AI applications and tool providers agreed on a standard way to describe and call capabilities? The AI app would not need to know how your project tracker works internally. It would just need to speak the same protocol as the server that exposes the tracker. Swap the AI app, and the server still works. Add a new tool, and every compatible app can discover it.</p>
+<p>That standard is the <strong>Model Context Protocol</strong>, usually called <strong>MCP</strong>. The shorthand comparison is USB-C: a common connector for many devices. The comparison is useful, as long as you remember that a universal port does not guarantee that the device on the other end is safe. A USB-C port can charge your phone or fry it if the charger is malicious. Standards make connections easier; they do not remove the need to choose what you connect.</p>
+<h2 id="the-problem-mcp-solves">The problem MCP solves<a class="heading-anchor" href="#the-problem-mcp-solves" aria-label="Link to section: The problem MCP solves">#</a></h2>
+<p>Imagine four AI applications and six systems people want to connect: a shared drive, email, a calendar, a project tracker, a customer database, and a support inbox.</p>
+<p>Without a standard, each app might build its own connector for each system. That is up to 24 integrations. Each one has to handle authentication, data formatting, error handling, updates, and a different product&#39;s notion of a &quot;tool.&quot; When the drive API changes, many integrations break.</p>
+<p>With a standard, each AI app implements one MCP client, and each system provides one MCP server. The matrix becomes much smaller: applications and tool servers meet at a common interface. The server author describes tools once. The app discovers them at runtime. The integration surface is shared instead of repeatedly reinvented.</p>
+<p>This is the core benefit: <strong>portability of capability</strong>. Not magic. Not model intelligence. Less bespoke wiring.</p>
+<h2 id="the-three-roles">The three roles<a class="heading-anchor" href="#the-three-roles" aria-label="Link to section: The three roles">#</a></h2>
+<p>MCP uses a host-client-server architecture. The names are easy to mix up, so it is worth fixing them early.</p>
+<figure><img src="assets/images/mcp-architecture.svg" alt="MCP architecture: an AI host application contains MCP clients, which connect over stdio or Streamable HTTP to local and remote MCP servers, which in turn reach files, APIs, and databases"><figcaption>MCP architecture: an AI host application contains MCP clients, which connect over stdio or Streamable HTTP to local and remote MCP servers, which in turn reach files, APIs, and databases</figcaption></figure>
+<h3 id="the-host">The host<a class="heading-anchor" href="#the-host" aria-label="Link to section: The host">#</a></h3>
+<p>The <strong>host</strong> is the AI application you actually use. It might be a desktop assistant, an IDE, a chat product, or an internal tool. The host owns the conversation, calls the language model, presents approval screens, and decides which servers and tools the user may access.</p>
+<p>The host is also where policy belongs. It decides whether a tool is enabled for this conversation, whether an action needs confirmation, and which files or roots the agent may see. A server can request things; the host should not blindly obey.</p>
+<h3 id="the-client">The client<a class="heading-anchor" href="#the-client" aria-label="Link to section: The client">#</a></h3>
+<p>An <strong>MCP client</strong> is the connection manager inside the host. It speaks MCP to one server and keeps track of that server&#39;s capabilities. A host with three connected servers might maintain three client connections. The typical design is one client per server connection, inside a single host application.</p>
+<p>You will rarely interact with a client as a normal user. It is plumbing. But it is where important boundaries live: transport, authentication, session state, and the messages exchanged.</p>
+<h3 id="the-server">The server<a class="heading-anchor" href="#the-server" aria-label="Link to section: The server">#</a></h3>
+<p>An <strong>MCP server</strong> is the program that exposes capabilities. It might expose a folder of documents, a database, a ticketing system, a code repository, or a set of internal APIs. It translates MCP requests into real operations and returns results.</p>
+<p>&quot;Server&quot; does not always mean a machine in a data center. A local server is often a small program started by the host on your own computer, communicating over standard input and output. A remote server is reached over the network. Both can be MCP servers. This distinction matters enormously for security: a local server runs as code on your machine, while a remote server receives data across a network boundary.</p>
+<h2 id="what-a-server-can-expose">What a server can expose<a class="heading-anchor" href="#what-a-server-can-expose" aria-label="Link to section: What a server can expose">#</a></h2>
+<p>MCP has three main server-side primitives. They are often described with a simple division of control:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Who decides to use it</th>
+<th>What it is</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tools</strong></td>
+<td>The model, within host policy</td>
+<td>Actions or computations with structured inputs</td>
+<td>Search orders, create a draft, run a query</td>
+</tr>
+<tr>
+<td><strong>Resources</strong></td>
+<td>The host or application</td>
+<td>Readable data identified by a URI</td>
+<td>A document, a log file, a customer record</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>The user</td>
+<td>Reusable prompt templates</td>
+<td>&quot;Summarize this week&#39;s support themes&quot;</td>
+</tr>
+</tbody></table></div>
+<h3 id="tools">Tools<a class="heading-anchor" href="#tools" aria-label="Link to section: Tools">#</a></h3>
+<p>Tools are the best-known part of MCP. They are the model-facing actions: functions with names, descriptions, input schemas, and results. A tool can be read-only or can change something in the outside world. The protocol can carry hints about whether a tool is read-only or destructive, but those are annotations, not enforcement. The server and host must enforce real permissions.</p>
+<h3 id="resources">Resources<a class="heading-anchor" href="#resources" aria-label="Link to section: Resources">#</a></h3>
+<p>Resources are data the application can read, addressed by a URI. A server might expose a document as <code>notes://project-atlas/brief</code>, or a record as <code>customers://acme</code>, or a file under a known path. Resources are often used to provide context: the user selects a document, or the host attaches it to the conversation.</p>
+<p>Resources are more application-controlled than tools. A chat product might show them in an attachment picker or a resource browser. This is a useful distinction: not every piece of data should be a tool the model can call freely. Sometimes you want the human to choose the material.</p>
+<h3 id="prompts">Prompts<a class="heading-anchor" href="#prompts" aria-label="Link to section: Prompts">#</a></h3>
+<p>Prompts are reusable templates that a user can invoke, often exposed as slash commands or menu items. A server might provide a prompt called <code>review_contract</code> with an argument for the contract resource. The prompt contains expert instructions and can structure the request for the model.</p>
+<p>Prompts are not the same as the system prompt of the agent. They are templates offered by a server. They can be useful for standard workflows and can encode organizational knowledge: how to review a proposal, how to triage a ticket, what questions to ask before scheduling. Because prompts are user-controlled, they are a way to add guidance without giving the model another action.</p>
+<h3 id="client-side-features">Client-side features<a class="heading-anchor" href="#client-side-features" aria-label="Link to section: Client-side features">#</a></h3>
+<p>The protocol also defines ways for servers to interact with the client or user:</p>
+<ul>
+<li><strong>Sampling</strong> lets a server request a language-model completion through the client, rather than requiring its own model API key. The client remains in control of whether to sample and what model to use.</li>
+<li><strong>Roots</strong> let a client tell a server which filesystem locations are in scope for a session. They are a boundary signal, not an airtight sandbox.</li>
+<li><strong>Elicitation</strong> lets a server request additional input from the user through the client.</li>
+</ul>
+<p>Support varies by host and server. A feature existing in the specification does not mean your particular app implements it. Treat capability support as something to verify, not assume.</p>
+<h2 id="the-protocol-underneath">The protocol underneath<a class="heading-anchor" href="#the-protocol-underneath" aria-label="Link to section: The protocol underneath">#</a></h2>
+<p>MCP uses <strong>JSON-RPC 2.0</strong> for messages. JSON-RPC is a simple way to encode requests, responses, notifications, and errors as JSON. A request has a method name, a request ID, and parameters. A response echoes the ID and includes either a result or an error.</p>
+<p>That sounds technical, but the shape is intuitive. A client might send:</p>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 1,
+  &quot;method&quot;: &quot;tools/list&quot;,
+  &quot;params&quot;: {}
+}
+</code></pre>
+<p>A server responds with a list of tools. To use one, the client sends <code>tools/call</code> with a name and arguments:</p>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 2,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;count_words&quot;,
+    &quot;arguments&quot;: {
+      &quot;text&quot;: &quot;A short example for the manual.&quot;
+    }
+  }
+}
+</code></pre>
+<p>The server returns content and possibly structured data. Errors use JSON-RPC&#39;s error object, with codes for standard conditions and room for server-defined details.</p>
+<h3 id="the-startup-handshake">The startup handshake<a class="heading-anchor" href="#the-startup-handshake" aria-label="Link to section: The startup handshake">#</a></h3>
+<p>Before tools can be used, the client and server perform an initialization handshake. They exchange:</p>
+<ul>
+<li>protocol version;</li>
+<li>each side&#39;s capabilities;</li>
+<li>client and server identifying information;</li>
+<li>any instructions or metadata the server wants to share.</li>
+</ul>
+<p>A request might look like this:</p>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 1,
+  &quot;method&quot;: &quot;initialize&quot;,
+  &quot;params&quot;: {
+    &quot;protocolVersion&quot;: &quot;2025-06-18&quot;,
+    &quot;capabilities&quot;: {},
+    &quot;clientInfo&quot;: { &quot;name&quot;: &quot;example-host&quot;, &quot;version&quot;: &quot;1.0.0&quot; }
+  }
+}
+</code></pre>
+<p>The server replies with its supported capabilities: perhaps <code>tools</code>, <code>resources</code>, and <code>prompts</code>, plus details such as whether resource subscriptions are supported. Then the client sends an <code>initialized</code> notification, and discovery can begin: list tools, list resources, read a resource, invoke a prompt.</p>
+<p>The version string above is illustrative. Protocol revisions change. If you build a server, use the current official specification and test against the clients you care about. If you use a host, its documentation should tell you which servers and features are supported.</p>
+<h3 id="transports">Transports<a class="heading-anchor" href="#transports" aria-label="Link to section: Transports">#</a></h3>
+<p>A transport is how the messages travel.</p>
+<ul>
+<li><strong>stdio</strong> runs a local server as a child process. The host sends JSON-RPC messages over standard input and reads responses from standard output. This is common for local tools on a desktop, such as a filesystem or code assistant server. It is simple and fast, but it means installing and running executable code.</li>
+<li><strong>Streamable HTTP</strong> is used for remote servers. The client sends HTTP requests and can receive a stream of events in response. Earlier versions of MCP used a separate HTTP plus server-sent events transport; the protocol has since standardized on the streamable approach. The important point for a normal user is that remote connections travel over the network and require authentication.</li>
+</ul>
+<p>Different transports come with different failure modes. A local server may fail because a command is not on your <code>PATH</code>, a dependency is missing, or the path is wrong. A remote server may fail because of expired tokens, network restrictions, CORS policies, or a provider outage. When troubleshooting, ask which transport is in use before guessing.</p>
+<h2 id="a-lifecycle-from-a-user-s-point-of-view">A lifecycle from a user&#39;s point of view<a class="heading-anchor" href="#a-lifecycle-from-a-user-s-point-of-view" aria-label="Link to section: A lifecycle from a user&#39;s point of view">#</a></h2>
+<p>You connect a calendar server to your AI app, then ask for a meeting. Behind the scenes:</p>
+<ol>
+<li>The host starts or contacts the server.</li>
+<li>They exchange <code>initialize</code> and capabilities.</li>
+<li>The host asks for the server&#39;s tools and resources.</li>
+<li>The model receives the tool catalog and chooses a read tool.</li>
+<li>The host validates the request and applies permissions.</li>
+<li>The server queries the calendar and returns results.</li>
+<li>The model proposes a draft event; the host pauses for approval.</li>
+<li>The server creates the draft and returns an identifier.</li>
+<li>The host shows the result and records the exchange.</li>
+</ol>
+<p>MCP standardizes steps 2, 3, 4, 6, and 8. It does not standardize the quality of the calendar data, the wisdom of the model&#39;s choice, or the design of the approval screen. That remains with the people building and using the host and server.</p>
+<h2 id="what-mcp-is-not">What MCP is not<a class="heading-anchor" href="#what-mcp-is-not" aria-label="Link to section: What MCP is not">#</a></h2>
+<p>The ecosystem is noisy, and plenty of confusion comes from asking a plumbing protocol to do a product&#39;s job. Keep these distinctions clear.</p>
+<p><strong>MCP is not a language model.</strong> It does not reason, generate text, or decide what tool to call. The model does that, through the host.</p>
+<p><strong>MCP is not an agent framework.</strong> It does not manage the loop, plan multi-step tasks, or decide when to stop. It provides a way to expose capabilities. A framework might use MCP.</p>
+<p><strong>MCP is not a connector catalog.</strong> It is the protocol a connector can speak. A product&#39;s &quot;connector gallery&quot; is a user interface and a curation service; behind the scenes, some connectors may be MCP servers and some may not.</p>
+<p><strong>MCP is not a security policy.</strong> It has useful primitives for consent and authorization, but installing a server still means trusting code and granting access. A tool annotation saying &quot;read-only&quot; does not prove the server only reads. A host&#39;s approval screen does not help if it says &quot;allow everything&quot; in an unreadable way.</p>
+<p><strong>MCP does not make integrations automatically safe or reliable.</strong> It does make them more consistent, discoverable, and portable. That is a meaningful improvement. It is not a substitute for reviewing permissions.</p>
+<h2 id="mcp-and-its-neighbours">MCP and its neighbours<a class="heading-anchor" href="#mcp-and-its-neighbours" aria-label="Link to section: MCP and its neighbours">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it is</th>
+<th>Relationship to MCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REST API</td>
+<td>A service&#39;s own HTTP interface</td>
+<td>MCP servers often wrap APIs</td>
+</tr>
+<tr>
+<td>Function calling</td>
+<td>Model API mechanism for emitting structured calls</td>
+<td>The host and model use it; MCP carries tools separately</td>
+</tr>
+<tr>
+<td>Plugin</td>
+<td>Product-specific extension bundle</td>
+<td>Connectors may expose MCP; plugins are packaged for one product</td>
+</tr>
+<tr>
+<td>Connector</td>
+<td>A product-level integration shown in a gallery</td>
+<td>Often an MCP server plus packaging, authentication, and support</td>
+</tr>
+<tr>
+<td>Agent framework</td>
+<td>Software that runs agent loops and orchestration</td>
+<td>May connect to MCP servers as its tool layer</td>
+</tr>
+<tr>
+<td>Local app</td>
+<td>A service on your device</td>
+<td>Can expose a local MCP server over stdio</td>
+</tr>
+</tbody></table></div>
+<p>MCP sits between the AI application and the capability provider. It is a contract for discovery and invocation. The rest of the system still has to handle identity, permissions, data boundaries, approvals, and error recovery.</p>
+<h2 id="why-normal-people-should-care">Why normal people should care<a class="heading-anchor" href="#why-normal-people-should-care" aria-label="Link to section: Why normal people should care">#</a></h2>
+<p>If you never install a tool or change a configuration, MCP may remain invisible. It still affects you in three ways.</p>
+<p>First, <strong>compatibility improves</strong>. A tool built as an MCP server can work across multiple compatible AI applications instead of being trapped in one vendor&#39;s plugin system. That gives teams more choice.</p>
+<p>Second, <strong>the vocabulary becomes clearer</strong>. When products use the same words for tools, resources, and servers, you can ask more precise questions. &quot;Which MCP servers can this assistant reach, and what scopes do they have?&quot; is a better question than &quot;Is the integration secure?&quot;</p>
+<p>Third, <strong>the risk pattern is more visible</strong>. MCP makes the tool catalog explicit. You can inspect what is available, where it came from, and what each tool claims to do. That does not replace a security review, but it beats an opaque &quot;magic&quot; feature that secretly has access to everything.</p>
+<p>The upside is real. The downside is that connecting a tool is still a permission decision. The next two chapters look at what lives inside a server and how connectors package that decision for ordinary users.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>MCP is an open protocol for connecting AI applications to tools, resources, and prompts.</li>
+<li>It reduces a messy many-to-many integration problem to a common interface.</li>
+<li>A host contains MCP clients; clients connect to MCP servers over stdio or Streamable HTTP.</li>
+<li>Servers expose tools (model-facing actions), resources (data), and prompts (user-invoked templates).</li>
+<li>JSON-RPC 2.0 carries messages; an initialization handshake negotiates versions and capabilities.</li>
+<li>MCP does not think, choose tools, enforce your organization&#39;s policy, or guarantee that a server is safe.</li>
+<li>&quot;Local&quot; and &quot;remote&quot; servers have very different operational and security profiles.</li>
+<li>The protocol is plumbing. Permission design and human judgment remain your job.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Explain MCP to a colleague using the host-client-server diagram and one concrete tool. Avoid the word &quot;revolutionary.&quot;</li>
+<li>Take a system you use at work. Would you expose it as tools, resources, or a prompt template? What is the difference in who controls access?</li>
+<li>Find an MCP-compatible product you use, or a directory of servers. Look for its local/remote transport and permission settings. What is unclear?</li>
+<li>Write one sentence explaining why &quot;MCP-compatible&quot; is not a safety claim.</li>
+</ol>
+<p>Next, we open up a server and look at how tools, resources, and prompts behave in practice, including the parts that can be dangerous.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="tools.html"><span class="pager-kicker">Previous</span><span class="pager-title">Tools: how an agent touches the world</span></a><a class="pager-card pager-next" href="mcp-servers.html"><span class="pager-kicker">Next</span><span class="pager-title">Inside an MCP server</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#the-problem-mcp-solves">The problem MCP solves</a></li><li class="toc-item toc-level-2"><a href="#the-three-roles">The three roles</a></li><li class="toc-item toc-level-3"><a href="#the-host">The host</a></li><li class="toc-item toc-level-3"><a href="#the-client">The client</a></li><li class="toc-item toc-level-3"><a href="#the-server">The server</a></li><li class="toc-item toc-level-2"><a href="#what-a-server-can-expose">What a server can expose</a></li><li class="toc-item toc-level-3"><a href="#tools">Tools</a></li><li class="toc-item toc-level-3"><a href="#resources">Resources</a></li><li class="toc-item toc-level-3"><a href="#prompts">Prompts</a></li><li class="toc-item toc-level-3"><a href="#client-side-features">Client-side features</a></li><li class="toc-item toc-level-2"><a href="#the-protocol-underneath">The protocol underneath</a></li><li class="toc-item toc-level-3"><a href="#the-startup-handshake">The startup handshake</a></li><li class="toc-item toc-level-3"><a href="#transports">Transports</a></li><li class="toc-item toc-level-2"><a href="#a-lifecycle-from-a-user-s-point-of-view">A lifecycle from a user&#39;s point of view</a></li><li class="toc-item toc-level-2"><a href="#what-mcp-is-not">What MCP is not</a></li><li class="toc-item toc-level-2"><a href="#mcp-and-its-neighbours">MCP and its neighbours</a></li><li class="toc-item toc-level-2"><a href="#why-normal-people-should-care">Why normal people should care</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

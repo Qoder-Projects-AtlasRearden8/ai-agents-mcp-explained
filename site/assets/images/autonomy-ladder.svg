@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 460" role="img" aria-labelledby="title desc">
+  <title id="title">The autonomy ladder</title>
+  <desc id="desc">Five climbing steps: suggest, draft, ask before acting, act within rules, and operate unattended. Risk and leverage increase from the bottom left to the top right.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#3A2D20" flood-opacity="0.12"/>
+    </filter>
+    <marker id="up" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="#9A4A2B"/>
+    </marker>
+    <style>
+      .bg { fill: #FBF7EF; }
+      .frame { fill: none; stroke: #DED2C0; stroke-width: 1.5; }
+      .kicker { font: 700 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 2px; fill: #7A6A59; }
+      .h { font: 700 24px Georgia, "Times New Roman", serif; fill: #203039; }
+      .step { fill: #FFFDF8; stroke: #D8CCBA; stroke-width: 1.2; }
+      .step-num { font: 700 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #9A4A2B; letter-spacing: 1px; }
+      .step-title { font: 700 16px Georgia, "Times New Roman", serif; fill: #203039; }
+      .step-body { font: 400 12.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #51626B; }
+      .meta { font: 400 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #6C787B; }
+      .axis { fill: #9A4A2B; font: 700 11px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 1.5px; }
+      .riser { fill: #E9DDC9; stroke: none; }
+      .line { stroke: #C9BBA6; stroke-width: 2; fill: none; stroke-dasharray: 4 5; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1080" height="460" rx="18"/>
+  <rect class="frame" x="0.75" y="0.75" width="1078.5" height="458.5" rx="17.25"/>
+  <text x="40" y="46" class="kicker">THE AUTONOMY LADDER</text>
+  <text x="40" y="78" class="h">Climb only as far as the evidence supports.</text>
+
+  <!-- axis -->
+  <path d="M 48 390 V 158" stroke="#9A4A2B" stroke-width="1.8" marker-end="url(#up)"/>
+  <text x="58" y="174" class="axis">RISK + LEVERAGE</text>
+
+  <!-- staircase background -->
+  <path d="M 90 392 H 290 V 322 H 470 V 252 H 650 V 182 H 830 V 112 H 1030" class="riser" opacity="0.55"/>
+  <path d="M 90 392 H 290 V 322 H 470 V 252 H 650 V 182 H 830 V 112 H 1030" class="line"/>
+
+  <!-- step 1 -->
+  <rect x="105" y="300" width="185" height="90" rx="10" class="step" filter="url(#shadow)"/>
+  <text x="122" y="322" class="step-num">LEVEL 1</text>
+  <text x="122" y="344" class="step-title">Suggest</text>
+  <text x="122" y="364" class="step-body">Opinions and options.</text>
+  <text x="122" y="380" class="step-body">Humans do the work.</text>
+
+  <!-- step 2 -->
+  <rect x="300" y="232" width="185" height="90" rx="10" class="step" filter="url(#shadow)"/>
+  <text x="317" y="254" class="step-num">LEVEL 2</text>
+  <text x="317" y="276" class="step-title">Draft</text>
+  <text x="317" y="296" class="step-body">Complete artifacts.</text>
+  <text x="317" y="312" class="step-body">Humans review and send.</text>
+
+  <!-- step 3 -->
+  <rect x="495" y="162" width="185" height="90" rx="10" class="step" filter="url(#shadow)"/>
+  <text x="512" y="184" class="step-num">LEVEL 3</text>
+  <text x="512" y="206" class="step-title">Ask first</text>
+  <text x="512" y="226" class="step-body">Read, prepare, propose;</text>
+  <text x="512" y="242" class="step-body">humans approve writes.</text>
+
+  <!-- step 4 -->
+  <rect x="690" y="94" width="185" height="90" rx="10" class="step" filter="url(#shadow)"/>
+  <text x="707" y="116" class="step-num">LEVEL 4</text>
+  <text x="707" y="138" class="step-title">Act within rules</text>
+  <text x="707" y="158" class="step-body">Bounded, reversible</text>
+  <text x="707" y="174" class="step-body">actions with logs.</text>
+
+  <!-- step 5 flyout at top right -->
+  <rect x="885" y="74" width="160" height="110" rx="10" fill="#203039" filter="url(#shadow)"/>
+  <text x="902" y="96" class="step-num" style="fill:#D9A441">LEVEL 5</text>
+  <text x="902" y="118" class="step-title" style="fill:#FBF7EF;font-size:15px">Unattended</text>
+  <text x="902" y="138" class="step-body" style="fill:#C9D2CF;font-size:11.5px">Continuous operation.</text>
+  <text x="902" y="154" class="step-body" style="fill:#C9D2CF;font-size:11.5px">Exception review.</text>
+  <text x="902" y="170" class="step-body" style="fill:#C9D2CF;font-size:11.5px">Strong audit trail.</text>
+
+  <!-- bottom note -->
+  <text x="105" y="424" class="meta">Most teams get the most value at levels 2–3. Level 5 is earned, not bought.</text>
+</svg>

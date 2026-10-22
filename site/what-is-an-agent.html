@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>What an AI agent actually is — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="A chatbot writes. An agent acts. Here is the difference, the autonomy ladder, and the boundaries that define real capability." />
+  <meta property="og:title" content="What an AI agent actually is — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="A chatbot writes. An agent acts. Here is the difference, the autonomy ladder, and the boundaries that define real capability." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="what-is-an-agent">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link is-active" href="what-is-an-agent.html" aria-current="page"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-ideas">The ideas</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 1</p>
+          <h1>What an AI agent actually is</h1>
+          <p class="chapter-dek">A chatbot writes. An agent acts. Here is the difference, the autonomy ladder, and the boundaries that define real capability.</p>
+          <div class="chapter-meta"><span>2,102 words</span><span aria-hidden="true">·</span><span>10 min read</span><span aria-hidden="true">·</span><span>Part I</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>Maya runs a five-person design studio. On Monday morning she asks her AI assistant two things.</p>
+<p>First: &quot;Write a friendly reminder to the client about the invoice.&quot;</p>
+<p>The assistant produces a paragraph. Maya edits a sentence and sends it herself. This is ordinary generative AI: useful, fast, and completely under her control.</p>
+<p>Later she asks: &quot;Find this week&#39;s outstanding invoices, check which clients have already confirmed receipt, write a polite reminder for the ones who haven&#39;t, and put those messages in my drafts. Don&#39;t send anything.&quot;</p>
+<p>The assistant opens the accounting folder, reads a spreadsheet, checks email threads for confirmations, drafts four messages, and puts them in the email drafts folder. Maya reviews each one and sends them herself. This is an AI agent.</p>
+<p>The difference is not the quality of the prose. It is that the software took a series of steps, used tools, read the results, and adjusted its approach. Maya&#39;s second request involved facts that did not live inside the chat: invoice status, client replies, email addresses. The model could not produce them from memory. It had to reach out.</p>
+<p>That reach is what makes agents interesting, and it is also what makes them dangerous. A chatbot can only say something wrong. An agent can do something wrong.</p>
+<h2 id="the-working-definition">The working definition<a class="heading-anchor" href="#the-working-definition" aria-label="Link to section: The working definition">#</a></h2>
+<p>An AI agent is software that uses a language model to pursue a goal through multiple steps, including tool calls, with some degree of autonomy and some set of guardrails.</p>
+<p>Unpack the pieces:</p>
+<ul>
+<li><strong>A language model</strong> is the engine that interprets the goal, decides what to do next, and writes the result. It works with language and patterns, not a built-in database of facts.</li>
+<li><strong>Multiple steps</strong> means the job is not answered in one shot. The system can look something up, see the result, and decide what to do next.</li>
+<li><strong>Tool calls</strong> are actions through a defined interface: search the web, read a file, query a database, create a calendar event. A tool is how the agent affects or inspects the world outside its own text window.</li>
+<li><strong>Autonomy</strong> is a matter of degree, not a switch. The agent may suggest only, draft, act with approval, act within a clearly bounded rule, or run unattended.</li>
+<li><strong>Guardrails</strong> are the limits and checkpoints around all of that: permissions, approvals, budgets, allowed recipients, sandboxing, logs, and a stop button.</li>
+</ul>
+<p>If you remove tools, you usually have a chatbot. If you remove language-model judgment and keep only fixed steps, you have ordinary workflow automation. If you remove guardrails, you have a demo that someone will regret.</p>
+<blockquote>
+<p><strong>A useful analogy.</strong> A language model is like a very well-read contractor who cannot leave the room. Tools are the doors, keys, and phone. The agent harness is the project manager who says which doors have keys, which jobs need a signature, and how much can be spent before someone checks in. MCP is a standard design for the door handles.</p>
+</blockquote>
+<h2 id="what-the-model-is-in-one-page">What the model is, in one page<a class="heading-anchor" href="#what-the-model-is-in-one-page" aria-label="Link to section: What the model is, in one page">#</a></h2>
+<p>You do not need to understand the mathematics to use agents safely, but three properties matter.</p>
+<p><strong>The model predicts text.</strong> At its core, a language model is trained to continue sequences of text in a plausible way. Modern systems are trained extensively to follow instructions and use tools, but the fundamental behavior is still pattern-based generation. This is why an agent can write a polished sentence that is false. Fluency is not evidence.</p>
+<p><strong>The model has a context window.</strong> The context window is the amount of text the model can consider at one time: the instructions, the conversation so far, the definitions of available tools, tool results, and any documents you inserted. When the context fills up, older material may be compressed, removed, or ignored. An agent that looked at a file twenty steps ago may not have useful access to it now unless the system brings it back.</p>
+<p><strong>The model does not remember your world by itself.</strong> It knows what was in training data, and it knows what is in the current context. If your project status changed yesterday, the model has no idea unless a tool refreshes it. A tool result is only as good as the service behind it, and it is only available if the agent actually asked.</p>
+<p>These three properties explain most agent behavior: confident mistakes, lost details in long tasks, stale answers, and the need for verification.</p>
+<h2 id="the-autonomy-ladder">The autonomy ladder<a class="heading-anchor" href="#the-autonomy-ladder" aria-label="Link to section: The autonomy ladder">#</a></h2>
+<p>&quot;Agentic&quot; is not one behavior. It is a ladder. Moving up increases leverage and risk at the same time, so the right move is usually to start lower than you think you need.</p>
+<figure><img src="assets/images/autonomy-ladder.svg" alt="Five rungs of the autonomy ladder: suggest, draft, ask before acting, act within rules, operate unattended, with risk rising from low to high"><figcaption>Five rungs of the autonomy ladder: suggest, draft, ask before acting, act within rules, operate unattended, with risk rising from low to high</figcaption></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What the system does</th>
+<th>Example</th>
+<th>Typical review</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Suggest</td>
+<td>Produces advice or options; a human does everything else</td>
+<td>&quot;Here are three possible replies.&quot;</td>
+<td>Human writes and sends</td>
+</tr>
+<tr>
+<td>2. Draft</td>
+<td>Creates a complete artifact; a human edits and sends</td>
+<td>Drafts invoice reminders into a drafts folder</td>
+<td>Human reviews every artifact</td>
+</tr>
+<tr>
+<td>3. Ask before acting</td>
+<td>Takes read-only steps, then requests approval for changes</td>
+<td>Checks the calendar, proposes a new meeting time</td>
+<td>Human approves each write</td>
+</tr>
+<tr>
+<td>4. Act within rules</td>
+<td>Performs bounded actions without per-action approval</td>
+<td>Moves meetings under 30 minutes to include a 10-minute buffer, for internal attendees only</td>
+<td>Rules, logging, spot checks</td>
+</tr>
+<tr>
+<td>5. Operate unattended</td>
+<td>Runs a loop on a schedule with broad authority</td>
+<td>Continuously monitors, decides, and executes</td>
+<td>Exception review and audits</td>
+</tr>
+</tbody></table></div>
+<p>Most valuable early uses sit at levels 2 and 3. Level 4 is suitable when the action is reversible, the boundary is tight, and the logs are good. Level 5 is a serious engineering and governance commitment. It is not what you reach for because a product advertises &quot;fully autonomous.&quot; It is what you earn after measurable reliability.</p>
+<p>A good question to ask about any proposed agent is not &quot;How autonomous is it?&quot; but &quot;At which rung does it operate, and who is accountable when it steps off?&quot;</p>
+<h2 id="chatbot-workflow-agent-what-s-the-difference">Chatbot, workflow, agent: what&#39;s the difference?<a class="heading-anchor" href="#chatbot-workflow-agent-what-s-the-difference" aria-label="Link to section: Chatbot, workflow, agent: what&#39;s the difference?">#</a></h2>
+<p>The words are often used interchangeably in marketing. They describe different designs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Thing</th>
+<th>How it works</th>
+<th>Best for</th>
+<th>Weakness</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chatbot</td>
+<td>You send text, it returns text</td>
+<td>Explanation, brainstorming, rewriting</td>
+<td>Cannot check or change external systems</td>
+</tr>
+<tr>
+<td>Fixed workflow</td>
+<td>A predetermined sequence of steps</td>
+<td>Stable, repeatable processes</td>
+<td>Brittle when inputs or rules change</td>
+</tr>
+<tr>
+<td>Robotic process automation</td>
+<td>Clicks and copies between interfaces on fixed paths</td>
+<td>Legacy software with no API</td>
+<td>Very brittle; often needs a screen and precise UI</td>
+</tr>
+<tr>
+<td>AI agent</td>
+<td>Model chooses steps and uses tools, within limits</td>
+<td>Variable inputs, language-heavy work, messy intermediate states</td>
+<td>Non-deterministic; can go off course</td>
+</tr>
+<tr>
+<td>Agentic workflow</td>
+<td>Fixed outer structure, model used at specific steps</td>
+<td>Most production work</td>
+<td>Less flexible than an open agent, more reliable</td>
+</tr>
+</tbody></table></div>
+<p>The last row is the one to remember. Many successful &quot;agents&quot; are actually agentic workflows. A well-designed system might use a fixed pipeline for the parts that must happen in order, and ask the model only to classify, extract, compare, draft, or choose among vetted options. This is not cheating. It is engineering. The model is at its best when the surrounding software constrains the choices.</p>
+<p>For example, Maya&#39;s invoice task could be built so that the spreadsheet lookup, client matching, and draft creation happen in a fixed order, while the model writes the message and decides which clients have clearly confirmed receipt. The output is easier to test than an open-ended agent that figures out everything itself.</p>
+<h2 id="the-four-questions-that-define-an-agent-s-power">The four questions that define an agent&#39;s power<a class="heading-anchor" href="#the-four-questions-that-define-an-agent-s-power" aria-label="Link to section: The four questions that define an agent&#39;s power">#</a></h2>
+<p>Any agent can be described by four boundaries. When you are evaluating one, write them down.</p>
+<ol>
+<li><strong>Goal.</strong> What outcome is it trying to achieve? &quot;Handle my email&quot; is not a goal. &quot;Label incoming client email into three categories and draft a reply for scheduling questions&quot; is.</li>
+<li><strong>Visibility.</strong> What can it read? A scoped project folder is different from an entire drive. A read-only copy of the customer table is different from production with write access.</li>
+<li><strong>Authority.</strong> What can it change? Sending, deleting, paying, and posting are different from reading, summarizing, and drafting. Each tool should be considered separately.</li>
+<li><strong>Supervision.</strong> Who can stop it, review it, and reverse it? An action with no undo needs much more oversight than a draft.</li>
+</ol>
+<p>If a product or internal proposal cannot answer these, you cannot reason about its risk. The details of the model matter, but they are not a substitute for the boundaries.</p>
+<h2 id="what-agents-are-not">What agents are not<a class="heading-anchor" href="#what-agents-are-not" aria-label="Link to section: What agents are not">#</a></h2>
+<p><strong>They are not people.</strong> It is tempting to describe an agent as &quot;thinking&quot; or &quot;wanting,&quot; and those words can be useful shorthand. But an agent has no intentions that survive the loop, no understanding of consequences in the way you do, and no accountability. You are still the responsible party for the accounts you connect and the actions you authorize.</p>
+<p><strong>They are not necessarily better than a script.</strong> If the task is always the same, a simple deterministic program is safer, faster, and cheaper. Agents earn their keep when the input is variable and language understanding matters.</p>
+<p><strong>They are not reliable just because the demo is impressive.</strong> A demo is one run with favorable data and a forgiving audience. Production is every Tuesday, with malformed files, ambiguous names, expired tokens, and a client who replies &quot;sounds good&quot; to something they did not read.</p>
+<p><strong>They are not safe because you asked them to be careful.</strong> &quot;Always verify before sending&quot; is a wish, not a control. If the agent has a send tool and no approval step, the instruction competes with everything else in its context. Systems produce reliable behavior through enforceable boundaries, not good intentions.</p>
+<h2 id="why-tools-change-the-stakes">Why tools change the stakes<a class="heading-anchor" href="#why-tools-change-the-stakes" aria-label="Link to section: Why tools change the stakes">#</a></h2>
+<p>A chatbot&#39;s failure mode is mostly epistemic: it says something untrue. An agent&#39;s failure modes include epistemic plus operational:</p>
+<ul>
+<li>It reads a malicious email that tells it to ignore its instructions.</li>
+<li>It mistakes one client for another with a similar name.</li>
+<li>It uses a tool with too much access because that was easier to set up.</li>
+<li>It retries a payment after a timeout even though the first charge succeeded.</li>
+<li>It summarizes a contract incorrectly, and the summary becomes the basis of a decision.</li>
+<li>It sends an internal document to an external address.</li>
+</ul>
+<p>None of these requires a sophisticated attacker. Most come from ordinary ambiguity plus an action. This is why the rest of the book spends as much time on permissions as on capabilities. The tool layer is where an AI&#39;s answer becomes an event in the world.</p>
+<h2 id="a-more-useful-mental-model">A more useful mental model<a class="heading-anchor" href="#a-more-useful-mental-model" aria-label="Link to section: A more useful mental model">#</a></h2>
+<p>Think of an agent as a junior colleague with three unusual traits:</p>
+<ul>
+<li>They have read an enormous amount and can produce a surprisingly good first draft of almost anything.</li>
+<li>They have no sense of when they are making things up unless the system makes checking easy.</li>
+<li>They follow the last clear instruction surprisingly literally, and can be persuaded by any text that looks like an instruction.</li>
+</ul>
+<p>You would not give this colleague the company credit card and root access on their first day. You would start with a clearly bounded task, a review step, and a way to see what they did. As they demonstrate good judgment, you might widen the scope. The same progression works for software agents.</p>
+<p>This is not a perfect analogy, because a human colleague can notice that something feels wrong. An agent will not. That missing discomfort is exactly why explicit rules, constrained tools, and approval screens matter.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>An agent is a model plus a loop plus tools plus guardrails, pursuing a goal over multiple steps.</li>
+<li>Fluency is not truth; models predict text and only know what is in their training and current context.</li>
+<li>Autonomy is a ladder. Start with suggestions or drafts, and earn your way to broader action.</li>
+<li>Many successful agents are agentic workflows: fixed structure around a few places where the model makes a judgment.</li>
+<li>An agent&#39;s real capability is defined by its goal, visibility, authority, and supervision.</li>
+<li>Asking a model to &quot;be careful&quot; is not a safety control. Enforceable boundaries are.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Think of a repetitive task in your week. Write one sentence for each of the four boundaries: goal, visibility, authority, supervision.</li>
+<li>Decide where the task belongs on the autonomy ladder. Move it down one rung. What would make you comfortable moving it back up?</li>
+<li>Take a product page that claims to offer an &quot;autonomous agent.&quot; Find its answers to the four boundaries. Which ones are missing?</li>
+<li>Draw a line between what you would let a new intern do without review and what you would let them do after a month. Translate that line into tools and approvals.</li>
+</ol>
+<p>Next, we will open up the loop and watch an agent work step by step, including the moment it gets something wrong.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="preface.html"><span class="pager-kicker">Previous</span><span class="pager-title">Preface: A new kind of software</span></a><a class="pager-card pager-next" href="agent-loop.html"><span class="pager-kicker">Next</span><span class="pager-title">The agent loop, step by step</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#the-working-definition">The working definition</a></li><li class="toc-item toc-level-2"><a href="#what-the-model-is-in-one-page">What the model is, in one page</a></li><li class="toc-item toc-level-2"><a href="#the-autonomy-ladder">The autonomy ladder</a></li><li class="toc-item toc-level-2"><a href="#chatbot-workflow-agent-what-s-the-difference">Chatbot, workflow, agent: what&#39;s the difference?</a></li><li class="toc-item toc-level-2"><a href="#the-four-questions-that-define-an-agent-s-power">The four questions that define an agent&#39;s power</a></li><li class="toc-item toc-level-2"><a href="#what-agents-are-not">What agents are not</a></li><li class="toc-item toc-level-2"><a href="#why-tools-change-the-stakes">Why tools change the stakes</a></li><li class="toc-item toc-level-2"><a href="#a-more-useful-mental-model">A more useful mental model</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>The agent loop, step by step — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="Watch a scheduling task unfold step by step, including the context problem, the harness, stopping rules, and the loops that go wrong." />
+  <meta property="og:title" content="The agent loop, step by step — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="Watch a scheduling task unfold step by step, including the context problem, the harness, stopping rules, and the loops that go wrong." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="agent-loop">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link is-active" href="agent-loop.html" aria-current="page"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-ideas">The ideas</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 2</p>
+          <h1>The agent loop, step by step</h1>
+          <p class="chapter-dek">Watch a scheduling task unfold step by step, including the context problem, the harness, stopping rules, and the loops that go wrong.</p>
+          <div class="chapter-meta"><span>2,158 words</span><span aria-hidden="true">·</span><span>10 min read</span><span aria-hidden="true">·</span><span>Part I</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>The clearest way to understand an agent is to watch one try to do something ordinary. Not a dramatic research task, and not a demo where everything is prearranged. Just a small scheduling job with a little ambiguity.</p>
+<p>Maya has a client kickoff next week with two colleagues, Priya and Tomas. She tells her email assistant:</p>
+<blockquote>
+<p>Find a 30-minute slot next week when Priya, Tomas, and I are all free, preferably Tuesday morning. Check that nobody has a hard conflict. Create a draft invite for the Atlas kickoff and show it to me. Do not send it until I approve.</p>
+</blockquote>
+<p>A human might do this in four minutes. An agent will do it as a sequence of decisions and tool calls. The sequence is the agent loop.</p>
+<figure><img src="assets/images/agent-loop.svg" alt="The agent loop: a goal feeds the model, which chooses a tool call, the harness checks permission and executes it, an observation returns to the model, and the cycle repeats until a final answer or a stopping condition"><figcaption>The agent loop: a goal feeds the model, which chooses a tool call, the harness checks permission and executes it, an observation returns to the model, and the cycle repeats until a final answer or a stopping condition</figcaption></figure>
+<h2 id="the-loop-in-one-sentence">The loop in one sentence<a class="heading-anchor" href="#the-loop-in-one-sentence" aria-label="Link to section: The loop in one sentence">#</a></h2>
+<p>The model chooses an action; the harness checks and performs it; the result goes back into the model&#39;s context; repeat until the goal is reached or a limit stops the process.</p>
+<p>That is almost the whole idea. Everything else is refinement: memory, planning, approval screens, retries, budgets, and the tools themselves.</p>
+<p>In pseudocode, it looks like this:</p>
+<pre><code class="language-text">context = instructions + user goal + tool descriptions
+for step in 1..max_steps:
+    proposal = model(context)
+    if proposal is a final answer:
+        stop
+    if proposal is a tool call:
+        check permission, validate arguments, maybe ask a human
+        observation = run the tool
+        context = context + proposal + observation
+    else:
+        ask the model to correct its output
+stop with an incomplete status
+</code></pre>
+<p>Real systems are more elaborate, but this skeleton explains most behavior you will see, including the frustrating kind.</p>
+<h2 id="a-trace-of-the-scheduling-task">A trace of the scheduling task<a class="heading-anchor" href="#a-trace-of-the-scheduling-task" aria-label="Link to section: A trace of the scheduling task">#</a></h2>
+<p>Here is an illustrative trace. The wording is simplified; the exact messages depend on the product. The important thing is the alternation between decisions and evidence.</p>
+<h3 id="step-1-understand-and-choose-a-first-move">Step 1: Understand and choose a first move<a class="heading-anchor" href="#step-1-understand-and-choose-a-first-move" aria-label="Link to section: Step 1: Understand and choose a first move">#</a></h3>
+<p>The model receives the goal, the conversation, and a list of available tools: list calendars, search contacts, create a draft event, maybe send an email. It decides that it first needs next week&#39;s calendar data for all three people.</p>
+<p>It proposes a tool call. Something like:</p>
+<pre><code class="language-json">{
+  &quot;tool&quot;: &quot;list_calendar_events&quot;,
+  &quot;arguments&quot;: {
+    &quot;attendees&quot;: [&quot;maya@example.test&quot;, &quot;priya@example.test&quot;, &quot;tomas@example.test&quot;],
+    &quot;start&quot;: &quot;2026-10-26&quot;,
+    &quot;end&quot;: &quot;2026-10-30&quot;,
+    &quot;timezone&quot;: &quot;Europe/London&quot;
+  }
+}
+</code></pre>
+<p>The model has not run anything. It has produced a structured request. This distinction matters: the language model is a suggestion engine, and the harness is the part with hands.</p>
+<h3 id="step-2-the-harness-checks-and-acts">Step 2: The harness checks and acts<a class="heading-anchor" href="#step-2-the-harness-checks-and-acts" aria-label="Link to section: Step 2: The harness checks and acts">#</a></h3>
+<p>Before executing, the harness verifies that the request is well-formed, that the calendar tool is allowed, that the user has authorized read access, and that the requested dates are within an allowed range. If the user has chosen &quot;ask before reading calendars,&quot; this is where the approval prompt appears. If everything passes, the harness calls the real calendar service and returns the result.</p>
+<h3 id="step-3-the-observation-arrives">Step 3: The observation arrives<a class="heading-anchor" href="#step-3-the-observation-arrives" aria-label="Link to section: Step 3: The observation arrives">#</a></h3>
+<p>The result might be long and messy:</p>
+<pre><code class="language-text">Mon 26 Oct: Maya busy 09:00–10:00; Priya free; Tomas busy 14:00–16:00.
+Tue 27 Oct: Maya free 09:00–12:30; Priya busy 10:00–10:30; Tomas free.
+...
+</code></pre>
+<p>The harness adds a structured or abbreviated version to the model&#39;s context. Observations are not automatically clean. They can be truncated, paginated, or expressed in a different timezone. The model has to interpret them, and it can misinterpret them.</p>
+<h3 id="step-4-the-model-revises">Step 4: The model revises<a class="heading-anchor" href="#step-4-the-model-revises" aria-label="Link to section: Step 4: The model revises">#</a></h3>
+<p>Suppose it finds Tuesday 09:30–10:00 when everyone appears free. It now needs to check a constraint: is 09:30 in the morning in the timezone Maya meant? Is the slot in the same week? Is the invite for the correct client?</p>
+<p>It proposes a draft event. Because Maya asked for approval before sending, the harness does not send. It creates a draft or pauses for confirmation, depending on the tool design. A good confirmation screen shows the attendee list, date, time, timezone, duration, location, and a preview of the message. A bad one says &quot;Allow agent to continue?&quot; and trains Maya to click yes.</p>
+<h3 id="step-5-verification-and-final-answer">Step 5: Verification and final answer<a class="heading-anchor" href="#step-5-verification-and-final-answer" aria-label="Link to section: Step 5: Verification and final answer">#</a></h3>
+<p>After creating the draft, the harness receives another observation: an event ID and a status such as <code>tentative</code> or <code>pending</code>. The model can now answer: &quot;I found Tuesday 27 October, 09:30–10:00. I created a draft invite for you, Priya, and Tomas. It has not been sent.&quot;</p>
+<p>But notice what made the answer trustworthy: not the model&#39;s tone, but the observation that the draft exists. The system checked. A final message without a confirming tool result is an assertion, not evidence.</p>
+<h2 id="what-the-model-actually-sees">What the model actually sees<a class="heading-anchor" href="#what-the-model-actually-sees" aria-label="Link to section: What the model actually sees">#</a></h2>
+<p>An agent is shaped by its context. At each turn, the model may see:</p>
+<ul>
+<li>system instructions from the product, such as &quot;you are a careful assistant&quot; and tool-use rules;</li>
+<li>developer or organization instructions, such as &quot;never send external email without approval&quot;;</li>
+<li>the user&#39;s goal and conversation history;</li>
+<li>descriptions and schemas for each available tool;</li>
+<li>outputs of earlier tool calls, possibly trimmed;</li>
+<li>retrieved documents or memory entries;</li>
+<li>the most recent error or clarification.</li>
+</ul>
+<p>This is a lot of text, and models do not attend to it perfectly. Important constraints near the beginning can be diluted by a long task. Tool outputs can be huge. A 200-page PDF pushed into context may crowd out the user&#39;s original request. When an agent becomes forgetful halfway through a task, the cause is often context pressure, not malice.</p>
+<p>Modern agent harnesses deal with this by compacting history, summarizing, splitting work across sub-agents, or using retrieval to bring back selected facts. Those techniques help, but they also introduce summarization errors. &quot;It forgot the constraint&quot; is a normal failure mode, not an exotic one.</p>
+<h2 id="what-the-model-does-not-do">What the model does not do<a class="heading-anchor" href="#what-the-model-does-not-do" aria-label="Link to section: What the model does not do">#</a></h2>
+<p>It helps to be precise about the division of labor.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>The model</th>
+<th>The harness</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reads the goal and context</td>
+<td>Builds the context and enforces limits</td>
+</tr>
+<tr>
+<td>Chooses the next step</td>
+<td>Validates and executes the step</td>
+</tr>
+<tr>
+<td>Writes tool arguments</td>
+<td>Checks permissions and approval</td>
+</tr>
+<tr>
+<td>Interprets the result</td>
+<td>Stores logs, handles retries, cancels</td>
+</tr>
+<tr>
+<td>Drafts the final answer</td>
+<td>Decides when the loop must stop</td>
+</tr>
+</tbody></table></div>
+<p>The harness is ordinary software written by fallible people. If it logs the full contents of every file the agent reads, that log may contain sensitive data. If it retries every failed action, a payment tool may execute twice. If it exposes a &quot;send email&quot; tool while showing an approval dialog only for &quot;delete,&quot; the permission model is inconsistent.</p>
+<p>When an agent behaves badly, ask both sides of the table. &quot;Why did the model do that?&quot; is only half the question. The other half is &quot;Why was that action available, and why did we not stop it?&quot;</p>
+<h2 id="planning-is-useful-but-not-a-guarantee">Planning is useful, but not a guarantee<a class="heading-anchor" href="#planning-is-useful-but-not-a-guarantee" aria-label="Link to section: Planning is useful, but not a guarantee">#</a></h2>
+<p>Some agents produce an explicit plan before acting. Others decide one step at a time. Some products show a neat checklist of &quot;steps I&#39;m taking&quot; that is generated separately from the actual work. Treat a displayed plan as a rough summary, not a legally binding account of the system&#39;s internal reasoning.</p>
+<p>Plans are useful because they make the intended route visible and can help a human catch a bad approach early. But a plan can be wrong, incomplete, or abandoned. The agent can say &quot;First I&#39;ll check the calendar&quot; and then call a completely different tool. The reliable artifact is the trace of tool calls and their results, not the prose around them.</p>
+<p>For high-stakes work, ask for a plan and approve it before execution. Then verify outcomes against the actual environment.</p>
+<h2 id="where-loops-go-wrong">Where loops go wrong<a class="heading-anchor" href="#where-loops-go-wrong" aria-label="Link to section: Where loops go wrong">#</a></h2>
+<p>The loop is powerful because it can recover from errors. It is risky for the same reason: a bad pattern can repeat.</p>
+<h3 id="the-repeated-failure-loop">The repeated failure loop<a class="heading-anchor" href="#the-repeated-failure-loop" aria-label="Link to section: The repeated failure loop">#</a></h3>
+<p>The agent tries a tool, gets an error, retries with the same arguments, gets the same error, and tries again. Good harnesses detect repeated identical calls, count retries, and surface the error. Good tool errors explain what to fix. A model that receives only <code>Error 400</code> has little chance of correcting course.</p>
+<h3 id="the-expansion-loop">The expansion loop<a class="heading-anchor" href="#the-expansion-loop" aria-label="Link to section: The expansion loop">#</a></h3>
+<p>The agent starts with &quot;summarize this document,&quot; decides it needs more context, opens related files, searches the web, opens more files, and returns a summary that has drifted far from the request. Step budgets and a clear scope help. So does asking for a stop after a fixed list of sources.</p>
+<h3 id="the-approximation-spiral">The approximation spiral<a class="heading-anchor" href="#the-approximation-spiral" aria-label="Link to section: The approximation spiral">#</a></h3>
+<p>The agent cannot access a system, so it writes a plausible result anyway. This can look like invention, but it is often a failure to distinguish &quot;I checked&quot; from &quot;I can infer.&quot; The fix is procedural: require a source or a tool result for factual claims, and make absence of data a valid answer.</p>
+<h3 id="the-expensive-loop">The expensive loop<a class="heading-anchor" href="#the-expensive-loop" aria-label="Link to section: The expensive loop">#</a></h3>
+<p>Every turn consumes model capacity, and every tool call may cost money or hit a rate limit. An agent that quietly runs for forty steps is not necessarily forty times smarter. It may be lost. Set step, time, and spending limits before the task begins.</p>
+<h3 id="the-unauthorized-shortcut">The unauthorized shortcut<a class="heading-anchor" href="#the-unauthorized-shortcut" aria-label="Link to section: The unauthorized shortcut">#</a></h3>
+<p>The agent cannot complete the task with the allowed tool, so it finds a different tool with broader permissions. Maybe a browser and a logged-in session, maybe a file tool that can read more than intended. If an agent can route around its restrictions, those restrictions are suggestions. The harness must enforce boundaries at the tool layer, not merely describe them in the prompt.</p>
+<h2 id="stopping-conditions">Stopping conditions<a class="heading-anchor" href="#stopping-conditions" aria-label="Link to section: Stopping conditions">#</a></h2>
+<p>Every agent needs a &quot;enough&quot; rule. These are common:</p>
+<ul>
+<li><strong>Goal achieved.</strong> A tool result confirms the intended final state, or the model returns a final answer with no pending action.</li>
+<li><strong>Needs a human.</strong> The next action exceeds a budget, is irreversible, is outside an allowlist, or requires a judgment call.</li>
+<li><strong>Step limit.</strong> The harness reaches a maximum number of turns.</li>
+<li><strong>Time limit.</strong> The task exceeds its wall-clock budget.</li>
+<li><strong>Cost limit.</strong> Token spend or tool usage crosses a threshold.</li>
+<li><strong>Error threshold.</strong> Repeated failures mean the task should be escalated rather than retried forever.</li>
+<li><strong>No progress.</strong> The harness detects that the agent is repeating itself or making changes with no observable effect.</li>
+</ul>
+<p>A missing stopping condition is a safety bug. &quot;It will stop when it&#39;s done&quot; is not a design.</p>
+<h2 id="the-mathematics-of-many-steps">The mathematics of many steps<a class="heading-anchor" href="#the-mathematics-of-many-steps" aria-label="Link to section: The mathematics of many steps">#</a></h2>
+<p>Suppose each step has a 95% chance of being correct. Over one step, that looks excellent. Over ten sequential steps, the chance that every step is correct is roughly 0.95¹⁰, or about 60%. Over twenty steps, it is roughly 36%.</p>
+<p>Real agent steps are not independent, and a capable model can correct earlier mistakes. But the intuition is important: <strong>reliability compounds downward as task length grows.</strong> This is why short, well-scoped workflows outperform ambitious marathons. It is also why checkpoints matter. A human check at step five can prevent a cascade of confident errors.</p>
+<p>If you want an agent to do more, the first move is usually not a bigger model. It is a narrower task, better tools, and a verification step.</p>
+<h2 id="human-checkpoints-are-part-of-the-loop">Human checkpoints are part of the loop<a class="heading-anchor" href="#human-checkpoints-are-part-of-the-loop" aria-label="Link to section: Human checkpoints are part of the loop">#</a></h2>
+<p>A checkpoint is not a failure of autonomy. It is an input. The harness can pause and ask a person to:</p>
+<ul>
+<li>approve a specific action before it happens;</li>
+<li>choose between two interpretations;</li>
+<li>supply a missing piece of information;</li>
+<li>review a draft or diff;</li>
+<li>confirm that a result looks correct.</li>
+</ul>
+<p>Good checkpoints happen at meaningful boundaries: before a message leaves the organization, before money moves, before a destructive file operation, before a database write, before a permission change. Bad checkpoints happen constantly and ask vague questions. They create approval fatigue, and fatigue produces the click you will regret.</p>
+<p>A practical rule: <strong>approve outcomes, not vibes.</strong> Show the exact recipient, amount, file, query, or diff. Let the human say no easily. Keep an audit trail of what was approved.</p>
+<h2 id="a-better-scheduling-loop">A better scheduling loop<a class="heading-anchor" href="#a-better-scheduling-loop" aria-label="Link to section: A better scheduling loop">#</a></h2>
+<p>Returning to Maya: her agent worked because the system made the task observable.</p>
+<ul>
+<li>It could read calendars but not send invites.</li>
+<li>The timezone was explicit, not inferred.</li>
+<li>The approval screen showed attendees and the proposed time.</li>
+<li>The draft stayed a draft until Maya acted.</li>
+<li>The final message cited an event ID and status.</li>
+</ul>
+<p>If the task had been &quot;book a meeting with the Atlas team,&quot; with no attendees and no boundaries, the same model would have had to guess. The agent&#39;s success came from the design of the loop and the tools, not from a magically better paragraph of instructions.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>The agent loop is: model proposes, harness checks and executes, observation returns, repeat.</li>
+<li>Models produce suggestions; the harness is where permissions, retries, logs, and limits live.</li>
+<li>Context is finite. Long tasks become forgetful, and tool outputs can crowd out the goal.</li>
+<li>Plans and &quot;reasoning&quot; displays are useful but are not proof of what happened.</li>
+<li>Loops fail by repetition, scope creep, invention when data is unavailable, cost, and route-around.</li>
+<li>Every agent needs explicit stopping conditions and meaningful human checkpoints.</li>
+<li>Reliability degrades as task length increases. Narrow scope is a safety feature.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Write a five-step trace for a task you might delegate: what the model would see, what tool it would call, what result would come back, and where you would put a checkpoint.</li>
+<li>Pick one loop failure from this chapter. What signal would tell you it is happening? What limit would stop it?</li>
+<li>Take a task you currently do in one step and ask whether it should stay that way. What does splitting it into multiple agent steps actually gain?</li>
+<li>Design an approval screen for an action that matters to you. List the facts a person must see before saying yes.</li>
+</ol>
+<p>Next: the tools themselves. They are the difference between an agent that talks about the world and one that can change it.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="what-is-an-agent.html"><span class="pager-kicker">Previous</span><span class="pager-title">What an AI agent actually is</span></a><a class="pager-card pager-next" href="tools.html"><span class="pager-kicker">Next</span><span class="pager-title">Tools: how an agent touches the world</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#the-loop-in-one-sentence">The loop in one sentence</a></li><li class="toc-item toc-level-2"><a href="#a-trace-of-the-scheduling-task">A trace of the scheduling task</a></li><li class="toc-item toc-level-3"><a href="#step-1-understand-and-choose-a-first-move">Step 1: Understand and choose a first move</a></li><li class="toc-item toc-level-3"><a href="#step-2-the-harness-checks-and-acts">Step 2: The harness checks and acts</a></li><li class="toc-item toc-level-3"><a href="#step-3-the-observation-arrives">Step 3: The observation arrives</a></li><li class="toc-item toc-level-3"><a href="#step-4-the-model-revises">Step 4: The model revises</a></li><li class="toc-item toc-level-3"><a href="#step-5-verification-and-final-answer">Step 5: Verification and final answer</a></li><li class="toc-item toc-level-2"><a href="#what-the-model-actually-sees">What the model actually sees</a></li><li class="toc-item toc-level-2"><a href="#what-the-model-does-not-do">What the model does not do</a></li><li class="toc-item toc-level-2"><a href="#planning-is-useful-but-not-a-guarantee">Planning is useful, but not a guarantee</a></li><li class="toc-item toc-level-2"><a href="#where-loops-go-wrong">Where loops go wrong</a></li><li class="toc-item toc-level-3"><a href="#the-repeated-failure-loop">The repeated failure loop</a></li><li class="toc-item toc-level-3"><a href="#the-expansion-loop">The expansion loop</a></li><li class="toc-item toc-level-3"><a href="#the-approximation-spiral">The approximation spiral</a></li><li class="toc-item toc-level-3"><a href="#the-expensive-loop">The expensive loop</a></li><li class="toc-item toc-level-3"><a href="#the-unauthorized-shortcut">The unauthorized shortcut</a></li><li class="toc-item toc-level-2"><a href="#stopping-conditions">Stopping conditions</a></li><li class="toc-item toc-level-2"><a href="#the-mathematics-of-many-steps">The mathematics of many steps</a></li><li class="toc-item toc-level-2"><a href="#human-checkpoints-are-part-of-the-loop">Human checkpoints are part of the loop</a></li><li class="toc-item toc-level-2"><a href="#a-better-scheduling-loop">A better scheduling loop</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

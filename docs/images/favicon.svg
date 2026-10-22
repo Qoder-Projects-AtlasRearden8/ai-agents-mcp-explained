@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Agents and MCP book mark">
+  <rect width="64" height="64" rx="15" fill="#203039"/>
+  <path d="M 20 38 C 20 28 26 22 34 22 C 41 22 45 27 45 32 C 45 38 41 41 35 41 H 28" fill="none" stroke="#FBF7EF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 24 45 L 20 38 L 28 36" fill="none" stroke="#FBF7EF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45" cy="45" r="5" fill="#C24E2C"/>
+</svg>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>Choosing what to automate (and what not to) — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="How to pick work, estimate the real cost, run a 30-day pilot, and know when to stop." />
+  <meta property="og:title" content="Choosing what to automate (and what not to) — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="How to pick work, estimate the real cost, run a 30-day pilot, and know when to stop." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="choosing-work">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link is-active" href="choosing-work.html" aria-current="page"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-practice">Putting it to work safely</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 10</p>
+          <h1>Choosing what to automate (and what not to)</h1>
+          <p class="chapter-dek">How to pick work, estimate the real cost, run a 30-day pilot, and know when to stop.</p>
+          <div class="chapter-meta"><span>2,293 words</span><span aria-hidden="true">·</span><span>11 min read</span><span aria-hidden="true">·</span><span>Part III</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>June watched a demo where an agent reconciled invoices, drafted emails, and updated a dashboard. She came back to work with a list of eleven things to automate. Three months later, only one was still running. The others had been impressive in the demo, expensive to maintain, or simply not worth the review time.</p>
+<p>This is a common pattern, and it is not a failure of enthusiasm. It is a failure of selection. The question &quot;Can an agent do this?&quot; is almost always yes for some version of the task. The better question is &quot;Is this task worth doing with an agent, under these constraints, with this owner, and how would we know?&quot;</p>
+<h2 id="the-fit-equation">The fit equation<a class="heading-anchor" href="#the-fit-equation" aria-label="Link to section: The fit equation">#</a></h2>
+<p>A task is a good early candidate when several of these are true:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Good sign</th>
+<th>Warning sign</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frequency</td>
+<td>Happens daily or weekly</td>
+<td>Happens twice a year</td>
+</tr>
+<tr>
+<td>Time cost</td>
+<td>Takes hours, is repetitive, or blocks other work</td>
+<td>A two-minute task that already works</td>
+</tr>
+<tr>
+<td>Variability</td>
+<td>Inputs vary, language is involved, edge cases are numerous</td>
+<td>Inputs and rules are fixed and deterministic</td>
+</tr>
+<tr>
+<td>Stakes</td>
+<td>Errors are recoverable or reviewed</td>
+<td>Errors are irreversible, legal, or safety-critical</td>
+</tr>
+<tr>
+<td>Data access</td>
+<td>Sources are available, scoped, and trustworthy</td>
+<td>Data is scattered, missing, or highly sensitive</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>You can inspect sources, outputs, and actions</td>
+<td>Success is a feeling; no trace, no measure</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>You can compare to a baseline and learn</td>
+<td>No one knows what good output looks like</td>
+</tr>
+<tr>
+<td>Ownership</td>
+<td>A person will maintain and review it</td>
+<td>Everyone wants it; no one owns it</td>
+</tr>
+</tbody></table></div>
+<p>You can score these informally. A simple high, medium, low across the first six factors is enough to start a conversation. The point is not a precise score. It is to stop treating &quot;cool demo&quot; as a selection criterion.</p>
+<p>Three factors deserve extra weight:</p>
+<ol>
+<li><strong>Stakes.</strong> High stakes require a much stronger safety case, and sometimes the correct answer is not to automate.</li>
+<li><strong>Observability.</strong> If you cannot tell whether the work is correct, you cannot safely expand autonomy.</li>
+<li><strong>Ownership.</strong> An ownerless agent gradually becomes an ownerless security risk.</li>
+</ol>
+<h2 id="good-early-candidates">Good early candidates<a class="heading-anchor" href="#good-early-candidates" aria-label="Link to section: Good early candidates">#</a></h2>
+<p>The best first projects have a short loop and an obvious review step:</p>
+<ul>
+<li>Summarizing a defined set of documents into a known format.</li>
+<li>Classifying incoming messages into a small set of categories.</li>
+<li>Drafting replies to routine questions with a knowledge base.</li>
+<li>Extracting fields from structured-enough documents.</li>
+<li>Comparing a new version against a previous version.</li>
+<li>Preparing a weekly report from stable metrics.</li>
+<li>Finding and explaining relevant code for a developer.</li>
+<li>Producing meeting briefs from a calendar and a project folder.</li>
+</ul>
+<p>Notice how many of these end in a draft, a label, or a summary. The work is valuable, the error is visible, and the human does not need to spend as much time as before.</p>
+<h2 id="poor-early-candidates">Poor early candidates<a class="heading-anchor" href="#poor-early-candidates" aria-label="Link to section: Poor early candidates">#</a></h2>
+<p>Some tasks are bad not because AI is useless for them, but because the current risk or measurement story is poor:</p>
+<ul>
+<li><strong>Irreversible financial or legal actions.</strong> Payments, contract acceptance, refunds over a threshold, regulatory filings.</li>
+<li><strong>High-stakes decisions about people.</strong> Hiring, firing, credit, housing, medical triage, discipline. These need human judgment, due process, and often legal review.</li>
+<li><strong>Unbounded research with autonomous actions.</strong> &quot;Investigate this market and sign up for what you need&quot; combines untrusted content, private data, and external actions.</li>
+<li><strong>Tasks with no reliable source of truth.</strong> If the answer is not written down anywhere accessible, the agent will guess fluently.</li>
+<li><strong>Customer-facing communication with no review.</strong> The cost of a bad message is often much higher than the time saved by auto-sending.</li>
+<li><strong>Processes that are already broken.</strong> Automating a confused process makes it faster and more confusing. Fix the process design first.</li>
+<li><strong>One-off tasks.</strong> Setup and review may exceed the benefit. Use a chat assistant instead of building an agent.</li>
+</ul>
+<p>This is not a permanent ban list. It is a statement that these are not the first place to earn confidence.</p>
+<h2 id="agency-vs-automation">Agency vs. automation<a class="heading-anchor" href="#agency-vs-automation" aria-label="Link to section: Agency vs. automation">#</a></h2>
+<p>A common mistake is to use an agent when a simple deterministic process is better.</p>
+<p>Consider a weekly report whose structure never changes. The data comes from a fixed query, the calculations are fixed, and the text follows a template. You could build an agent that decides how to gather and present it, or you could run a script that queries, calculates, renders, and emails the report. The script is easier to test, cheaper, faster, and more predictable. If you want a narrative, use a model to write it from the computed tables, with citations to the data.</p>
+<p>Use an agent when:</p>
+<ul>
+<li>the inputs are variable and natural-language-heavy;</li>
+<li>the sequence of steps cannot be fully known in advance;</li>
+<li>the system must inspect results and adapt;</li>
+<li>selecting among options requires some judgment;</li>
+<li>the work is mostly reading, comparing, drafting, and checking.</li>
+</ul>
+<p>Use fixed automation when:</p>
+<ul>
+<li>rules are stable and known;</li>
+<li>calculations must be exact;</li>
+<li>the steps are identical each time;</li>
+<li>compliance requires deterministic behavior;</li>
+<li>volume is high and the unit cost of model calls matters.</li>
+</ul>
+<p>The strongest systems are often hybrid. The outer pipeline is deterministic, and the model is used at specific points: classify this message, extract these fields, draft this paragraph, compare these two policies, summarize this diff. The model&#39;s flexibility is valuable because it is bounded.</p>
+<p>The phrase &quot;agentic workflow&quot; describes this well. Fixed outer structure, model at the joints. It is usually more reliable than an open-ended agent and more adaptable than pure scripting.</p>
+<h2 id="choose-the-lowest-autonomy-rung-that-works">Choose the lowest autonomy rung that works<a class="heading-anchor" href="#choose-the-lowest-autonomy-rung-that-works" aria-label="Link to section: Choose the lowest autonomy rung that works">#</a></h2>
+<p>Autonomy is not a single setting for a whole workflow. You can vary it by action:</p>
+<ul>
+<li>Inbox classification: fully automated after testing, because a wrong label is reversible.</li>
+<li>Reply drafting: automated, with human review.</li>
+<li>Sending email externally: human action.</li>
+<li>Adding an internal label: automated within an allowlist.</li>
+<li>Creating a calendar event: draft or approval, depending on reversibility.</li>
+<li>Modifying a customer record: approval and audit.</li>
+</ul>
+<p>A workflow can therefore be mostly automated and still have one strong checkpoint where it matters. Do not accept a product&#39;s binary &quot;autonomous mode&quot; framing. Ask which actions are autonomous and which are gated.</p>
+<p>The lowest rung that works is not always level 2. If a read-only weekly summary is accurate 99% of the time and errors are detectable, a scheduled run at level 4 may be perfectly reasonable. The point is to justify the rung with evidence, not to romanticize review.</p>
+<h2 id="buy-configure-or-build">Buy, configure, or build<a class="heading-anchor" href="#buy-configure-or-build" aria-label="Link to section: Buy, configure, or build">#</a></h2>
+<p>There are three broad paths:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it means</th>
+<th>Best for</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Buy/use a product</td>
+<td>A hosted agent or connector with standard tools</td>
+<td>Common workflows, fast start, no engineering</td>
+<td>Vendor dependence, limited control, data governance, changing features</td>
+</tr>
+<tr>
+<td>Configure</td>
+<td>Assemble connectors, prompts, and permissions in a host</td>
+<td>Departmental workflows, mixed tools</td>
+<td>Integration complexity, permission management, uneven observability</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Write a custom MCP server or agent harness</td>
+<td>Unique systems, strict boundaries, proprietary workflow</td>
+<td>Engineering cost, maintenance, security responsibility</td>
+</tr>
+</tbody></table></div>
+<p>Start with the lowest-effort path that satisfies the task and the risk. A hosted connector that reads one folder may be better than a custom server you cannot maintain. A custom server may be the only way to enforce a precise permission model on an internal database. &quot;Build&quot; is not a maturity badge; it is a commitment to operate software.</p>
+<p>When buying, ask:</p>
+<ul>
+<li>What exactly can the agent access?</li>
+<li>Can I limit it to a folder, project, or dataset?</li>
+<li>Can I require approval for writes?</li>
+<li>Where is data processed and retained?</li>
+<li>What happens when I cancel? Can I export?</li>
+<li>Is there an audit log?</li>
+<li>What is the support model and roadmap risk?</li>
+<li>How do I test it safely before rolling it out?</li>
+</ul>
+<p>When building, add the cost of maintenance, upgrades, incident response, and security review. The first version is not the full cost.</p>
+<h2 id="the-real-cost-model">The real cost model<a class="heading-anchor" href="#the-real-cost-model" aria-label="Link to section: The real cost model">#</a></h2>
+<p>A useful estimate has more terms than &quot;subscription price.&quot;</p>
+<pre><code class="language-text">Monthly value = (time saved per run × runs × adoption × value of time)
+              + (quality improvement you can actually measure)
+              - (human review time)
+              - (model and tool usage)
+              - (maintenance and support)
+              - (amortized build cost)
+              - (expected incident cost)
+</code></pre>
+<p>None of these are perfectly knowable in advance. Make your assumptions explicit and revise them after the pilot. The discipline of writing them down prevents magical thinking.</p>
+<p>A small worked example, with invented numbers:</p>
+<ul>
+<li>A weekly report takes June 150 minutes. A draft workflow could reduce her work to 40 minutes of review and correction, saving 110 minutes per week.</li>
+<li>Setup takes 20 hours. Ongoing maintenance and review of the workflow takes 2 hours per month. Model and connector usage is unknown but small relative to June&#39;s time.</li>
+<li>At roughly 4.3 weeks per month, the time saved is about 7.9 hours per month. After 2 hours of maintenance, the net is 5.9 hours per month. Setup is recovered in a few months, assuming the draft quality holds.</li>
+<li>If adoption is 50% because June does not trust it for busy weeks, the savings halve. If rework is high, they may disappear.</li>
+</ul>
+<p>The arithmetic is not the answer. It is a tool for identifying which assumption matters. Here, draft quality and adoption matter more than the subscription price. That might lead you to invest in better sources and an approval screen rather than a cheaper model.</p>
+<p>Do not ignore <strong>review labor</strong>. A workflow that produces a 4,000-word document in ten seconds but takes an hour to verify has not saved an hour. It may simply move the work. The best automations reduce total effort, not just typing.</p>
+<h2 id="what-to-measure">What to measure<a class="heading-anchor" href="#what-to-measure" aria-label="Link to section: What to measure">#</a></h2>
+<p>Choose a small set of metrics before launch:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Example metric</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quality</td>
+<td>Percentage of outputs accepted with no substantive edit</td>
+<td>Measures real usefulness</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Factual error rate on a sampled review</td>
+<td>Detects confident mistakes</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Median time from trigger to reviewable draft</td>
+<td>Captures workflow benefit</td>
+</tr>
+<tr>
+<td>Human effort</td>
+<td>Review and correction minutes per output</td>
+<td>The hidden cost</td>
+</tr>
+<tr>
+<td>Safety</td>
+<td>Number of boundary violations or unapproved actions</td>
+<td>A zero-tolerance category</td>
+</tr>
+<tr>
+<td>Escalation</td>
+<td>Appropriate escalation rate for sensitive cases</td>
+<td>Measures judgment</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Model, tool, and infrastructure cost per completed task</td>
+<td>Prevents silent overspend</td>
+</tr>
+<tr>
+<td>Adoption</td>
+<td>Weekly active use by the intended people</td>
+<td>Detects a demo that never became work</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>Failure rate, timeouts, repeated loops</td>
+<td>Operational health</td>
+</tr>
+</tbody></table></div>
+<p>For qualitative work, sample and review. &quot;Accuracy 94%&quot; can hide the fact that the 6% includes the only cases that matter. Stratify by risk: a mislabeled newsletter is different from a mislabeled legal threat.</p>
+<h2 id="a-30-day-pilot">A 30-day pilot<a class="heading-anchor" href="#a-30-day-pilot" aria-label="Link to section: A 30-day pilot">#</a></h2>
+<p>A small, time-boxed pilot keeps the learning cheap.</p>
+<h3 id="week-0-define-and-baseline">Week 0: Define and baseline<a class="heading-anchor" href="#week-0-define-and-baseline" aria-label="Link to section: Week 0: Define and baseline">#</a></h3>
+<ul>
+<li>Write the one-page workflow spec from <a href="real-workflows.html">Chapter 8</a>.</li>
+<li>Measure the current process for a week: time, volume, error rate, and pain points.</li>
+<li>Choose test data and a limited group of users.</li>
+<li>Set permissions to read-only or drafts.</li>
+<li>Agree on stop conditions and a review date.</li>
+</ul>
+<h3 id="week-1-shadow-mode">Week 1: Shadow mode<a class="heading-anchor" href="#week-1-shadow-mode" aria-label="Link to section: Week 1: Shadow mode">#</a></h3>
+<p>The agent produces suggestions but commits nothing. Compare its work with what humans do. Record corrections. Do not expand scope because one demo looked good. Look for systematic misses in the source data.</p>
+<h3 id="week-2-assisted-drafts">Week 2: Assisted drafts<a class="heading-anchor" href="#week-2-assisted-drafts" aria-label="Link to section: Week 2: Assisted drafts">#</a></h3>
+<p>Let users review and use the agent&#39;s drafts. Measure edit time and acceptance. Fix the highest-friction problem: often a missing piece of context, a confusing tool name, or a bad default.</p>
+<h3 id="week-3-narrow-writes">Week 3: Narrow writes<a class="heading-anchor" href="#week-3-narrow-writes" aria-label="Link to section: Week 3: Narrow writes">#</a></h3>
+<p>Enable the safest write, such as creating an internal task or a draft. Keep approval. Watch for duplicate actions and permission errors. Review the audit trail daily.</p>
+<h3 id="week-4-decide">Week 4: Decide<a class="heading-anchor" href="#week-4-decide" aria-label="Link to section: Week 4: Decide">#</a></h3>
+<p>Continue, narrow, or stop. Base the decision on the metrics and the incident log, not on general enthusiasm. If continuing, write down the next expansion, the re-review date, and the owner.</p>
+<p>A pilot that never ends is not a pilot; it is unowned production. A pilot that scales before the evidence is a hope.</p>
+<h2 id="governance-without-bureaucracy">Governance without bureaucracy<a class="heading-anchor" href="#governance-without-bureaucracy" aria-label="Link to section: Governance without bureaucracy">#</a></h2>
+<p>You do not need a committee for every to-do list agent. You do need an owner and a few written facts. A lightweight register can include:</p>
+<ul>
+<li>workflow name and owner;</li>
+<li>purpose and out-of-scope uses;</li>
+<li>data sources and classification;</li>
+<li>connectors, tools, and scopes;</li>
+<li>approval rules;</li>
+<li>cost and step limits;</li>
+<li>review cadence;</li>
+<li>incident contact;</li>
+<li>decommissioning steps.</li>
+</ul>
+<p>Review the register when access changes, a new connector is added, or a major model update lands. If a workflow has no owner, it should not have production access.</p>
+<h2 id="when-to-stop">When to stop<a class="heading-anchor" href="#when-to-stop" aria-label="Link to section: When to stop">#</a></h2>
+<p>Stopping is a legitimate outcome. Stop or reduce autonomy when:</p>
+<ul>
+<li>a boundary violation occurs;</li>
+<li>errors are frequent or hard for reviewers to catch;</li>
+<li>human review time exceeds the task&#39;s original time;</li>
+<li>the data is too unreliable to support the output;</li>
+<li>adoption stays low after a fair pilot;</li>
+<li>the maintenance burden exceeds the value;</li>
+<li>a vendor changes terms, permissions, or features in a way that breaks the safety case;</li>
+<li>no one is willing to own it.</li>
+</ul>
+<p>A stopped experiment is not wasted. It is evidence that this task was not worth doing this way. Record why so the team does not repeat it.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>Select for frequency, time cost, variability, reversibility, observability, and ownership. High stakes deserve extra caution.</li>
+<li>Start with draft, summarize, classify, and extract workflows where errors are visible.</li>
+<li>Use the least agency that meets the need. Fixed automation may beat an agent.</li>
+<li>Hybrid designs, with a deterministic pipeline and model judgment at specific steps, are often best.</li>
+<li>Autonomy can vary by action within one workflow.</li>
+<li>Buy, configure, or build according to fit, not status.</li>
+<li>Include review time, maintenance, and incident risk in the cost model.</li>
+<li>Measure quality, accuracy, effort, safety, cost, and adoption.</li>
+<li>Run a time-boxed pilot and decide explicitly whether to continue.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Score three candidate tasks on the fit table. Which one has the best combination of value, evidence, and low stakes?</li>
+<li>Estimate the review time for one workflow. Does the automation still save time when review is included?</li>
+<li>Write a stop rule for a workflow you are considering. What would make you shut it down?</li>
+<li>Identify one place where a fixed script would be safer than an agent. What remains for the model to do?</li>
+</ol>
+<p>Even a well-chosen workflow will misbehave. The next chapter is a practical field guide to diagnosing what went wrong.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="get-started.html"><span class="pager-kicker">Previous</span><span class="pager-title">Build your first safe setup</span></a><a class="pager-card pager-next" href="troubleshooting.html"><span class="pager-kicker">Next</span><span class="pager-title">When agents go wrong</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#the-fit-equation">The fit equation</a></li><li class="toc-item toc-level-2"><a href="#good-early-candidates">Good early candidates</a></li><li class="toc-item toc-level-2"><a href="#poor-early-candidates">Poor early candidates</a></li><li class="toc-item toc-level-2"><a href="#agency-vs-automation">Agency vs. automation</a></li><li class="toc-item toc-level-2"><a href="#choose-the-lowest-autonomy-rung-that-works">Choose the lowest autonomy rung that works</a></li><li class="toc-item toc-level-2"><a href="#buy-configure-or-build">Buy, configure, or build</a></li><li class="toc-item toc-level-2"><a href="#the-real-cost-model">The real cost model</a></li><li class="toc-item toc-level-2"><a href="#what-to-measure">What to measure</a></li><li class="toc-item toc-level-2"><a href="#a-30-day-pilot">A 30-day pilot</a></li><li class="toc-item toc-level-3"><a href="#week-0-define-and-baseline">Week 0: Define and baseline</a></li><li class="toc-item toc-level-3"><a href="#week-1-shadow-mode">Week 1: Shadow mode</a></li><li class="toc-item toc-level-3"><a href="#week-2-assisted-drafts">Week 2: Assisted drafts</a></li><li class="toc-item toc-level-3"><a href="#week-3-narrow-writes">Week 3: Narrow writes</a></li><li class="toc-item toc-level-3"><a href="#week-4-decide">Week 4: Decide</a></li><li class="toc-item toc-level-2"><a href="#governance-without-bureaucracy">Governance without bureaucracy</a></li><li class="toc-item toc-level-2"><a href="#when-to-stop">When to stop</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

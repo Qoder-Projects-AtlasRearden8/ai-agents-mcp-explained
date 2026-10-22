@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 610" role="img" aria-labelledby="title desc">
+  <title id="title">MCP host, client, and server architecture</title>
+  <desc id="desc">An AI host application contains three MCP client connections. Two connect to local servers over stdio. One connects to a remote server over Streamable HTTP with OAuth. The servers reach files, APIs, databases, and hosted services.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C24E2C"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1E6B62"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#3A2D20" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .bg { fill: #FBF7EF; }
+      .frame { fill: none; stroke: #DED2C0; stroke-width: 1.5; }
+      .kicker { font: 700 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 2px; fill: #7A6A59; }
+      .h { font: 700 22px Georgia, "Times New Roman", serif; fill: #203039; }
+      .host { fill: #203039; }
+      .hosttext { fill: #FBF7EF; font: 700 16px Georgia, "Times New Roman", serif; }
+      .hostsmall { fill: #B9C7C5; font: 400 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .client { fill: #2C424C; stroke: #48616A; }
+      .clienttext { fill: #FBF7EF; font: 600 12px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .clientsmall { fill: #AEBFBE; font: 400 10.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .server { fill: #FFFDF8; stroke: #D8CCBA; stroke-width: 1.2; }
+      .servertitle { fill: #203039; font: 700 14px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .serverbody { fill: #51626B; font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .remote { fill: #EEF4F1; stroke: #BFD5CE; }
+      .badge { fill: #F6EDE6; }
+      .badgetext { fill: #9A4A2B; font: 700 10px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; letter-spacing: 1px; }
+      .sourcetitle { fill: #203039; font: 700 13px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .sourcebody { fill: #51626B; font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+      .label { font: 600 11px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #9A4A2B; }
+      .line { stroke: #C24E2C; stroke-width: 1.8; fill: none; }
+      .tealline { stroke: #1E6B62; stroke-width: 1.8; fill: none; }
+      .note { font: 400 11.5px ui-sans-serif, -apple-system, "Segoe UI", sans-serif; fill: #6C787B; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1120" height="610" rx="18"/>
+  <rect class="frame" x="0.75" y="0.75" width="1118.5" height="608.5" rx="17.25"/>
+  <text x="40" y="44" class="kicker">MCP ARCHITECTURE</text>
+  <text x="40" y="74" class="h">One host, many servers, a common language.</text>
+
+  <!-- Host -->
+  <rect x="40" y="108" width="338" height="420" rx="14" class="host" filter="url(#shadow)"/>
+  <text x="64" y="142" class="hosttext">AI host</text>
+  <text x="64" y="162" class="hostsmall">Owns the chat, model, policy, approvals.</text>
+
+  <rect x="64" y="188" width="290" height="80" rx="9" class="client"/>
+  <text x="80" y="214" class="clienttext">MCP client 1</text>
+  <text x="80" y="233" class="clientsmall">Connection, auth, session state</text>
+  <text x="80" y="251" class="clientsmall">→ local project server</text>
+
+  <rect x="64" y="284" width="290" height="80" rx="9" class="client"/>
+  <text x="80" y="310" class="clienttext">MCP client 2</text>
+  <text x="80" y="329" class="clientsmall">Connection, auth, session state</text>
+  <text x="80" y="347" class="clientsmall">→ local notes server</text>
+
+  <rect x="64" y="380" width="290" height="80" rx="9" class="client"/>
+  <text x="80" y="406" class="clienttext">MCP client 3</text>
+  <text x="80" y="425" class="clientsmall">Connection, auth, session state</text>
+  <text x="80" y="443" class="clientsmall">→ remote CRM server</text>
+
+  <text x="64" y="496" class="hostsmall">The host decides what the model can see and do.</text>
+
+  <!-- Local server A -->
+  <rect x="462" y="120" width="264" height="104" rx="11" class="server" filter="url(#shadow)"/>
+  <text x="482" y="147" class="servertitle">Project files server</text>
+  <text x="482" y="168" class="serverbody">Local · stdio transport</text>
+  <text x="482" y="187" class="serverbody">Tools: list, read, draft notes</text>
+  <rect x="482" y="198" width="89" height="20" rx="10" class="badge"/>
+  <text x="526" y="212" text-anchor="middle" class="badgetext">SCOPED FS</text>
+
+  <!-- Local server B -->
+  <rect x="462" y="265" width="264" height="104" rx="11" class="server" filter="url(#shadow)"/>
+  <text x="482" y="292" class="servertitle">Notes index server</text>
+  <text x="482" y="313" class="serverbody">Local · stdio transport</text>
+  <text x="482" y="332" class="serverbody">Tools: search, read resources</text>
+  <rect x="482" y="343" width="70" height="20" rx="10" class="badge"/>
+  <text x="517" y="357" text-anchor="middle" class="badgetext">READ ONLY</text>
+
+  <!-- Remote server C -->
+  <rect x="462" y="410" width="264" height="112" rx="11" class="remote" filter="url(#shadow)"/>
+  <text x="482" y="436" class="servertitle">CRM server</text>
+  <text x="482" y="455" class="serverbody">Remote · Streamable HTTP</text>
+  <text x="482" y="474" class="serverbody">OAuth token · per-user scope</text>
+  <text x="482" y="490" class="serverbody">Tools: search, read records</text>
+  <rect x="636" y="416" width="72" height="20" rx="10" fill="#D9A441" opacity="0.2"/>
+  <text x="672" y="430" text-anchor="middle" class="badgetext" style="fill:#8A6722">REMOTE</text>
+
+  <!-- Sources -->
+  <rect x="822" y="120" width="256" height="172" rx="11" class="server" filter="url(#shadow)"/>
+  <text x="842" y="147" class="sourcetitle">Your systems</text>
+  <text x="842" y="174" class="sourcebody">Files in a scoped folder</text>
+  <text x="842" y="198" class="sourcebody">Internal notes and indexes</text>
+  <text x="842" y="222" class="sourcebody">Databases and APIs</text>
+  <text x="842" y="246" class="sourcebody">Ticketing, docs, calendars</text>
+  <text x="842" y="275" class="note">The server holds the real access.</text>
+
+  <rect x="822" y="410" width="256" height="112" rx="11" class="remote" filter="url(#shadow)"/>
+  <text x="842" y="436" class="sourcetitle">Hosted service</text>
+  <text x="842" y="459" class="sourcebody">Operated by a third party</text>
+  <text x="842" y="480" class="sourcebody">Scopes, retention, and support</text>
+  <text x="842" y="501" class="sourcebody">matter as much as the protocol.</text>
+
+  <!-- Arrows host to servers -->
+  <path class="line" d="M 354 228 C 400 228 410 172 454 172" marker-end="url(#arrow)"/>
+  <text x="377" y="188" class="label">stdio</text>
+  <path class="line" d="M 354 324 H 454" marker-end="url(#arrow)"/>
+  <text x="383" y="314" class="label">stdio</text>
+  <path class="tealline" d="M 354 420 C 400 420 410 466 454 466" marker-end="url(#arrowTeal)"/>
+  <text x="360" y="453" class="label" style="fill:#1E6B62">HTTP + OAuth</text>
+
+  <!-- Arrows servers to systems -->
+  <path class="line" d="M 726 172 C 770 172 780 206 814 206" marker-end="url(#arrow)"/>
+  <path class="line" d="M 726 317 C 770 317 780 317 814 317" marker-end="url(#arrow)"/>
+  <path class="tealline" d="M 726 466 H 814" marker-end="url(#arrowTeal)"/>
+
+  <text x="40" y="570" class="note">MCP standardizes the connection. It does not standardize trust, permissions, data retention, or good judgment.</text>
+</svg>

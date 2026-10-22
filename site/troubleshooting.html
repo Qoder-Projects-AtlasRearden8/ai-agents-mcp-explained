@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>When agents go wrong — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="A field guide to missing tools, expired tokens, stale data, loops, duplicate actions, and answers that sound right but are not." />
+  <meta property="og:title" content="When agents go wrong — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="A field guide to missing tools, expired tokens, stale data, loops, duplicate actions, and answers that sound right but are not." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="troubleshooting">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link is-active" href="troubleshooting.html" aria-current="page"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-practice">Putting it to work safely</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 11</p>
+          <h1>When agents go wrong</h1>
+          <p class="chapter-dek">A field guide to missing tools, expired tokens, stale data, loops, duplicate actions, and answers that sound right but are not.</p>
+          <div class="chapter-meta"><span>3,326 words</span><span aria-hidden="true">·</span><span>15 min read</span><span aria-hidden="true">·</span><span>Part III</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>The agent answered a question about your calendar, but the event is not there. The tool worked during setup and now it is missing. A draft went to the wrong client. The same task succeeds on Monday and fails on Wednesday. The chat transcript says &quot;done,&quot; and the spreadsheet says otherwise.</p>
+<p>Debugging an agent can feel strange because the usual software instinct, &quot;find the line of code that is wrong,&quot; does not map neatly onto a system that makes probabilistic choices. But most failures are still ordinary: a missing permission, an expired token, a path that does not exist, a tool description that invites the wrong choice, a context that grew until the important detail fell out.</p>
+<p>The trick is to stop treating the agent as one mysterious thing and debug it as a stack of layers.</p>
+<h2 id="the-stack-from-top-to-bottom">The stack, from top to bottom<a class="heading-anchor" href="#the-stack-from-top-to-bottom" aria-label="Link to section: The stack, from top to bottom">#</a></h2>
+<ol>
+<li><strong>Goal and conversation.</strong> What did the user actually ask? What constraints were in the current context?</li>
+<li><strong>Model.</strong> Did it choose a reasonable next step? Does it have enough information? Is it hallucinating?</li>
+<li><strong>Host policy.</strong> Is the tool enabled? Is approval required? Is the action being blocked or rewritten?</li>
+<li><strong>MCP client and transport.</strong> Is the connection alive? Is the protocol version compatible? Are messages reaching the server?</li>
+<li><strong>MCP server.</strong> Is the tool registered, the schema correct, the code handling the request?</li>
+<li><strong>Credentials and scopes.</strong> Is the token valid? Does it authorize this resource?</li>
+<li><strong>Upstream service.</strong> Is the calendar, database, API, or file system returning current data?</li>
+<li><strong>Reality.</strong> Did the side effect actually happen? Did the record change? Did the message send?</li>
+</ol>
+<p>A failure at any layer can look like &quot;the agent is dumb.&quot; For example: the agent says it cannot find the file, the model appears unable to use the filesystem tool, and the actual cause is that the server is scoped to a folder whose name changed after a project was renamed. Fixing the prompt would have made the explanation more eloquent, not the file more findable.</p>
+<h2 id="start-with-the-symptom">Start with the symptom<a class="heading-anchor" href="#start-with-the-symptom" aria-label="Link to section: Start with the symptom">#</a></h2>
+<p>Use this map to decide where to look first.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely layers</th>
+<th>First check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Server will not start or connect</td>
+<td>Config, command, transport, server</td>
+<td>Run the server directly and read stderr</td>
+</tr>
+<tr>
+<td>Connected but no tools appear</td>
+<td>Server capabilities, host enablement, compatibility</td>
+<td>Check the tool list in the host and the server logs</td>
+</tr>
+<tr>
+<td>Tool is visible but never called</td>
+<td>Model choice, description, host policy</td>
+<td>Inspect the trace; ask the model to use it explicitly</td>
+</tr>
+<tr>
+<td>Wrong tool is called</td>
+<td>Tool naming, descriptions, overlapping capabilities</td>
+<td>Reduce and rename tools</td>
+</tr>
+<tr>
+<td>Tool call fails</td>
+<td>Schema, arguments, server code, upstream API</td>
+<td>Read the exact error and the arguments</td>
+</tr>
+<tr>
+<td>Authentication or permission error</td>
+<td>Token, scope, account, admin consent, audience</td>
+<td>Reauthorize and review scopes</td>
+</tr>
+<tr>
+<td>Result is empty or incomplete</td>
+<td>Query, pagination, permissions, cache, truncation</td>
+<td>Run the same request in the source system</td>
+</tr>
+<tr>
+<td>Answer is fluent but false</td>
+<td>Sources, grounding, context, injection</td>
+<td>Verify every factual claim against a source</td>
+</tr>
+<tr>
+<td>Action happened twice</td>
+<td>Retry, timeout, idempotency</td>
+<td>Check the side effect and the call log</td>
+</tr>
+<tr>
+<td>Action happened with wrong parameters</td>
+<td>Argument construction, ambiguity, injection</td>
+<td>Review the exact tool call and approval screen</td>
+</tr>
+<tr>
+<td>Slow, looping, or expensive</td>
+<td>Step limits, context size, tool latency, retries</td>
+<td>Check the trace and set a budget</td>
+</tr>
+<tr>
+<td>Inconsistent across runs</td>
+<td>Non-determinism, changing data, versions, context</td>
+<td>Pin versions and test with a fixed dataset</td>
+</tr>
+</tbody></table></div>
+<h2 id="server-and-connection-problems">Server and connection problems<a class="heading-anchor" href="#server-and-connection-problems" aria-label="Link to section: Server and connection problems">#</a></h2>
+<h3 id="the-server-does-not-start">The server does not start<a class="heading-anchor" href="#the-server-does-not-start" aria-label="Link to section: The server does not start">#</a></h3>
+<p>Check, in order:</p>
+<ol>
+<li><strong>The command exists.</strong> Is <code>node</code> on the host&#39;s <code>PATH</code>? Is the path to the script absolute and correct? A host often launches with a different working directory than your terminal.</li>
+<li><strong>The version is compatible.</strong> Does the host need a particular MCP SDK or protocol version? Does the server require a newer Node.js?</li>
+<li><strong>Dependencies are installed.</strong> Run the documented install command in the server directory. A server that worked in the terminal may be using a global package the host cannot see.</li>
+<li><strong>The config is valid JSON.</strong> A trailing comma or an unsupported field can prevent the host from parsing the entry. Some hosts silently ignore malformed servers; others show an error.</li>
+<li><strong>The transport matches.</strong> A stdio server cannot be reached by a URL, and a remote HTTP server cannot be launched with a command. Use the configuration style the server provides.</li>
+<li><strong>Permissions and paths work for the host&#39;s user.</strong> The host may run outside your shell environment with a different home directory or sandbox.</li>
+<li><strong>The server is not writing logs to stdout.</strong> On stdio, stdout is the protocol channel. A stray log line can corrupt initialization. Use stderr for diagnostics.</li>
+</ol>
+<p>Run the server directly and observe stderr. For the word-counter example, <code>node server.mjs</code> will wait silently because it expects JSON-RPC input; use the provided test client instead. For most servers, the official test client or an MCP inspector is a better isolated test than the full host.</p>
+<h3 id="it-connects-but-the-tool-list-is-empty">It connects but the tool list is empty<a class="heading-anchor" href="#it-connects-but-the-tool-list-is-empty" aria-label="Link to section: It connects but the tool list is empty">#</a></h3>
+<p>A successful process launch does not guarantee a successful capability exchange.</p>
+<ul>
+<li>Did initialization complete, or did the server fail immediately after connecting?</li>
+<li>Does the server advertise the <code>tools</code> capability? A resources-only server will not have tools.</li>
+<li>Is the tool enabled for the current conversation, workspace, or user? Many hosts disable new tools by default.</li>
+<li>Did the host filter tools by policy, allowlist, or plan?</li>
+<li>Is there a protocol version mismatch that causes the host to show a partial catalog?</li>
+<li>Did a tool with an invalid schema cause the host to drop the whole list? Check the host logs.</li>
+</ul>
+<p>Try the server with a minimal official test client. If the tool appears there but not in the host, the problem is likely host configuration or compatibility, not the server.</p>
+<h3 id="it-worked-yesterday">It worked yesterday<a class="heading-anchor" href="#it-worked-yesterday" aria-label="Link to section: It worked yesterday">#</a></h3>
+<p>A surprising number of agent failures are normal operations: an expired OAuth token, a revoked app, a service outage, a renamed folder, an updated API, a new model version, a changed tool description, or a depleted credit balance. Check whether anything changed before assuming the model became less capable.</p>
+<p>Look at version pins and update history. If the host automatically adopted a new model or connector release, a behavior change may be expected. Re-run a known test case to distinguish a regression from a one-off.</p>
+<h2 id="the-model-does-not-use-the-tool">The model does not use the tool<a class="heading-anchor" href="#the-model-does-not-use-the-tool" aria-label="Link to section: The model does not use the tool">#</a></h2>
+<p>The tool is visible and healthy, but the model answers from memory or asks for information it could retrieve. Possible causes:</p>
+<ul>
+<li><strong>The description is vague or does not mention the use case.</strong> Improve it with concrete examples and constraints.</li>
+<li><strong>Too many similar tools.</strong> The model chooses a general or similarly named tool. Remove redundancy and give tools distinct names.</li>
+<li><strong>The user did not ask for it.</strong> Models often answer directly when a question seems answerable. Make the instruction explicit: &quot;Use the order lookup tool; do not rely on memory.&quot;</li>
+<li><strong>The host policy suppresses the tool.</strong> Some hosts require a tool to be enabled per message, or hide tools that need approval.</li>
+<li><strong>The tool is expensive or marked dangerous, and the host is steering away.</strong> Check settings and annotations.</li>
+<li><strong>The required data is missing.</strong> The model may ignore a tool that cannot accept the parameter it needs.</li>
+<li><strong>The context has grown noisy.</strong> Long conversations can bury the tool instructions. Start a fresh thread with a focused task.</li>
+</ul>
+<p>Inspect the actual trace. &quot;It did not use the tool&quot; and &quot;it tried but the host blocked the call&quot; look similar in a chat transcript, but they have different fixes.</p>
+<h2 id="the-wrong-tool-or-the-wrong-arguments">The wrong tool or the wrong arguments<a class="heading-anchor" href="#the-wrong-tool-or-the-wrong-arguments" aria-label="Link to section: The wrong tool or the wrong arguments">#</a></h2>
+<p>This is usually a design problem, not a model defect.</p>
+<ul>
+<li><strong>Overlapping names.</strong> <code>search_files</code>, <code>find_files</code>, and <code>get_file</code> sound identical. Rename by intent and scope.</li>
+<li><strong>Missing constraints in the schema.</strong> Use enums, formats, date ranges, and required fields. Validate on the server.</li>
+<li><strong>Ambiguous natural language.</strong> &quot;Next Tuesday&quot; depends on a reference date and timezone. Provide the date explicitly or have the tool require an ISO date.</li>
+<li><strong>Context confusion.</strong> The model may use an old value from a previous message. Start fresh, restate the important facts, or pass identifiers from a trusted system.</li>
+<li><strong>Example drift.</strong> Few-shot examples or a prompt may bias the model toward a particular tool. Update the instructions and test again.</li>
+<li><strong>Prompt injection.</strong> An untrusted document may be steering the choice. Review the content that entered the context and the tool arguments it influenced.</li>
+</ul>
+<p>The fix is often to make the wrong action impossible or obviously invalid, rather than to write a longer warning. If a refund tool only accepts amounts up to a fixed cap and only known order IDs, the model cannot invent an unlimited refund at an unknown store, regardless of what a malicious ticket says.</p>
+<h2 id="authentication-and-permission-failures">Authentication and permission failures<a class="heading-anchor" href="#authentication-and-permission-failures" aria-label="Link to section: Authentication and permission failures">#</a></h2>
+<p>Auth errors are common and should never be solved by pasting a password or token into the chat.</p>
+<p>Typical causes:</p>
+<ul>
+<li>the access token expired;</li>
+<li>the user revoked the connection;</li>
+<li>the token is for the wrong account;</li>
+<li>a required scope was not granted;</li>
+<li>an admin must approve the app for the organization;</li>
+<li>the server expects a different audience or resource identifier;</li>
+<li>the app is configured for a test environment but the server uses production;</li>
+<li>a local server is using an old key from an environment file;</li>
+<li>the system clock is wrong, invalidating time-based assertions;</li>
+<li>the provider changed its authorization requirements.</li>
+</ul>
+<p>Steps:</p>
+<ol>
+<li>Read the exact error and identify which service rejected it.</li>
+<li>Check the account shown by the host, not the account you assume.</li>
+<li>Re-run the OAuth flow or reconnect. Use the provider&#39;s connected-apps page to inspect scopes.</li>
+<li>Ask an administrator if organizational consent is required.</li>
+<li>Confirm the environment: sandbox, staging, or production.</li>
+<li>Update the server&#39;s configuration from a secret manager or environment variable, not a hard-coded value.</li>
+<li>If a key may have been exposed, rotate it. Reconnecting is not the same as revoking an old token.</li>
+</ol>
+<h2 id="empty-stale-or-incomplete-results">Empty, stale, or incomplete results<a class="heading-anchor" href="#empty-stale-or-incomplete-results" aria-label="Link to section: Empty, stale, or incomplete results">#</a></h2>
+<p>The model returned an answer, but the facts are from the wrong time or the wrong slice of data.</p>
+<p>Check the source directly. Then inspect:</p>
+<ul>
+<li><strong>Query semantics.</strong> Was &quot;last month&quot; the calendar month or the last 30 days? Which timezone?</li>
+<li><strong>Pagination.</strong> Did the tool return the first 20 results and stop? Did the agent ask for more?</li>
+<li><strong>Truncation.</strong> Was a large document cut off? Does the tool report truncation, or silently omit content?</li>
+<li><strong>Permissions.</strong> Is some of the data hidden from the agent&#39;s account? A search result may be empty because of access, not absence.</li>
+<li><strong>Index freshness.</strong> A search index may lag behind the source. A support knowledge base may not include the newest policy.</li>
+<li><strong>Caching.</strong> Is the server or client serving an old result? Is there a cache-busting refresh path?</li>
+<li><strong>Data quality.</strong> Are there duplicates, missing fields, or inconsistent identifiers upstream?</li>
+<li><strong>Context loss.</strong> Did the agent forget a constraint after a long loop? Did compaction remove a critical message?</li>
+<li><strong>Tool limits.</strong> Does the tool cap results at 50 while the task requires all 400? Is there a documented way to page through them?</li>
+</ul>
+<p>An agent that honestly says &quot;the data returned was incomplete&quot; is more useful than one that fills gaps with plausible detail. Reward that behavior in your prompts and evaluation.</p>
+<h2 id="the-confidently-wrong-answer">The confidently wrong answer<a class="heading-anchor" href="#the-confidently-wrong-answer" aria-label="Link to section: The confidently wrong answer">#</a></h2>
+<p>Now the hard part. The agent is fluent, specific, and wrong. Common reasons:</p>
+<ul>
+<li>The model answered from prior knowledge instead of using a tool.</li>
+<li>The available source was outdated or incomplete.</li>
+<li>The agent misinterpreted a document or conflated two entities.</li>
+<li>The tool returned a bug or a partial page, and the model treated it as complete.</li>
+<li>The model made a calculation error or invented a summary.</li>
+<li>Untrusted content instructed it to give a particular answer.</li>
+<li>The question was ambiguous, and the agent silently picked one interpretation.</li>
+</ul>
+<p>Practical responses:</p>
+<ol>
+<li><strong>Ask for evidence.</strong> Require source links, quotes, IDs, or tool results for factual claims.</li>
+<li><strong>Verify outside the chat.</strong> Open the source. Query the database. Check the actual calendar or order. The agent&#39;s output is a draft until reality agrees.</li>
+<li><strong>Separate calculation from narration.</strong> Compute numbers deterministically and give the model the results. Do not ask it to do arithmetic in prose if exactness matters.</li>
+<li><strong>Reduce the task.</strong> A narrower question with a smaller source set is easier to ground and review.</li>
+<li><strong>Make uncertainty acceptable.</strong> Explicitly allow &quot;not found&quot; and &quot;I cannot determine this from the available sources.&quot; If every answer must be confident, the model will invent.</li>
+<li><strong>Test for injection.</strong> Reproduce with a benign adversarial document in a controlled environment. If content can change behavior, examine the permissions and the approval design.</li>
+<li><strong>Retire or reduce autonomy.</strong> If reviewers cannot reliably catch the errors, the workflow is not ready for that level of trust.</li>
+</ol>
+<p>More prompt instructions may help at the margin. They are not a substitute for source verification when the outcome matters.</p>
+<h2 id="duplicate-actions-and-unknown-outcomes">Duplicate actions and &quot;unknown&quot; outcomes<a class="heading-anchor" href="#duplicate-actions-and-unknown-outcomes" aria-label="Link to section: Duplicate actions and &quot;unknown&quot; outcomes">#</a></h2>
+<p>A timeout does not always mean failure. The request may have succeeded, and the response was lost. If the agent retries, you get two calendar events, two invoices, or two messages.</p>
+<p>Look for:</p>
+<ul>
+<li>whether the tool is idempotent;</li>
+<li>whether the server uses an idempotency key;</li>
+<li>whether the harness retries automatically;</li>
+<li>whether the agent manually retries after an ambiguous error;</li>
+<li>whether the operation succeeded despite the displayed error.</li>
+</ul>
+<p>For consequential actions, the correct response to &quot;unknown&quot; is to <strong>check the actual state before retrying</strong>, or escalate to a human. Design tools to return a stable operation ID and a definite state. Use a recovery path: list recent operations for this task, compare them with the intended action, and cancel duplicates if possible.</p>
+<p>This is also a UX problem. A host that shows a spinning indicator and then silently retries trains users to expect a simple outcome. A good system says: &quot;The request timed out. We found one matching invoice created at 10:42. Do you want to proceed?&quot; That is much better than a blind second invoice.</p>
+<h2 id="slow-expensive-or-looping-agents">Slow, expensive, or looping agents<a class="heading-anchor" href="#slow-expensive-or-looping-agents" aria-label="Link to section: Slow, expensive, or looping agents">#</a></h2>
+<p>Check the trace before changing the model. Common causes:</p>
+<ul>
+<li><strong>Too many tools</strong> consume context and increase deliberation.</li>
+<li><strong>Huge tool results</strong> fill the context and make each turn expensive.</li>
+<li><strong>Pagination loops</strong> keep fetching the same page.</li>
+<li><strong>Repeated retries</strong> hammer a failing service.</li>
+<li><strong>Broad goals</strong> invite exploration that never converges.</li>
+<li><strong>Long approval waits</strong> are counted in wall-clock time but are not necessarily a model problem.</li>
+<li><strong>Rate limits</strong> cause backoff and retry delays.</li>
+<li><strong>Model or network latency</strong> dominates and may be outside your control.</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>reduce the tool catalog to what the task needs;</li>
+<li>ask for a bounded result and report truncation;</li>
+<li>set step, time, and spending limits;</li>
+<li>add loop detection and repeated-call warnings;</li>
+<li>cache stable, non-sensitive data when appropriate;</li>
+<li>split a broad task into a short plan with checkpoints;</li>
+<li>use a smaller model for simple classification, if the host supports it, and reserve a stronger model for harder reasoning;</li>
+<li>establish whether the delay is model, tool, or human.</li>
+</ul>
+<p>Cost should be observed per task, not just per month. An average that looks acceptable can hide a handful of runaway runs.</p>
+<h2 id="inconsistent-behavior">Inconsistent behavior<a class="heading-anchor" href="#inconsistent-behavior" aria-label="Link to section: Inconsistent behavior">#</a></h2>
+<p>Agents are probabilistic. The same request can produce different plans, wording, and tool choices. Other sources of variation include:</p>
+<ul>
+<li>a new model version or provider update;</li>
+<li>changing data in the source system;</li>
+<li>different time of day or timezone;</li>
+<li>expired caches;</li>
+<li>a different context history;</li>
+<li>concurrency and race conditions;</li>
+<li>tool timeouts;</li>
+<li>a different user identity or permission set.</li>
+</ul>
+<p>For workflows that need consistency, reduce the degrees of freedom:</p>
+<ul>
+<li>fix parameters and reference dates;</li>
+<li>use schemas and enums;</li>
+<li>pin model and server versions where supported;</li>
+<li>start with a clean context;</li>
+<li>use deterministic calculations;</li>
+<li>keep a small evaluation set of representative inputs and run it after changes;</li>
+<li>separate creative drafting from factual lookup.</li>
+</ul>
+<p>Do not promise perfectly identical output for a generative task. Promise a reliable process, an acceptable range of outputs, and a review step.</p>
+<h2 id="version-and-compatibility-issues">Version and compatibility issues<a class="heading-anchor" href="#version-and-compatibility-issues" aria-label="Link to section: Version and compatibility issues">#</a></h2>
+<p>MCP and its clients are evolving. A server may support a newer feature than the host, or use a transport the host does not implement. The result can be a missing tool, an initialization failure, or a feature that silently does nothing.</p>
+<p>What to capture in a bug report:</p>
+<ul>
+<li>host name and version;</li>
+<li>server name, version, and source;</li>
+<li>MCP SDK version;</li>
+<li>protocol version;</li>
+<li>transport (stdio or HTTP);</li>
+<li>operating system and Node or runtime version;</li>
+<li>exact configuration with secrets redacted;</li>
+<li>the smallest prompt that reproduces the problem;</li>
+<li>relevant logs and tool trace.</li>
+</ul>
+<p>Test with the smallest possible server and a direct client. If the issue reproduces without the host, it is likely in the server or the protocol. If it only happens in the host, test another server and compare.</p>
+<h2 id="a-minimal-reproduction-recipe">A minimal reproduction recipe<a class="heading-anchor" href="#a-minimal-reproduction-recipe" aria-label="Link to section: A minimal reproduction recipe">#</a></h2>
+<p>When an interaction fails, reduce it:</p>
+<ol>
+<li><strong>Remove other connectors.</strong> A conflict may be coming from another tool with a similar name.</li>
+<li><strong>Start a new conversation.</strong> Old context can contaminate the test.</li>
+<li><strong>Use a short, explicit goal.</strong> &quot;Call <code>count_words</code> with the text &#39;one two three&#39;.&quot;</li>
+<li><strong>Use test data.</strong> Never reproduce with a real customer record if a fake one will do.</li>
+<li><strong>Inspect the raw tool call and result</strong>, not just the assistant&#39;s summary.</li>
+<li><strong>Run the server with its own test client.</strong> Separate server behavior from host behavior.</li>
+<li><strong>Change one variable at a time.</strong> A new token, a renamed tool, a narrower path.</li>
+<li><strong>Record versions and times.</strong> &quot;It worked before&quot; is not reproducible without a baseline.</li>
+</ol>
+<p>If the failure disappears when you remove complexity, add the complexity back piece by piece. This is ordinary debugging, applied to an extraordinary amount of prose.</p>
+<h2 id="debugging-without-leaking-data">Debugging without leaking data<a class="heading-anchor" href="#debugging-without-leaking-data" aria-label="Link to section: Debugging without leaking data">#</a></h2>
+<p>Traces and logs are essential and can be hazardous. A tool trace may contain email addresses, documents, database rows, authorization headers, or the text of a prompt injection. Before sharing a trace:</p>
+<ul>
+<li>redact tokens, cookies, passwords, and connection strings;</li>
+<li>mask personal data where possible;</li>
+<li>remove customer content that is not necessary to reproduce the issue;</li>
+<li>check whether the host or server uploads logs automatically;</li>
+<li>prefer a synthetic reproduction;</li>
+<li>use a private channel for the remaining sensitive details.</li>
+</ul>
+<p>Do not paste a whole production trace into a public forum to ask why a tool failed. A redacted, minimal reproduction is faster to answer and less dangerous.</p>
+<h2 id="when-to-fix-escalate-or-stop">When to fix, escalate, or stop<a class="heading-anchor" href="#when-to-fix-escalate-or-stop" aria-label="Link to section: When to fix, escalate, or stop">#</a></h2>
+<p><strong>Fix locally</strong> when the issue is configuration, a clear bug, a stale token, or a misunderstanding in one conversation.</p>
+<p><strong>Escalate</strong> when the issue involves a security boundary, an unauthorized action, a data leak, repeated failures in production, a vendor outage, or an error you cannot reproduce safely. Go to the incident process in <a href="safety.html">Chapter 7</a>: stop, contain, preserve evidence, assess, recover, notify.</p>
+<p><strong>Stop or reduce autonomy</strong> when reviewers cannot detect errors reliably, the workflow&#39;s value does not cover its review cost, or the system depends on an unmaintained component. A graceful retirement is better than a permanent exception.</p>
+<h2 id="a-short-post-incident-template">A short post-incident template<a class="heading-anchor" href="#a-short-post-incident-template" aria-label="Link to section: A short post-incident template">#</a></h2>
+<pre><code class="language-text">What happened (one paragraph):
+When and for how long:
+Affected people, data, or systems:
+What the agent actually did (tool calls, outputs, side effects):
+What we expected instead:
+How we detected it:
+Immediate containment:
+Recovery and remaining uncertainty:
+Root cause(s), including system design:
+What would have prevented or detected it:
+Owner and due date for each prevention:
+Decision: resume / reduce autonomy / stop
+</code></pre>
+<p>The most useful line is often &quot;cause(s), including system design.&quot; &quot;The model hallucinated&quot; is a description of a symptom. &quot;The workflow let a read-only email trigger a send tool without approval&quot; is a design defect you can fix.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>Debug the stack: goal, model, host, client, transport, server, credentials, upstream service, and actual reality.</li>
+<li>Start with the symptom and the trace, not with a longer prompt.</li>
+<li>Most &quot;model&quot; failures are configuration, permissions, source data, or tool design.</li>
+<li>Verify side effects in the actual system, not only in the chat.</li>
+<li>Treat &quot;unknown&quot; outcomes as unknown; check before retrying.</li>
+<li>Reduce the failing case to a minimal reproduction and test the server separately.</li>
+<li>Protect sensitive data when sharing logs.</li>
+<li>Escalate security incidents through the proper process; reduce autonomy when reliability cannot be established.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Take a recent failure and write which layer was actually at fault. What clue would have pointed there sooner?</li>
+<li>Design an error message for a tool that rejects an out-of-scope path. Include what to do differently.</li>
+<li>Run a minimal reproduction of a tool call using the test client, then through the host. Where do the results diverge?</li>
+<li>Pick one workflow and write its stop/escalate criteria. Who decides?</li>
+</ol>
+<p>The last chapters are reference material: a glossary you can actually use, and checklists to keep nearby when you set up a new agent.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="choosing-work.html"><span class="pager-kicker">Previous</span><span class="pager-title">Choosing what to automate (and what not to)</span></a><a class="pager-card pager-next" href="glossary.html"><span class="pager-kicker">Next</span><span class="pager-title">Glossary</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#the-stack-from-top-to-bottom">The stack, from top to bottom</a></li><li class="toc-item toc-level-2"><a href="#start-with-the-symptom">Start with the symptom</a></li><li class="toc-item toc-level-2"><a href="#server-and-connection-problems">Server and connection problems</a></li><li class="toc-item toc-level-3"><a href="#the-server-does-not-start">The server does not start</a></li><li class="toc-item toc-level-3"><a href="#it-connects-but-the-tool-list-is-empty">It connects but the tool list is empty</a></li><li class="toc-item toc-level-3"><a href="#it-worked-yesterday">It worked yesterday</a></li><li class="toc-item toc-level-2"><a href="#the-model-does-not-use-the-tool">The model does not use the tool</a></li><li class="toc-item toc-level-2"><a href="#the-wrong-tool-or-the-wrong-arguments">The wrong tool or the wrong arguments</a></li><li class="toc-item toc-level-2"><a href="#authentication-and-permission-failures">Authentication and permission failures</a></li><li class="toc-item toc-level-2"><a href="#empty-stale-or-incomplete-results">Empty, stale, or incomplete results</a></li><li class="toc-item toc-level-2"><a href="#the-confidently-wrong-answer">The confidently wrong answer</a></li><li class="toc-item toc-level-2"><a href="#duplicate-actions-and-unknown-outcomes">Duplicate actions and &quot;unknown&quot; outcomes</a></li><li class="toc-item toc-level-2"><a href="#slow-expensive-or-looping-agents">Slow, expensive, or looping agents</a></li><li class="toc-item toc-level-2"><a href="#inconsistent-behavior">Inconsistent behavior</a></li><li class="toc-item toc-level-2"><a href="#version-and-compatibility-issues">Version and compatibility issues</a></li><li class="toc-item toc-level-2"><a href="#a-minimal-reproduction-recipe">A minimal reproduction recipe</a></li><li class="toc-item toc-level-2"><a href="#debugging-without-leaking-data">Debugging without leaking data</a></li><li class="toc-item toc-level-2"><a href="#when-to-fix-escalate-or-stop">When to fix, escalate, or stop</a></li><li class="toc-item toc-level-2"><a href="#a-short-post-incident-template">A short post-incident template</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

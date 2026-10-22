@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>Connectors: MCP for the rest of us — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="What the Connect button hides, how OAuth scopes work in plain English, and how to choose, govern, and revoke connectors." />
+  <meta property="og:title" content="Connectors: MCP for the rest of us — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="What the Connect button hides, how OAuth scopes work in plain English, and how to choose, govern, and revoke connectors." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="connectors">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link is-active" href="connectors.html" aria-current="page"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-plumbing">The plumbing</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 6</p>
+          <h1>Connectors: MCP for the rest of us</h1>
+          <p class="chapter-dek">What the Connect button hides, how OAuth scopes work in plain English, and how to choose, govern, and revoke connectors.</p>
+          <div class="chapter-meta"><span>2,398 words</span><span aria-hidden="true">·</span><span>11 min read</span><span aria-hidden="true">·</span><span>Part II</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>For a protocol to change how normal people work, it cannot require them to edit JSON in a terminal. It needs a button. That button is usually called a connector.</p>
+<p>You click &quot;Connect Google Drive&quot; in your AI assistant. A browser window opens, you sign in, you see a list of permissions, you approve, and you return to the chat. A few seconds later, the assistant can find documents. Behind the button, there may be an MCP server, an OAuth flow, a permissions screen, and a product team deciding what to expose. You did not have to know about JSON-RPC. That is the point of packaging.</p>
+<p>But packaging also hides complexity. The button says &quot;Connect your workspace.&quot; It does not tell you whether the connector can read every file, whether it retains copies, whether it can send messages as you, or who operates the server. A connector is convenient, not automatically safe.</p>
+<h2 id="what-a-connector-actually-is">What a connector actually is<a class="heading-anchor" href="#what-a-connector-actually-is" aria-label="Link to section: What a connector actually is">#</a></h2>
+<p>A connector is a product-level integration presented in an AI application&#39;s gallery, settings, or store. It typically bundles:</p>
+<ul>
+<li>an <strong>identity and authorization flow</strong>, such as OAuth;</li>
+<li>one or more <strong>MCP servers</strong> or equivalent tool endpoints;</li>
+<li>a <strong>curated set of tools and resources</strong>;</li>
+<li>user-interface copy and permission prompts;</li>
+<li>configuration, updates, and support.</li>
+</ul>
+<p>Sometimes the connector is built by the AI app vendor. Sometimes by the service being connected. Sometimes by an independent developer. The label &quot;connector&quot; does not tell you who is accountable for all those pieces.</p>
+<figure><img src="assets/images/connector-layers.svg" alt="Connector layers: the user sees a connector in an AI host; the host uses an MCP client; the client connects to an MCP server; the server calls the underlying service"><figcaption>Connector layers: the user sees a connector in an AI host; the host uses an MCP client; the client connects to an MCP server; the server calls the underlying service</figcaption></figure>
+<p>If MCP is a common port, a connector is the packaged cable, power adapter, and instruction card. The packaging can be excellent or terrible. It can be certified by a responsible company or hastily shrink-wrapped by an unknown one. The standard tells you the shape of the plug, not the quality of the current.</p>
+<h3 id="connectors-are-not-always-mcp">Connectors are not always MCP<a class="heading-anchor" href="#connectors-are-not-always-mcp" aria-label="Link to section: Connectors are not always MCP">#</a></h3>
+<p>Many products use &quot;connector&quot; to mean any integration, regardless of the underlying protocol. It might use an internal plugin API, a webhook, a proprietary action system, or plain REST calls. MCP is increasingly common, but the menu label is marketing, not a protocol declaration.</p>
+<p>If interoperability matters to you, ask: <strong>Which MCP server, if any, is behind this connector? Can I connect to that server from another compatible app?</strong> If the answer is no or nobody knows, treat it as a product-specific integration and evaluate it on its own terms.</p>
+<h2 id="local-versus-hosted-connectors">Local versus hosted connectors<a class="heading-anchor" href="#local-versus-hosted-connectors" aria-label="Link to section: Local versus hosted connectors">#</a></h2>
+<p>There are two broad deployment patterns.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What happens</th>
+<th>Advantages</th>
+<th>Questions to ask</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Local</td>
+<td>The AI app starts a server program on your machine</td>
+<td>Access to local files; you control installation; no third party needed for routing</td>
+<td>What code am I running? Which folders and credentials can it reach? How is it updated?</td>
+</tr>
+<tr>
+<td>Hosted or remote</td>
+<td>You connect to a server operated by a company or team</td>
+<td>Easy setup, OAuth, updates, works across devices</td>
+<td>Who operates it? Where is data processed? What is retained? What scopes are requested?</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>A local client talks to an authenticated remote API, or a local helper bridges to a hosted index</td>
+<td>Flexibility</td>
+<td>More moving parts; unclear boundaries; more places to log data</td>
+</tr>
+</tbody></table></div>
+<p>A hosted connector is often the easier choice for a nontechnical user. It is also a third-party data relationship. A local connector avoids sending raw files to the connector vendor, but the AI model still receives whatever context the host includes. And the local server itself is code running with your privileges.</p>
+<p>Neither pattern is universally safer. The right question is: <strong>which trust boundary does this connector move, and do I accept the new party on the other side?</strong></p>
+<h2 id="what-happens-when-you-click-connect">What happens when you click Connect<a class="heading-anchor" href="#what-happens-when-you-click-connect" aria-label="Link to section: What happens when you click Connect">#</a></h2>
+<p>A typical OAuth-based connector flow looks like this:</p>
+<ol>
+<li>The AI app shows a connector listing and its requested permissions.</li>
+<li>You choose an account, ideally a work account dedicated to this purpose.</li>
+<li>The browser opens the service&#39;s authorization page.</li>
+<li>You authenticate directly with the service, not the AI app.</li>
+<li>You review the scopes and approve.</li>
+<li>The service redirects back with an authorization code.</li>
+<li>The app exchanges the code for tokens and connects to the server.</li>
+<li>The assistant can now call allowed tools.</li>
+</ol>
+<p>The copy on that consent screen matters more than the marketing page. Look for phrases like:</p>
+<ul>
+<li>&quot;Read your email&quot; versus &quot;Send email on your behalf.&quot;</li>
+<li>&quot;View files&quot; versus &quot;Edit, delete, and share files.&quot;</li>
+<li>&quot;Access your calendar&quot; versus &quot;Manage calendars and settings.&quot;</li>
+<li>&quot;Full control of your repository&quot; versus &quot;Read repository contents.&quot;</li>
+<li>&quot;Access your organization&#39;s data&quot; versus &quot;Access data you can see.&quot;</li>
+</ul>
+<p>Scopes are not perfectly fine-grained in every service. Sometimes a connector needs a broad scope because the provider only offers broad scopes, and then narrows its actual behavior internally. That can be acceptable, but it should be explained. A connector that asks for administrative access when it only needs to read a folder is overprivileged, whether through laziness or malice.</p>
+<h2 id="least-privilege-in-practice">Least privilege in practice<a class="heading-anchor" href="#least-privilege-in-practice" aria-label="Link to section: Least privilege in practice">#</a></h2>
+<p>The principle is simple: give the connector the smallest set of permissions, on the smallest set of data, for the shortest useful time.</p>
+<p>That translates into practical choices:</p>
+<ul>
+<li><strong>Read before write.</strong> Start with read-only scopes if the workflow only needs drafts or summaries.</li>
+<li><strong>Choose the narrowest container.</strong> A specific shared drive or project folder is better than the entire account.</li>
+<li><strong>Use a dedicated account.</strong> A service account or a separate work identity limits what a mistake can reach, though it also requires careful ownership and removal.</li>
+<li><strong>Limit time.</strong> Prefer tokens with expiration and no unnecessary offline access. Revoke when the project ends.</li>
+<li><strong>Limit tools in the AI app.</strong> If the app lets you enable specific tools, disable ones you do not use.</li>
+<li><strong>Approve expensive actions.</strong> Turn on confirmation for sending, deleting, publishing, and financial actions.</li>
+<li><strong>Separate work and personal.</strong> Do not connect a personal account to an agent that reads from a business workspace unless that is explicitly allowed.</li>
+</ul>
+<p>&quot;Read-only&quot; is not risk-free. Reading can leak confidential data into a summary, a log, or a message. But it prevents a large class of destructive outcomes. It is often the right first step while you learn how the agent behaves.</p>
+<h2 id="connector-permissions-inside-the-ai-app">Connector permissions inside the AI app<a class="heading-anchor" href="#connector-permissions-inside-the-ai-app" aria-label="Link to section: Connector permissions inside the AI app">#</a></h2>
+<p>A connection has two permission layers:</p>
+<ol>
+<li><strong>What the service allows the application or token to access.</strong></li>
+<li><strong>What the AI app exposes to the model in a given conversation.</strong></li>
+</ol>
+<p>A connector might have broad scopes but be configured to offer only three read tools. Conversely, a connector with modest scopes might be enabled in every chat with auto-approval on all actions. The effective permission is the combination.</p>
+<p>Look for controls such as:</p>
+<ul>
+<li>enabling or disabling a connector per conversation;</li>
+<li>individually enabling tools;</li>
+<li>requiring approval for writes;</li>
+<li>restricting file or project scope;</li>
+<li>read-only mode;</li>
+<li>audit or activity history;</li>
+<li>the ability to pause or disconnect mid-task.</li>
+</ul>
+<p>Product terminology differs. The important thing is to know whether a tool is available to the model and whether it can act without you seeing a confirmation. A connector in a menu is not necessarily active in the current chat.</p>
+<h2 id="the-connector-gallery-is-not-a-safety-certification">The connector gallery is not a safety certification<a class="heading-anchor" href="#the-connector-gallery-is-not-a-safety-certification" aria-label="Link to section: The connector gallery is not a safety certification">#</a></h2>
+<p>An official-looking directory may include:</p>
+<ul>
+<li>first-party connectors built by the app vendor;</li>
+<li>connectors built by the service vendor;</li>
+<li>verified partners;</li>
+<li>community submissions;</li>
+<li>experimental or self-hosted links.</li>
+</ul>
+<p>&quot;Verified&quot; might mean the publisher owns the domain, the connector passed a functional test, or the vendor reviewed its privacy practices. It rarely means someone audited every tool for security. Listings can also be removed or change hands. Treat the gallery as discovery, not a guarantee.</p>
+<p>A sensible evaluation:</p>
+<ol>
+<li><strong>Publisher.</strong> Is this the service&#39;s official domain and account, or an unknown developer?</li>
+<li><strong>Purpose.</strong> Does the connector match the service? A &quot;calendar&quot; connector that also requests contacts and drive access is suspicious.</li>
+<li><strong>Permissions.</strong> What can it read, write, and share? Does the requested access match the job?</li>
+<li><strong>Data retention.</strong> Does the connector or its operator keep copies? For how long? Can you delete them?</li>
+<li><strong>Subprocessors.</strong> Which model providers or cloud services receive the data?</li>
+<li><strong>Security contact.</strong> Is there a way to report a problem?</li>
+<li><strong>Updates.</strong> Is there a changelog and a version history?</li>
+<li><strong>Exit.</strong> Can you export and revoke? Is there a clear removal process?</li>
+<li><strong>Fit.</strong> Is this a hosted or local connector? Which trust boundary changes?</li>
+<li><strong>Alternatives.</strong> Is there a narrower connector or a built-in feature that can do the same job?</li>
+</ol>
+<p>If the only information available is a logo and &quot;Connect,&quot; you do not have enough to make an informed decision. That does not mean every unknown connector is malicious. It means you should start it with low privileges, test data, and an ability to undo.</p>
+<h2 id="the-shadow-connector-problem">The shadow connector problem<a class="heading-anchor" href="#the-shadow-connector-problem" aria-label="Link to section: The shadow connector problem">#</a></h2>
+<p>A new risk appears when connectors are easy to add on personal accounts while doing company work. An employee connects a video transcription service to a meeting, or a note app to a company drive, and suddenly customer data is flowing to a vendor that the company has never reviewed. The employee is trying to be productive. The security team has no inventory.</p>
+<p>This is a governance problem, not a model problem. Helpful controls include:</p>
+<ul>
+<li>a clear policy listing approved connectors and prohibited categories;</li>
+<li>an inventory of connected apps and active tokens;</li>
+<li>admin approval for work accounts, or restrictions on third-party OAuth;</li>
+<li>SSO policies that make unapproved connections harder;</li>
+<li>a lightweight exception process so people do not go around the rules;</li>
+<li>periodic access reviews, especially after projects end or employees leave;</li>
+<li>data classification guidance: what may never be pasted, attached, or connected.</li>
+</ul>
+<p>For a small business, the policy can be a one-page document and a spreadsheet of connections. The scale changes; the questions do not. You cannot manage a data flow you did not know existed.</p>
+<h2 id="connector-sprawl">Connector sprawl<a class="heading-anchor" href="#connector-sprawl" aria-label="Link to section: Connector sprawl">#</a></h2>
+<p>Connecting many services feels like giving the assistant more context. Often it gives it more ways to be confused.</p>
+<p>Overlapping tools make selection harder: three file systems, two calendars, two task managers. Credentials multiply. The permission story becomes difficult to explain. A prompt injection that reaches one connector may be able to use another to move data.</p>
+<p>Start with the minimum for one workflow:</p>
+<ul>
+<li>one source of truth for the task;</li>
+<li>one or two tools per source;</li>
+<li>a clear boundary around what can be changed;</li>
+<li>a review date for whether each connector is still needed.</li>
+</ul>
+<p>If a connector is not used in a typical week, disconnect it. If a tool is redundant, disable it. The assistant does not need to feel powerful; it needs to be understandable.</p>
+<h2 id="a-worked-example-maya-s-studio-setup">A worked example: Maya&#39;s studio setup<a class="heading-anchor" href="#a-worked-example-maya-s-studio-setup" aria-label="Link to section: A worked example: Maya&#39;s studio setup">#</a></h2>
+<p>Maya wants help with client work without exposing all of the studio&#39;s data. Her first setup might look like this:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Connector</th>
+<th>Access</th>
+<th>Tools enabled</th>
+<th>Approval</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Shared project drive</td>
+<td>Read-only, <code>Clients/Atlas</code> folder</td>
+<td>List and read documents</td>
+<td>None for reads</td>
+<td>Prepare briefs from approved material</td>
+</tr>
+<tr>
+<td>Calendar</td>
+<td>Read and create drafts</td>
+<td>List events, create draft event</td>
+<td>Approve every create</td>
+<td>Avoid double-booking without letting the agent book freely</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>Read-only</td>
+<td>Search client and project records</td>
+<td>None for reads</td>
+<td>Understand client context</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Create drafts only</td>
+<td>Create draft; no send</td>
+<td>Approve every send outside the app</td>
+<td>Keep external communication in human hands</td>
+</tr>
+<tr>
+<td>Chat</td>
+<td>Read selected project channel</td>
+<td>Search messages</td>
+<td>None for reads</td>
+<td>Find decisions, but don&#39;t post</td>
+</tr>
+</tbody></table></div>
+<p>She avoids connecting source code, finance, and the entire company drive. She uses her studio account rather than a personal one. She reviews the connector permissions after two weeks. If the setup is useful and calm, she might allow a narrow action such as adding internal attendees to a draft event. If something feels noisy or uncertain, she removes the connector rather than adding more instructions.</p>
+<p>The point is not this exact list. It is that every connection has a job, a boundary, and an exit.</p>
+<h2 id="hosted-connector-failure-modes">Hosted connector failure modes<a class="heading-anchor" href="#hosted-connector-failure-modes" aria-label="Link to section: Hosted connector failure modes">#</a></h2>
+<p>When a hosted connector stops working, the cause may be outside your control:</p>
+<ul>
+<li>the OAuth token expired or was revoked;</li>
+<li>the provider changed an API;</li>
+<li>the connector hit a rate limit or usage cap;</li>
+<li>the model host changed its tool interface;</li>
+<li>the remote server is down;</li>
+<li>the permissions changed after an admin update;</li>
+<li>the connector&#39;s publisher abandoned it.</li>
+</ul>
+<p>The practical response is to check each layer in order: app connection status, account permissions, provider status, server health, and current documentation. Avoid the temptation to &quot;fix&quot; an authorization error by pasting a password or a long-lived token into chat. That converts a temporary connection problem into a permanent security problem.</p>
+<h2 id="revoking-access-properly">Revoking access properly<a class="heading-anchor" href="#revoking-access-properly" aria-label="Link to section: Revoking access properly">#</a></h2>
+<p>Disconnecting in the AI app is not always enough. A complete cleanup usually includes:</p>
+<ol>
+<li><strong>Remove the connector</strong> from the AI application.</li>
+<li><strong>Revoke the token</strong> in the service&#39;s connected apps or security settings.</li>
+<li><strong>Review active sessions</strong> and remove unrecognized ones.</li>
+<li><strong>Delete local server data</strong> if you installed one, including caches and configuration.</li>
+<li><strong>Rotate credentials</strong> if you suspect exposure, especially API keys stored on disk.</li>
+<li><strong>Review logs</strong> for actions during the period of concern.</li>
+<li><strong>Document the change</strong> if this is a team environment.</li>
+</ol>
+<p>For a trial, decide the removal date before you connect. A connector you forgot about is still a connector with access.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>A connector is product packaging around an integration, often but not always an MCP server.</li>
+<li>Connectors bundle authentication, tools, UI, and support; the label does not tell you who is responsible for each.</li>
+<li>Hosted and local connectors move trust boundaries in different directions. Both need review.</li>
+<li>OAuth grants delegated, scoped access. Read the consent screen and choose the narrowest account and scope.</li>
+<li>Effective permission is the combination of service scope, tools exposed by the AI app, and approval settings.</li>
+<li>The gallery is discovery, not certification. Check publisher, permissions, data handling, and exit.</li>
+<li>Shadow connectors are a governance problem; inventory and policy matter.</li>
+<li>Less is more. Every connection should have a job, a boundary, and a review date.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>List every connector currently attached to your AI accounts. For each, write its job, its access, and the last time you used it.</li>
+<li>Open one connector&#39;s consent screen and read the scopes without clicking approve. Which permissions surprise you?</li>
+<li>Choose a connector you would like to try. Write a trial plan with test data, a limited account, read-only access, and a removal date.</li>
+<li>Explain to someone why &quot;available in the connector gallery&quot; is not the same as &quot;approved by our security team.&quot;</li>
+</ol>
+<p>We have covered what agents are, how tools and MCP work, and how connectors package access. Now we turn to the part that determines whether any of it is a good idea: safety, permissions, and trust.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="mcp-servers.html"><span class="pager-kicker">Previous</span><span class="pager-title">Inside an MCP server</span></a><a class="pager-card pager-next" href="safety.html"><span class="pager-kicker">Next</span><span class="pager-title">Safety, permissions, and trust</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#what-a-connector-actually-is">What a connector actually is</a></li><li class="toc-item toc-level-3"><a href="#connectors-are-not-always-mcp">Connectors are not always MCP</a></li><li class="toc-item toc-level-2"><a href="#local-versus-hosted-connectors">Local versus hosted connectors</a></li><li class="toc-item toc-level-2"><a href="#what-happens-when-you-click-connect">What happens when you click Connect</a></li><li class="toc-item toc-level-2"><a href="#least-privilege-in-practice">Least privilege in practice</a></li><li class="toc-item toc-level-2"><a href="#connector-permissions-inside-the-ai-app">Connector permissions inside the AI app</a></li><li class="toc-item toc-level-2"><a href="#the-connector-gallery-is-not-a-safety-certification">The connector gallery is not a safety certification</a></li><li class="toc-item toc-level-2"><a href="#the-shadow-connector-problem">The shadow connector problem</a></li><li class="toc-item toc-level-2"><a href="#connector-sprawl">Connector sprawl</a></li><li class="toc-item toc-level-2"><a href="#a-worked-example-maya-s-studio-setup">A worked example: Maya&#39;s studio setup</a></li><li class="toc-item toc-level-2"><a href="#hosted-connector-failure-modes">Hosted connector failure modes</a></li><li class="toc-item toc-level-2"><a href="#revoking-access-properly">Revoking access properly</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

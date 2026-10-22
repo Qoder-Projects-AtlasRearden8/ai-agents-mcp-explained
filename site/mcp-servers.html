@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>Inside an MCP server — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="Tools, resources, prompts, local and remote trust boundaries, authorization, and what makes a server safe enough to install." />
+  <meta property="og:title" content="Inside an MCP server — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="Tools, resources, prompts, local and remote trust boundaries, authorization, and what makes a server safe enough to install." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="mcp-servers">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link is-active" href="mcp-servers.html" aria-current="page"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link" href="get-started.html"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-plumbing">The plumbing</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 5</p>
+          <h1>Inside an MCP server</h1>
+          <p class="chapter-dek">Tools, resources, prompts, local and remote trust boundaries, authorization, and what makes a server safe enough to install.</p>
+          <div class="chapter-meta"><span>2,698 words</span><span aria-hidden="true">·</span><span>12 min read</span><span aria-hidden="true">·</span><span>Part II</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>Two servers both advertise themselves as &quot;files.&quot; The first can read a single folder called <code>Atlas-Notes</code> in a sandbox. The second can read your entire home directory, including browser profiles, saved credentials, and every document you have ever downloaded. Both are technically file servers. The difference is not in the label. It is in the scope, the code, and the credentials.</p>
+<p>MCP gives us a common shape for capability. It does not make all capabilities equivalent. A server is a real piece of software with real access, maintained by someone, running somewhere. To use one well, you need to understand what it can do internally and what it can see externally.</p>
+<h2 id="a-server-is-an-adapter-with-keys">A server is an adapter with keys<a class="heading-anchor" href="#a-server-is-an-adapter-with-keys" aria-label="Link to section: A server is an adapter with keys">#</a></h2>
+<p>An MCP server translates between the standardized messages of MCP and the specific behavior of a system. It might:</p>
+<ul>
+<li>wrap a REST API;</li>
+<li>read files from a directory;</li>
+<li>query a database;</li>
+<li>control a browser;</li>
+<li>expose a search index;</li>
+<li>call internal company services;</li>
+<li>combine several of these behind a few tools.</li>
+</ul>
+<p>The server holds the credentials or uses the authorization delegated by the user or client. That makes it a <strong>trust boundary</strong>. The model asks for something; the host passes the request; the server decides how to fulfill it using its own permissions. If the server has broad credentials, a narrow tool description will not save you.</p>
+<p>A server can be small and single-purpose, such as the word counter in the hands-on chapter. It can also be a substantial service with a database connection, caching, rate limits, and an audit log. The protocol is the same; the trust analysis is not.</p>
+<h2 id="tools-in-detail">Tools in detail<a class="heading-anchor" href="#tools-in-detail" aria-label="Link to section: Tools in detail">#</a></h2>
+<p>Tools are the most consequential primitive because they can act. A tool definition typically contains:</p>
+<ul>
+<li>a unique <code>name</code>;</li>
+<li>a human-readable <code>title</code>;</li>
+<li>a <code>description</code> written for both the model and people;</li>
+<li>an <code>inputSchema</code> expressed in JSON Schema;</li>
+<li>optional <code>outputSchema</code> or structured result conventions;</li>
+<li>optional annotations about safety and behavior.</li>
+</ul>
+<h3 id="descriptions-are-part-of-the-interface">Descriptions are part of the interface<a class="heading-anchor" href="#descriptions-are-part-of-the-interface" aria-label="Link to section: Descriptions are part of the interface">#</a></h3>
+<p>The model chooses tools based on their names and descriptions. A server that says &quot;Interact with documents&quot; for all five file operations is not giving the model enough information. A server that says:</p>
+<blockquote>
+<p><code>read_text_file</code> — Read a UTF-8 text file from the approved workspace and return its contents. Use for reading, not writing. Paths are relative to the workspace root. Binary files are rejected. Files above 1 MB are truncated with a notice.</p>
+</blockquote>
+<p>gives the model enough to make a reasonable choice and gives a reviewer enough to know the boundary. The description should state what the tool does, when to use it, and any non-obvious constraints.</p>
+<h3 id="the-input-schema-is-not-a-security-boundary-by-itself">The input schema is not a security boundary by itself<a class="heading-anchor" href="#the-input-schema-is-not-a-security-boundary-by-itself" aria-label="Link to section: The input schema is not a security boundary by itself">#</a></h3>
+<p>A schema can declare types, required fields, string lengths, and enumerations. This prevents many malformed requests and helps the model construct valid calls. It cannot enforce business authority. For example, a schema can require a <code>client_id</code> but cannot know whether this user is allowed to read that client&#39;s records. The server must check authorization against the real identity and permissions.</p>
+<p>The host should also validate what it receives. Defense in depth is not paranoia here; every layer that touches untrusted content should be skeptical.</p>
+<h3 id="results-can-be-rich">Results can be rich<a class="heading-anchor" href="#results-can-be-rich" aria-label="Link to section: Results can be rich">#</a></h3>
+<p>MCP tool results can include text, images, audio, links to resources, and embedded resources. Recent revisions also support structured content that corresponds to an optional output schema. This is useful: a spreadsheet summary can return both a readable paragraph and a table of numbers; a document tool can return metadata plus a resource reference.</p>
+<p>For safety and usability, results should be:</p>
+<ul>
+<li><strong>Scoped</strong>: return only what the task needs, not the whole database.</li>
+<li><strong>Attributed</strong>: make clear which source the data came from.</li>
+<li><strong>Bounded</strong>: page large results and report truncation.</li>
+<li><strong>Structured where appropriate</strong>: use fields for facts like IDs, amounts, dates, and statuses.</li>
+<li><strong>Free of secrets</strong>: no session tokens, connection strings, or unrelated personal data.</li>
+<li><strong>Treatable as untrusted</strong>: the host should not interpret returned instructions as commands.</li>
+</ul>
+<h3 id="annotations-are-hints">Annotations are hints<a class="heading-anchor" href="#annotations-are-hints" aria-label="Link to section: Annotations are hints">#</a></h3>
+<p>MCP includes optional tool annotations such as:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Meaning</th>
+<th>What it does not mean</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>readOnlyHint</code></td>
+<td>The tool is expected not to modify state</td>
+<td>That the server is trustworthy or the data is safe</td>
+</tr>
+<tr>
+<td><code>destructiveHint</code></td>
+<td>The tool may make destructive changes</td>
+<td>That the host will confirm each use</td>
+</tr>
+<tr>
+<td><code>idempotentHint</code></td>
+<td>Repeating the call should have the same effect</td>
+<td>That retries are free or harmless</td>
+</tr>
+<tr>
+<td><code>openWorldHint</code></td>
+<td>The tool interacts with external, open-ended systems</td>
+<td>That every destination is allowed</td>
+</tr>
+</tbody></table></div>
+<p>These hints help a host choose sensible defaults or display warnings. They are supplied by the server. A malicious or buggy server can mislabel a destructive tool as read-only. A well-designed host should combine annotations with its own allowlists, confirmation rules, and the identity of the server. In other words: <strong>annotations help, but they are not enforcement.</strong></p>
+<h2 id="resources-in-detail">Resources in detail<a class="heading-anchor" href="#resources-in-detail" aria-label="Link to section: Resources in detail">#</a></h2>
+<p>Resources expose readable data. Each has a URI, a name, an optional description, and a MIME type. A server might offer:</p>
+<pre><code class="language-text">notes://atlas/brief
+notes://atlas/meeting-2026-10-14
+customers://acme/summary
+file:///Users/maya/Sandbox/Atlas/brief.md
+</code></pre>
+<p>Resources can be static or templated. A <strong>resource template</strong> describes a family of resources, such as <code>customers://{customer_id}/summary</code>. The host can list templates and construct URIs with user input. This is convenient, and it requires validation: a template that accepts any string must not become a path traversal or an SQL injection.</p>
+<p>Resources are often a better fit than tools for data that a human should explicitly attach. Instead of giving the model a <code>read_any_file</code> tool, a host can let the user pick a resource from a list. The model can request a specific known resource only if the host exposes that capability. This keeps the human in control of context selection.</p>
+<p>Some servers support subscriptions or change notifications for resources. That means a client can be told when a document changes. For a beginner setup, you can ignore this. For a team building a live assistant, it is useful but adds complexity: stale caches, notification storms, and data updates during a task are real failure modes.</p>
+<h3 id="access-is-still-a-server-decision">Access is still a server decision<a class="heading-anchor" href="#access-is-still-a-server-decision" aria-label="Link to section: Access is still a server decision">#</a></h3>
+<p>The URI scheme does not grant access. A <code>file://</code> URI is just an address. The server must resolve it inside an allowed boundary, check permissions, avoid following symlinks into forbidden locations, and handle sensitive files. If a filesystem server is given your entire home directory, a path that looks harmless can still reach a configuration file containing a token.</p>
+<p>A resource server should enforce a <strong>root</strong>: a directory the server is allowed to read. The client&#39;s roots feature can communicate a desired boundary, but the server and operating system must enforce it. A root in a prompt is not a substitute for filesystem permissions.</p>
+<h2 id="prompts-in-detail">Prompts in detail<a class="heading-anchor" href="#prompts-in-detail" aria-label="Link to section: Prompts in detail">#</a></h2>
+<p>Prompts are user-selected templates. A prompt definition has a name, a description, optional arguments, and a function that builds messages. For example:</p>
+<blockquote>
+<p><code>weekly_client_update</code> — Produce a client update from approved project notes. Arguments: <code>client_name</code>, <code>week_ending</code>, <code>tone</code> (brief or detailed).</p>
+</blockquote>
+<p>When a user selects the prompt, the server returns a structured set of messages that the host can add to the conversation. This is a way to package expertise: the prompt can require sources, include a format, and remind the model about constraints.</p>
+<p>Prompts are not actions. They do not automatically call tools. They are a way to start or shape a conversation. A prompt can be malicious if it comes from an untrusted server, just as a tool description can. It can ask the model to reveal context, ignore safety rules, or take steps that benefit the server. The host and user should see where a prompt came from and treat it as a suggestion with provenance.</p>
+<h2 id="client-features-from-the-server-s-side">Client features from the server&#39;s side<a class="heading-anchor" href="#client-features-from-the-server-s-side" aria-label="Link to section: Client features from the server&#39;s side">#</a></h2>
+<p>Servers can use client-supported features to interact more flexibly:</p>
+<ul>
+<li><strong>Sampling</strong> asks the client to produce a model completion. A server might use it to summarize a document using the host&#39;s model rather than requiring its own API key. The host should show the request and enforce policy. An untrusted server using sampling could try to get the model to process or disclose data unexpectedly.</li>
+<li><strong>Elicitation</strong> asks the user for information. It can be a clean way to collect a missing parameter, but it can also be used for social engineering. The host must make the source and purpose clear and never collect secrets casually.</li>
+<li><strong>Roots</strong> tells the server which filesystem locations the client considers relevant. Again, this is communication, not a sandbox.</li>
+</ul>
+<p>Not every host supports every feature. A server that requires sampling will not work with a host that does not provide it. This is a common integration failure and not a sign that the server is broken.</p>
+<h2 id="local-servers-and-remote-servers">Local servers and remote servers<a class="heading-anchor" href="#local-servers-and-remote-servers" aria-label="Link to section: Local servers and remote servers">#</a></h2>
+<p>The transport determines a great deal about the risk.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Local stdio server</th>
+<th>Remote HTTP server</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Where does it run?</td>
+<td>On your computer, as a child process</td>
+<td>On someone else&#39;s infrastructure</td>
+</tr>
+<tr>
+<td>What credentials can it use?</td>
+<td>Local files, local environment, OS permissions, local sessions</td>
+<td>OAuth tokens, API keys, service accounts, tenant identity</td>
+</tr>
+<tr>
+<td>What leaves your device?</td>
+<td>Depends on the server; it can make network calls</td>
+<td>Requests and data cross the network</td>
+</tr>
+<tr>
+<td>Main installation risk</td>
+<td>Running untrusted code with your privileges</td>
+<td>Trusting a third party with your data and availability</td>
+</tr>
+<tr>
+<td>Main configuration risk</td>
+<td>Overbroad filesystem or environment access</td>
+<td>Overbroad OAuth scopes or tenant permissions</td>
+</tr>
+<tr>
+<td>How to revoke</td>
+<td>Stop and remove the server; clean up local state</td>
+<td>Revoke the token and remove the connection</td>
+</tr>
+<tr>
+<td>Can it be sandboxed?</td>
+<td>Yes, with containers, users, and OS controls</td>
+<td>Handled by the provider, but your data is still remote</td>
+</tr>
+</tbody></table></div>
+<p>A local server can be very safe when it is a small, open-source program scoped to a folder and run without access to secrets. It can also be catastrophic when it runs arbitrary shell commands with your entire home directory. &quot;Local&quot; does not mean &quot;trusted.&quot; A remote server can be a professionally operated service, or it can be an unknown endpoint collecting everything you send. &quot;Remote&quot; does not automatically mean &quot;unsafe.&quot;</p>
+<h2 id="authorization-for-remote-servers">Authorization for remote servers<a class="heading-anchor" href="#authorization-for-remote-servers" aria-label="Link to section: Authorization for remote servers">#</a></h2>
+<p>Remote MCP servers need to know who is calling and what they may do. Recent MCP specifications use the OAuth family of standards for HTTP-based servers. The practical version:</p>
+<ol>
+<li>You connect to a server in your AI app.</li>
+<li>The app sends you to the service&#39;s authorization page.</li>
+<li>You log in and see a list of permissions, called scopes.</li>
+<li>You approve. The app receives a token for the server.</li>
+<li>The app includes that token when calling the server.</li>
+<li>You can revoke access later from the service or the app.</li>
+</ol>
+<p>The details include registration, resource metadata, audience restrictions, and short-lived tokens. You do not need to memorize the RFCs, but you should understand the shape: <strong>access is delegated, scoped, time-limited, and revocable</strong>. If a connector asks for your password directly, or instructs you to paste an API key into a chat, treat that as a warning sign. Good OAuth flows do not require you to give your password to the AI app.</p>
+<p>Token handling matters. A client should not pass one service&#39;s token through to a different service just because a server asked. A server should validate tokens for its own audience and not accept a token minted for someone else. If you are evaluating an integration, ask whether it uses a dedicated, least-privilege identity. &quot;It works with our admin account&quot; is a red flag, not a convenience.</p>
+<p>For local servers, authentication may be your operating-system account and a configuration file containing an API key. That is simpler and riskier. Store secrets in environment variables or a secret manager, not in a repository. Restrict file permissions. Rotate keys. Use a dedicated account when possible.</p>
+<h2 id="the-server-supply-chain">The server supply chain<a class="heading-anchor" href="#the-server-supply-chain" aria-label="Link to section: The server supply chain">#</a></h2>
+<p>Every server you install is software you are bringing into your trusted environment. Some questions to ask:</p>
+<ul>
+<li><strong>Who maintains it?</strong> An official vendor, a well-known open-source project, or an anonymous package published last week?</li>
+<li><strong>Can you inspect it?</strong> For local code, can you see the source and dependencies? For hosted services, is there a security and privacy page that is more than marketing?</li>
+<li><strong>What does it require?</strong> Root access, broad filesystem access, administrative scopes, or network egress to arbitrary hosts?</li>
+<li><strong>How is it installed?</strong> A pinned package version and lockfile, or a download-and-run command that may pull new code each time?</li>
+<li><strong>What is the update process?</strong> Can you review changes? Are there releases and changelogs?</li>
+<li><strong>What data does it retain?</strong> Logs, prompts, tool arguments, cached documents, credentials.</li>
+<li><strong>Can you get your data out and revoke access?</strong> Is there an exit path?</li>
+<li><strong>What is the support model?</strong> A community project may be excellent but should not quietly run a production process with no owner.</li>
+</ul>
+<p>You do not need to perform a full security audit for a personal note-taking experiment. You do need to match the review to the authority. A server that can read a public folder and count words is not the same as one that can issue refunds and access every customer record.</p>
+<h2 id="designing-a-small-server-well">Designing a small server well<a class="heading-anchor" href="#designing-a-small-server-well" aria-label="Link to section: Designing a small server well">#</a></h2>
+<p>Suppose Maya wants a server for her studio&#39;s project notes. A careless design exposes:</p>
+<ul>
+<li><code>read_file(path)</code> — reads any path on the machine.</li>
+<li><code>write_file(path, contents)</code> — writes any path.</li>
+<li><code>search(query)</code> — searches the entire home directory.</li>
+<li><code>send_message(channel, text)</code> — posts to any chat workspace.</li>
+</ul>
+<p>A safer design is narrower:</p>
+<ul>
+<li><code>list_atlas_notes()</code> — lists Markdown notes inside <code>~/Studio/Atlas/Notes</code>.</li>
+<li><code>search_atlas_notes(query, tags)</code> — searches only those notes, excluding files with <code>private</code> in the name.</li>
+<li><code>read_atlas_note(note_id)</code> — reads one note by an opaque ID, with a size limit.</li>
+<li><code>create_atlas_note_draft(title, body)</code> — writes to a drafts subfolder, never overwrites.</li>
+<li><code>get_note_metadata(note_id)</code> — returns dates and tags without the full text.</li>
+</ul>
+<p>Notice the pattern:</p>
+<ol>
+<li>Scope is in the tool names and enforced in the code.</li>
+<li>Reads and writes are separate.</li>
+<li>There is no arbitrary path parameter in the common tools.</li>
+<li>Write operations create drafts instead of overwriting.</li>
+<li>Private files are excluded by a rule, not by a model&#39;s good manners.</li>
+<li>The tools return identifiers and metadata, not the contents of the world.</li>
+</ol>
+<p>This is more work than wrapping a filesystem library. It is the difference between an assistant and an unsecured remote control.</p>
+<h2 id="observability-can-you-see-what-happened">Observability: can you see what happened?<a class="heading-anchor" href="#observability-can-you-see-what-happened" aria-label="Link to section: Observability: can you see what happened?">#</a></h2>
+<p>A server should log enough to answer:</p>
+<ul>
+<li>Which client and user made the request?</li>
+<li>Which tool was called?</li>
+<li>What were the arguments, with secrets redacted?</li>
+<li>What resource was read?</li>
+<li>What was the outcome, including errors?</li>
+<li>How long did it take?</li>
+<li>Was the result truncated or filtered?</li>
+</ul>
+<p>Logs are also a liability. They can capture customer data, personal information, prompts, and credentials. Decide what to retain, for how long, who can access it, and how to delete it. Do not log raw authorization headers or full documents by default. If your logs are shipped to a third-party service, that service is now part of your data boundary.</p>
+<p>For a beginner, &quot;observability&quot; may simply mean using a host that shows tool calls and results, and keeping the server&#39;s own console output available when debugging. For a team, it means structured audit logs and a review process. Either way, the principle is the same: <strong>if you cannot see what the agent did, you cannot manage it.</strong></p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>An MCP server is real software with real credentials and a real trust boundary.</li>
+<li>Tools are model-facing actions; resources are readable data; prompts are user-invoked templates.</li>
+<li>Descriptions and schemas improve usability but do not enforce authority.</li>
+<li>Tool annotations are useful hints, not security guarantees.</li>
+<li>Local servers run with your privileges; remote servers require delegated authorization and careful data stewardship.</li>
+<li>Remote MCP can use OAuth-style delegated access with scopes and revocable tokens.</li>
+<li>Treat every server as a supply-chain decision. Scope permissions before installing anything.</li>
+<li>Good servers narrow their tools, enforce roots and allowlists, return bounded results, and log responsibly.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Pick an MCP server you might use. List every capability it exposes and mark each as read-only, reversible, consequential, or financial.</li>
+<li>Sketch a safer version with half as many tools. Which capabilities can be split or removed?</li>
+<li>Trace where your data goes: from the document, through the server, to the model provider, and into logs. Which step is least clear to you?</li>
+<li>Write an approval checklist for installing a community server. Include at least one question about maintenance and one about data retention.</li>
+</ol>
+<p>The next chapter looks at connectors: the product packaging that turns an MCP server into a button a normal person can click, and the governance questions that packaging can hide.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="mcp.html"><span class="pager-kicker">Previous</span><span class="pager-title">MCP: one plug for many tools</span></a><a class="pager-card pager-next" href="connectors.html"><span class="pager-kicker">Next</span><span class="pager-title">Connectors: MCP for the rest of us</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#a-server-is-an-adapter-with-keys">A server is an adapter with keys</a></li><li class="toc-item toc-level-2"><a href="#tools-in-detail">Tools in detail</a></li><li class="toc-item toc-level-3"><a href="#descriptions-are-part-of-the-interface">Descriptions are part of the interface</a></li><li class="toc-item toc-level-3"><a href="#the-input-schema-is-not-a-security-boundary-by-itself">The input schema is not a security boundary by itself</a></li><li class="toc-item toc-level-3"><a href="#results-can-be-rich">Results can be rich</a></li><li class="toc-item toc-level-3"><a href="#annotations-are-hints">Annotations are hints</a></li><li class="toc-item toc-level-2"><a href="#resources-in-detail">Resources in detail</a></li><li class="toc-item toc-level-3"><a href="#access-is-still-a-server-decision">Access is still a server decision</a></li><li class="toc-item toc-level-2"><a href="#prompts-in-detail">Prompts in detail</a></li><li class="toc-item toc-level-2"><a href="#client-features-from-the-server-s-side">Client features from the server&#39;s side</a></li><li class="toc-item toc-level-2"><a href="#local-servers-and-remote-servers">Local servers and remote servers</a></li><li class="toc-item toc-level-2"><a href="#authorization-for-remote-servers">Authorization for remote servers</a></li><li class="toc-item toc-level-2"><a href="#the-server-supply-chain">The server supply chain</a></li><li class="toc-item toc-level-2"><a href="#designing-a-small-server-well">Designing a small server well</a></li><li class="toc-item toc-level-2"><a href="#observability-can-you-see-what-happened">Observability: can you see what happened?</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

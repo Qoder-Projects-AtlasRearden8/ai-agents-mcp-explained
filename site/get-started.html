@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#F2ECE1" />
+  <title>Build your first safe setup — AI Agents and MCP, Explained for Normal People</title>
+  <meta name="description" content="A tested read-only MCP server, a local setup walkthrough, and boundary tests you can run before trusting a tool." />
+  <meta property="og:title" content="Build your first safe setup — AI Agents and MCP, Explained for Normal People" />
+  <meta property="og:description" content="A tested read-only MCP server, a local setup walkthrough, and boundary tests you can run before trusting a tool." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script src="assets/theme.js"></script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" />
+  
+</head>
+<body id="top" class="page-chapter " data-page-slug="get-started">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <button class="icon-button menu-button" type="button" data-nav-open aria-label="Open contents" aria-controls="book-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></button>
+      <a class="brand" href="index.html" aria-label="AI Agents and MCP, Explained for Normal People — home">
+        <span class="brand-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span>
+        <span class="brand-copy"><span class="brand-name">Agents &amp; MCP</span><span class="brand-tagline">Explained for Normal People</span></span>
+      </a>
+      <nav class="header-links" aria-label="Primary"><a class="header-link" href="index.html#contents">Contents</a><a class="header-link" href="preface.html">Start here</a><a class="header-link" href="mcp.html">MCP</a><a class="header-link" href="glossary.html">Glossary</a></nav>
+      <div class="header-actions">
+        <button class="icon-button search-button" type="button" data-search-open aria-label="Search the book">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg><kbd class="search-kbd">/</kbd>
+        </button>
+        <button class="icon-button theme-button" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke-linecap="round"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.2 8.2 0 0 1 8.8 4a8.3 8.3 0 1 0 11.2 11.2Z" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"><span data-progress-bar></span></div>
+  </header>
+  <button class="nav-overlay" type="button" tabindex="-1" aria-label="Close menu" data-nav-overlay hidden></button>
+  <div class="chapter-layout">
+    <aside class="book-nav" id="book-nav" aria-label="Book contents">
+    <div class="nav-head">
+      <a class="nav-home" href="index.html"><span class="nav-home-title">AI Agents &amp; MCP</span><span class="nav-home-sub">Explained for Normal People</span></a>
+      <button class="icon-button nav-close" type="button" data-nav-close aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="nav-scroll"><section class="nav-group" aria-label="Start here: Before you begin"><p class="nav-group-title"><span>Start here</span>Before you begin</p><a class="nav-link" href="preface.html"><span class="nav-number">00</span><span class="nav-label">A new kind of software</span></a></section><section class="nav-group" aria-label="Part I: The ideas"><p class="nav-group-title"><span>Part I</span>The ideas</p><a class="nav-link" href="what-is-an-agent.html"><span class="nav-number">01</span><span class="nav-label">What an agent is</span></a><a class="nav-link" href="agent-loop.html"><span class="nav-number">02</span><span class="nav-label">The agent loop</span></a><a class="nav-link" href="tools.html"><span class="nav-number">03</span><span class="nav-label">Tools</span></a></section><section class="nav-group" aria-label="Part II: The plumbing"><p class="nav-group-title"><span>Part II</span>The plumbing</p><a class="nav-link" href="mcp.html"><span class="nav-number">04</span><span class="nav-label">MCP</span></a><a class="nav-link" href="mcp-servers.html"><span class="nav-number">05</span><span class="nav-label">Inside a server</span></a><a class="nav-link" href="connectors.html"><span class="nav-number">06</span><span class="nav-label">Connectors</span></a></section><section class="nav-group" aria-label="Part III: Putting it to work safely"><p class="nav-group-title"><span>Part III</span>Putting it to work safely</p><a class="nav-link" href="safety.html"><span class="nav-number">07</span><span class="nav-label">Safety &amp; trust</span></a><a class="nav-link" href="real-workflows.html"><span class="nav-number">08</span><span class="nav-label">Real workflows</span></a><a class="nav-link is-active" href="get-started.html" aria-current="page"><span class="nav-number">09</span><span class="nav-label">Your first setup</span></a><a class="nav-link" href="choosing-work.html"><span class="nav-number">10</span><span class="nav-label">What to automate</span></a><a class="nav-link" href="troubleshooting.html"><span class="nav-number">11</span><span class="nav-label">Troubleshooting</span></a></section><section class="nav-group" aria-label="Part IV: Reference"><p class="nav-group-title"><span>Part IV</span>Reference</p><a class="nav-link" href="glossary.html"><span class="nav-number">12</span><span class="nav-label">Glossary</span></a><a class="nav-link" href="checklists.html"><span class="nav-number">13</span><span class="nav-label">Checklists</span></a></section></div>
+    <div class="nav-foot">
+      <button class="nav-search" type="button" data-search-open><span>Search the book</span><kbd>/</kbd></button>
+      <p class="nav-foot-note">14 chapters · updated manually</p>
+    </div>
+  </aside>
+    <main id="main" class="chapter-main">
+      <article class="chapter">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#contents">Contents</a><span aria-hidden="true">/</span><a href="index.html#part-practice">Putting it to work safely</a></nav>
+        <header class="chapter-header">
+          <p class="chapter-eyebrow"><span class="eyebrow-rule"></span>Chapter 9</p>
+          <h1>Build your first safe setup</h1>
+          <p class="chapter-dek">A tested read-only MCP server, a local setup walkthrough, and boundary tests you can run before trusting a tool.</p>
+          <div class="chapter-meta"><span>2,410 words</span><span aria-hidden="true">·</span><span>11 min read</span><span aria-hidden="true">·</span><span>Part III</span></div>
+        </header>
+        <div class="chapter-body">
+          <p>The safest first MCP server is a boring one. It has one tool, no credentials, no network access, no filesystem access, and no ability to change anything. You can read the entire thing in a few minutes. It exists so you can watch discovery, invocation, validation, and results with your own eyes before you connect something that matters.</p>
+<p>This chapter has two tracks. In <strong>Track A</strong>, you connect the included word-counter server to an MCP-compatible AI host and use it. In <strong>Track B</strong>, you read the code and run the automated test client. You can do either first, but doing both makes the protocol concrete.</p>
+<p>The server is deliberately not a productivity tool. Counting words is almost useless. That is the point: when learning a new kind of access, start where a mistake is cheap.</p>
+<blockquote>
+<p><strong>Before you start:</strong> use a test workspace, not production data. Do not place any real token, password, or customer data in a configuration file. The instructions here contain no secrets and the example server requires none.</p>
+</blockquote>
+<h2 id="what-you-need">What you need<a class="heading-anchor" href="#what-you-need" aria-label="Link to section: What you need">#</a></h2>
+<ul>
+<li><strong>Node.js 20 or newer</strong> and npm. The example was tested with Node.js 20.19.2; the package declares Node 20 as its minimum.</li>
+<li>An MCP-compatible AI application if you want to try Track A. This might be a desktop assistant, an IDE, or another host that supports local stdio servers.</li>
+<li>A terminal for Track B.</li>
+<li>The repository files. The server lives in <code>examples/word-counter-server/</code>.</li>
+</ul>
+<p>You do not need an API key. You do not need a cloud account. The server does not call a model; the host and model decide when to call the tool.</p>
+<h2 id="track-a-connect-it-to-an-ai-host">Track A: Connect it to an AI host<a class="heading-anchor" href="#track-a-connect-it-to-an-ai-host" aria-label="Link to section: Track A: Connect it to an AI host">#</a></h2>
+<p>Product interfaces change, so this book will not pretend that every app has a menu called &quot;MCP Servers.&quot; Look in your host&#39;s documentation for <strong>MCP</strong>, <strong>connectors</strong>, <strong>developer settings</strong>, or <strong>integrations</strong>, specifically for adding a local server with a command. Then add an entry equivalent to this:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;word-counter&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [
+        &quot;/absolute/path/to/ai-agents-mcp-explained/examples/word-counter-server/server.mjs&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>Replace the path with the real absolute path on your machine. Use forward slashes on macOS and Linux. On Windows, use the full path and follow the host&#39;s escaping guidance for backslashes. If <code>node</code> is not on the host&#39;s <code>PATH</code>, use the absolute path to your Node executable as the <code>command</code>.</p>
+<p>Some hosts use a JSON file; some have a graphical form; some use project-level configuration. The fields are usually the same: a command to run, arguments to pass, and optional environment variables. Keep the server name simple. Do not add an environment block for this example; it does not need one.</p>
+<h3 id="step-1-confirm-the-server-starts">Step 1: Confirm the server starts<a class="heading-anchor" href="#step-1-confirm-the-server-starts" aria-label="Link to section: Step 1: Confirm the server starts">#</a></h3>
+<p>From the repository root, run the test once:</p>
+<pre><code class="language-bash">npm install
+npm run test:mcp
+</code></pre>
+<p>You should see:</p>
+<pre><code class="language-text">MCP example test passed: tool listed and count_words returned 7 words.
+</code></pre>
+<p>If that fails, fix it before connecting a host. A host error with a broken server underneath is much harder to interpret.</p>
+<h3 id="step-2-add-and-reload">Step 2: Add and reload<a class="heading-anchor" href="#step-2-add-and-reload" aria-label="Link to section: Step 2: Add and reload">#</a></h3>
+<p>Save the configuration and restart or reload your host as its documentation requires. Open the host&#39;s MCP or connector status view. You should see a server named <code>word-counter</code> and one tool named <code>count_words</code>.</p>
+<p>A host may show additional metadata: the description, the input schema, and annotations such as read-only. Read them. You are checking that the host discovered the same tool the server intended, not just that a green dot appeared.</p>
+<h3 id="step-3-inspect-before-using">Step 3: Inspect before using<a class="heading-anchor" href="#step-3-inspect-before-using" aria-label="Link to section: Step 3: Inspect before using">#</a></h3>
+<p>Ask the host to list its available tools, or open the tool inspector if it has one. Look for:</p>
+<ul>
+<li>the name <code>count_words</code>;</li>
+<li>a description explaining that it counts words and does not save or send text;</li>
+<li>an input field called <code>text</code>;</li>
+<li>a note that this is a read-only tool;</li>
+<li>no unexpected tools or resources.</li>
+</ul>
+<p>The server exposes only one tool. If you see others, they are coming from somewhere else. Tool catalogs can be surprising when several connectors are enabled.</p>
+<h3 id="step-4-make-a-safe-request">Step 4: Make a safe request<a class="heading-anchor" href="#step-4-make-a-safe-request" aria-label="Link to section: Step 4: Make a safe request">#</a></h3>
+<p>In a new conversation, ask:</p>
+<blockquote>
+<p>Use the word-counter tool to count the words in this sentence: A small tool is easier to trust.</p>
+</blockquote>
+<p>The host may ask permission to run the tool. Approve it after checking that the arguments are the text you supplied. The result should be a word count, a character count, and a count excluding spaces. The exact formatting depends on the host.</p>
+<p>Observe the trace if the host provides one. You should see one tool call, not a chain of hidden actions. The server has nowhere else to go.</p>
+<h3 id="step-5-test-the-boundary">Step 5: Test the boundary<a class="heading-anchor" href="#step-5-test-the-boundary" aria-label="Link to section: Step 5: Test the boundary">#</a></h3>
+<p>Ask:</p>
+<blockquote>
+<p>Use word-counter to read my email inbox and summarize the last ten messages.</p>
+</blockquote>
+<p>A well-designed model will explain that the tool cannot do that. But the important test is not only the model&#39;s prose. Inspect whether any tool call was made and what arguments it contained. The server has no email capability. If a tool call occurred, it should have been rejected by schema validation or by the model&#39;s choice not to fabricate arguments. There is no path from <code>count_words</code> to your inbox.</p>
+<p>Try an empty or very long input. The schema has a minimum of one character and a maximum of 100,000 characters. The request should fail with an understandable error, not truncate silently or crash the host.</p>
+<h3 id="step-6-remove-it">Step 6: Remove it<a class="heading-anchor" href="#step-6-remove-it" aria-label="Link to section: Step 6: Remove it">#</a></h3>
+<p>When you are done, remove the server entry or disable it, then restart the host. Delete any local copies if you do not need them. There are no tokens to revoke for this example, but make cleanup a habit anyway. A connector you forget about is still a connector.</p>
+<h2 id="track-b-read-the-server">Track B: Read the server<a class="heading-anchor" href="#track-b-read-the-server" aria-label="Link to section: Track B: Read the server">#</a></h2>
+<p>The complete server is short enough to review. The comments here are explanations for the book; the shipped file is intentionally lean.</p>
+<pre><code class="language-javascript">#!/usr/bin/env node
+
+import { McpServer } from &quot;@modelcontextprotocol/sdk/server/mcp.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+import { z } from &quot;zod&quot;;
+
+const server = new McpServer({
+  name: &quot;word-counter&quot;,
+  version: &quot;1.0.0&quot;,
+});
+
+server.registerTool(
+  &quot;count_words&quot;,
+  {
+    title: &quot;Count words&quot;,
+    description:
+      &quot;Count words in a passage of text. This tool only reads the text you provide; it does not save or send it anywhere.&quot;,
+    inputSchema: {
+      text: z.string().min(1).max(100_000).describe(&quot;The text to count&quot;),
+    },
+    annotations: {
+      readOnlyHint: true,
+      openWorldHint: false,
+    },
+  },
+  async ({ text }) =&gt; {
+    const words = text.trim().split(/\s+/u).filter(Boolean);
+    const result = {
+      words: words.length,
+      characters: text.length,
+      charactersWithoutSpaces: text.replace(/\s/gu, &quot;&quot;).length,
+    };
+
+    return {
+      content: [
+        {
+          type: &quot;text&quot;,
+          text: `${result.words} words, ${result.characters} characters, ${result.charactersWithoutSpaces} without spaces.`,
+        },
+      ],
+      structuredContent: result,
+    };
+  },
+);
+
+const transport = new StdioServerTransport();
+await server.connect(transport);
+</code></pre>
+<p>This was tested with <code>@modelcontextprotocol/sdk</code> 1.32.1 and <code>zod</code> 4. The SDK&#39;s registration API has evolved across versions; if you are using a different release, check its documentation. The concepts stay the same.</p>
+<h3 id="the-imports">The imports<a class="heading-anchor" href="#the-imports" aria-label="Link to section: The imports">#</a></h3>
+<p><code>McpServer</code> is the high-level server object. <code>StdioServerTransport</code> connects it to standard input and output so a host can launch it as a child process. <code>zod</code> defines and validates the input shape.</p>
+<h3 id="the-server-identity">The server identity<a class="heading-anchor" href="#the-server-identity" aria-label="Link to section: The server identity">#</a></h3>
+<p>The constructor gives the server a name and version. These are visible in discovery and logs. Use a real version so you can tell which build is running. Do not include secrets or internal hostnames in these fields.</p>
+<h3 id="the-tool-definition">The tool definition<a class="heading-anchor" href="#the-tool-definition" aria-label="Link to section: The tool definition">#</a></h3>
+<p><code>registerTool</code> takes a name, metadata, and a handler. The name is what the model must emit to call the tool. Keep it stable; renaming a tool breaks saved workflows and approval policies.</p>
+<p>The description is the model&#39;s instruction manual. This one states the action, the input, and the fact that data is not retained. That last claim is true because the code has no storage and no network calls. It is a property of the implementation, not a reassuring sentence. If you add logging or analytics later, update the description and the privacy story.</p>
+<p>The input schema has a minimum length of one character and a maximum of 100,000. That limit reduces accidental giant payloads. It is not a substitute for a server-side guard if you add expensive processing later.</p>
+<p>The annotations say read-only and closed-world. They are useful signals, but as <a href="mcp-servers.html">Chapter 5</a> explained, they are only hints. The real evidence is the code: no file writes, no network, no state.</p>
+<h3 id="the-handler">The handler<a class="heading-anchor" href="#the-handler" aria-label="Link to section: The handler">#</a></h3>
+<p>The handler counts words with a simple whitespace split, returns a human-readable text result, and includes structured content for clients that want fields. It has no access to the user&#39;s files or accounts. Its only input is the <code>text</code> argument.</p>
+<p>One subtlety: the tool does not &quot;read&quot; the user&#39;s text from anywhere else. The host sends the argument. If the model invents a passage, the count will be for the invented passage. Tools are precise about their inputs, not omniscient about intent.</p>
+<h3 id="the-transport">The transport<a class="heading-anchor" href="#the-transport" aria-label="Link to section: The transport">#</a></h3>
+<p>The last two lines connect the server to stdio and wait for messages. If you run <code>node server.mjs</code> directly in a terminal, it will appear to hang. That is expected: it is waiting for JSON-RPC input. Do not add <code>console.log</code> messages in a stdio server, because standard output is the protocol channel. A stray log can corrupt the stream and make the client fail in confusing ways. Use <code>console.error</code> for diagnostics if you need them, or better, no console output at all.</p>
+<h2 id="the-test-client">The test client<a class="heading-anchor" href="#the-test-client" aria-label="Link to section: The test client">#</a></h2>
+<p>The repository includes <code>test-client.mjs</code>, a small MCP client that launches the server, lists tools, calls <code>count_words</code>, and asserts the result. It checks that the tool exists, that it has the expected read-only annotation, and that the word count is correct.</p>
+<p>Run it from the repository root:</p>
+<pre><code class="language-bash">npm run test:mcp
+</code></pre>
+<p>Or run it inside the example directory after installing dependencies:</p>
+<pre><code class="language-bash">cd examples/word-counter-server
+npm install
+npm test
+</code></pre>
+<p>The test follows the real protocol. It does not call the handler directly. That matters: testing the function alone would miss a broken transport, a registration mistake, or an invalid schema.</p>
+<p>A useful exercise is to break the server on purpose in a scratch copy: change the tool name, remove the schema, or return malformed content. Run the test. See which failure it catches. Then restore it. This teaches you more than a green checkmark.</p>
+<h2 id="add-a-tool-carefully">Add a tool, carefully<a class="heading-anchor" href="#add-a-tool-carefully" aria-label="Link to section: Add a tool, carefully">#</a></h2>
+<p>If you want to extend the example, keep the first additions read-only and local. For instance, you could add a tool that estimates reading time:</p>
+<pre><code class="language-javascript">server.registerTool(
+  &quot;estimate_reading_time&quot;,
+  {
+    title: &quot;Estimate reading time&quot;,
+    description:
+      &quot;Estimate reading time for plain text at 200 words per minute. Read-only; does not save or send text.&quot;,
+    inputSchema: {
+      text: z.string().min(1).max(100_000),
+    },
+    annotations: {
+      readOnlyHint: true,
+      openWorldHint: false,
+    },
+  },
+  async ({ text }) =&gt; {
+    const words = text.trim().split(/\s+/u).filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+    return {
+      content: [
+        { type: &quot;text&quot;, text: `About ${minutes} minute${minutes === 1 ? &quot;&quot; : &quot;s&quot;}.` },
+      ],
+      structuredContent: { words, minutes, wordsPerMinute: 200 },
+    };
+  },
+);
+</code></pre>
+<p>Before adding anything, ask:</p>
+<ol>
+<li><strong>Does it need data from outside the user&#39;s provided input?</strong> If yes, you are creating a trust boundary. Define scope and credentials.</li>
+<li><strong>Can it change something?</strong> If yes, split it into a preview or draft and a commit.</li>
+<li><strong>Could repeated calls have side effects?</strong> If yes, make it idempotent or require approval.</li>
+<li><strong>Does it accept arbitrary paths, URLs, queries, or recipients?</strong> If yes, validate against an allowlist.</li>
+<li><strong>What is the worst realistic input?</strong> Test it.</li>
+<li><strong>What does it log?</strong> Remove secrets and unnecessary personal data.</li>
+</ol>
+<p>A server grows a trust problem before it grows a feature problem. Add capabilities in the smallest increments that prove useful.</p>
+<h2 id="a-hard-boundary-do-not-start-with-filesystem-write-access">A hard boundary: do not start with filesystem write access<a class="heading-anchor" href="#a-hard-boundary-do-not-start-with-filesystem-write-access" aria-label="Link to section: A hard boundary: do not start with filesystem write access">#</a></h2>
+<p>It is tempting to build a file tool because it makes the assistant feel powerful. Start with a read-only sandbox instead if you must explore files. A write-capable server introduces overwrites, path traversal, symlinks, permissions, backups, and irreversible deletion. Those are solvable engineering problems, but they are not beginner exercises.</p>
+<p>If you later add filesystem access:</p>
+<ul>
+<li>point the server at a dedicated test folder, never your home directory;</li>
+<li>use a separate OS user or container;</li>
+<li>disallow absolute paths and path traversal;</li>
+<li>prevent following symlinks outside the root;</li>
+<li>default to read-only;</li>
+<li>write drafts instead of overwriting;</li>
+<li>log every mutation;</li>
+<li>test with files you can afford to lose;</li>
+<li>keep backups.</li>
+</ul>
+<p>A well-designed server can be safer than a generic one. But the initial learning value comes from seeing the protocol, not from handing an agent your Documents folder.</p>
+<h2 id="connecting-a-remote-server-instead">Connecting a remote server instead<a class="heading-anchor" href="#connecting-a-remote-server-instead" aria-label="Link to section: Connecting a remote server instead">#</a></h2>
+<p>If your host offers a hosted connector, you may not need a command at all. The host will show a URL, an OAuth consent screen, or an API key field. The safety questions from <a href="connectors.html">Chapter 6</a> still apply:</p>
+<ul>
+<li>Who operates the server, and where is it hosted?</li>
+<li>What scopes does it request, and can you reduce them?</li>
+<li>Does it read, write, or both?</li>
+<li>What does it retain, and for how long?</li>
+<li>Can you revoke access cleanly?</li>
+</ul>
+<p>A hosted server is not automatically better or worse than a local one. It moves the trust boundary. A local server on a hardened, scoped environment can be quite safe; a hosted server from an unknown vendor can be quite risky. Read the specifics, not the category.</p>
+<h2 id="verifying-the-integration-not-just-the-server">Verifying the integration, not just the server<a class="heading-anchor" href="#verifying-the-integration-not-just-the-server" aria-label="Link to section: Verifying the integration, not just the server">#</a></h2>
+<p>When you connect a server to a host, test four things separately:</p>
+<ol>
+<li><strong>Discovery:</strong> Does the host show the expected tools and nothing extra?</li>
+<li><strong>Execution:</strong> Does a benign request produce a correct result?</li>
+<li><strong>Boundary:</strong> Does an out-of-scope request fail at the appropriate layer?</li>
+<li><strong>Cleanup:</strong> Does disabling the server remove the tools and stop calls?</li>
+</ol>
+<p>A failure at discovery is a configuration problem. A failure at execution may be a transport or schema problem. A boundary failure is a security problem and should stop the rollout. A cleanup failure means access persists where you thought it was gone.</p>
+<p>Keep a short log of these checks. For personal use it can be three lines in a notes app. For a team it belongs with the integration&#39;s owner and review date.</p>
+<h2 id="when-it-does-not-work">When it does not work<a class="heading-anchor" href="#when-it-does-not-work" aria-label="Link to section: When it does not work">#</a></h2>
+<p>A few quick checks:</p>
+<ul>
+<li><strong>The server is not listed:</strong> verify the command exists, the absolute path is correct, and the host was restarted.</li>
+<li><strong>The server starts and exits:</strong> run it directly to see errors on stderr; check that dependencies are installed.</li>
+<li><strong>Dependencies are missing:</strong> run <code>npm install</code> in the example, or from the repository root if using workspaces.</li>
+<li><strong>The host cannot find <code>node</code>:</strong> use the absolute path to the Node binary in the config.</li>
+<li><strong>The tool call fails validation:</strong> check the schema and the arguments in the host trace.</li>
+<li><strong>The host shows no tool call:</strong> the model may not have chosen the tool. Ask explicitly, or check that the tool is enabled in the current conversation.</li>
+<li><strong>Output is garbled or the connection drops:</strong> look for stray stdout logs in the server.</li>
+</ul>
+<p>If the host reports a protocol version or initialization error, the client and server may be incompatible. Use the versions recommended by the host&#39;s documentation and check the official MCP specification.</p>
+<h2 id="recap">Recap<a class="heading-anchor" href="#recap" aria-label="Link to section: Recap">#</a></h2>
+<ul>
+<li>Start with a read-only server that has no credentials, no network, and no filesystem access.</li>
+<li>The example exposes one tool and returns both human-readable and structured results.</li>
+<li>Connect it through a local command configuration, inspecting the discovered tool and its schema.</li>
+<li>Test discovery, execution, boundaries, and cleanup.</li>
+<li>Run the real protocol test client; direct handler tests are not enough.</li>
+<li>Never write logs to stdout in a stdio server.</li>
+<li>Do not begin with filesystem write access. Add capabilities in small, reviewable steps.</li>
+<li>A green connection indicator is not a security review.</li>
+</ul>
+<h2 id="try-this">Try this<a class="heading-anchor" href="#try-this" aria-label="Link to section: Try this">#</a></h2>
+<ol>
+<li>Connect the word-counter server to an MCP host and inspect the tool description the model receives.</li>
+<li>Run <code>npm run test:mcp</code> and then change the expected word count to a wrong value. Observe the failure, then restore it.</li>
+<li>Add the reading-time tool and write a test for a one-word input and a 1,000-word input.</li>
+<li>Write a one-page configuration note for your future self: command, path, purpose, permissions, cleanup steps. You will thank yourself when something breaks.</li>
+</ol>
+<p>The next two chapters are about judgment: which work is worth automating, and what to do when an agent fails.</p>
+
+        </div>
+        <nav class="chapter-pager" aria-label="Chapter navigation"><a class="pager-card pager-prev" href="real-workflows.html"><span class="pager-kicker">Previous</span><span class="pager-title">Real workflows you can steal</span></a><a class="pager-card pager-next" href="choosing-work.html"><span class="pager-kicker">Next</span><span class="pager-title">Choosing what to automate (and what not to)</span></a></nav>
+      </article>
+    </main>
+    <aside class="toc-rail" aria-label="On this page"><div class="toc-sticky"><p class="toc-title">On this page</p><nav><ul class="toc-list"><li class="toc-item toc-level-2"><a href="#what-you-need">What you need</a></li><li class="toc-item toc-level-2"><a href="#track-a-connect-it-to-an-ai-host">Track A: Connect it to an AI host</a></li><li class="toc-item toc-level-3"><a href="#step-1-confirm-the-server-starts">Step 1: Confirm the server starts</a></li><li class="toc-item toc-level-3"><a href="#step-2-add-and-reload">Step 2: Add and reload</a></li><li class="toc-item toc-level-3"><a href="#step-3-inspect-before-using">Step 3: Inspect before using</a></li><li class="toc-item toc-level-3"><a href="#step-4-make-a-safe-request">Step 4: Make a safe request</a></li><li class="toc-item toc-level-3"><a href="#step-5-test-the-boundary">Step 5: Test the boundary</a></li><li class="toc-item toc-level-3"><a href="#step-6-remove-it">Step 6: Remove it</a></li><li class="toc-item toc-level-2"><a href="#track-b-read-the-server">Track B: Read the server</a></li><li class="toc-item toc-level-3"><a href="#the-imports">The imports</a></li><li class="toc-item toc-level-3"><a href="#the-server-identity">The server identity</a></li><li class="toc-item toc-level-3"><a href="#the-tool-definition">The tool definition</a></li><li class="toc-item toc-level-3"><a href="#the-handler">The handler</a></li><li class="toc-item toc-level-3"><a href="#the-transport">The transport</a></li><li class="toc-item toc-level-2"><a href="#the-test-client">The test client</a></li><li class="toc-item toc-level-2"><a href="#add-a-tool-carefully">Add a tool, carefully</a></li><li class="toc-item toc-level-2"><a href="#a-hard-boundary-do-not-start-with-filesystem-write-access">A hard boundary: do not start with filesystem write access</a></li><li class="toc-item toc-level-2"><a href="#connecting-a-remote-server-instead">Connecting a remote server instead</a></li><li class="toc-item toc-level-2"><a href="#verifying-the-integration-not-just-the-server">Verifying the integration, not just the server</a></li><li class="toc-item toc-level-2"><a href="#when-it-does-not-work">When it does not work</a></li><li class="toc-item toc-level-2"><a href="#recap">Recap</a></li><li class="toc-item toc-level-2"><a href="#try-this">Try this</a></li></ul></nav><a class="toc-top" href="#top">Back to top</a></div></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span class="footer-mark"><svg class="brand-glyph" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 17c0-5 3.1-8 7.4-8 4 0 6.6 2.6 6.6 5.5 0 3.2-2.3 5-5.6 5H10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m8.6 21-2.5-4 4.4-1.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.8" cy="20.8" r="2.3" fill="var(--accent, #C24E2C)"/></svg></span><div><p class="footer-title">AI Agents and MCP, Explained for Normal People</p><p class="footer-note">A plain-English field guide. Static, private, and built to be read.</p></div></div>
+      <nav class="footer-links" aria-label="Footer"><a href="index.html#contents">Contents</a><a href="preface.html">Preface</a><a href="glossary.html">Glossary</a><a href="checklists.html">Checklists</a><a href="#top">Back to top</a></nav>
+      <p class="footer-fine">No accounts. No analytics. No API keys in the book. Always verify product-specific details with current documentation.</p>
+    </div>
+    <a class="back-to-top" href="#top" aria-label="Back to top"><svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-box">
+      <div class="search-head">
+        <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.2 4.2" stroke-linecap="round"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Search the book</label>
+        <input id="search-input" class="search-input" type="search" placeholder="Search a concept, chapter, or term…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="icon-button search-close" type="button" data-search-close aria-label="Close search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="search-suggestions" data-search-suggestions>
+        <span class="search-hint-label">Try</span>
+        <button type="button" class="search-chip" data-search-example="prompt injection">prompt injection</button>
+        <button type="button" class="search-chip" data-search-example="MCP server">MCP server</button>
+        <button type="button" class="search-chip" data-search-example="approvals">approvals</button>
+        <button type="button" class="search-chip" data-search-example="OAuth">OAuth</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite">Search across all 14 chapters.</p>
+      <div class="search-results" id="search-results" data-search-results aria-label="Search results"></div>
+      <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd> to move</span><span><kbd>Esc</kbd> to close</span><span>No tracking</span></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
